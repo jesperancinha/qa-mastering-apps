@@ -5,27 +5,44 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Data
 @Entity
 @Table
+@Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Car {
+@AllArgsConstructor
+public class Lease {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String make;
-    private String model;
-    private String version;
-    private Long numberDoors;
-    private Long co2Emission;
-    private Long grossPrice;
+
+    @OneToOne
+    private Car car;
+
+    @OneToOne
+    private Customer customer;
+
+    @Column
+    private Long millage;
+
+    @Column
+    private Long duration;
+
+    @Column
+    private Long interestRate;
+
+    @Column
     private Long netPrice;
+
+   @Column
+   private Double leaseRate;
 }

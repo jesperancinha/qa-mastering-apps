@@ -1,5 +1,6 @@
 package org.jesperancinha.car.lease.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table
+@Builder
 public class Customer {
 
     @Id
