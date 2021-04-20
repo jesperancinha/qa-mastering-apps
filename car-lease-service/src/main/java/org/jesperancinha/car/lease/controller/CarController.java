@@ -23,7 +23,7 @@ public class CarController {
     }
 
     @GetMapping
-    public List<CarDto> listCustomers() {
+    public List<CarDto> listCars() {
         return carService.getAll();
     }
 

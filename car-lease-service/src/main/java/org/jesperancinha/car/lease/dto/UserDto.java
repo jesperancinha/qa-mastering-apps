@@ -1,5 +1,6 @@
 package org.jesperancinha.car.lease.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
+@Builder
 public class UserDto {
 
     private Long id;
