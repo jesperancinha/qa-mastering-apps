@@ -2,6 +2,8 @@ package org.jesperancinha.car.lease;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class CarLeaseServiceApplication {
@@ -10,4 +12,8 @@ public class CarLeaseServiceApplication {
 		SpringApplication.run(CarLeaseServiceApplication.class, args);
 	}
 
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
