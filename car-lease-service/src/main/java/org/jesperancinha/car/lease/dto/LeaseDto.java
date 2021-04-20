@@ -15,17 +15,13 @@ public class LeaseDto {
 
     private Long id;
 
-    private CarDto car;
+    private Long carId;
 
-    private CustomerDto customer;
-
-    private Long millage;
+    private Long customerId;
 
     private Long duration;
 
     private Long interestRate;
-
-    private Long netPrice;
 
     private Double leaseRate;
 }

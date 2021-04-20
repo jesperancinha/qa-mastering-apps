@@ -18,4 +18,5 @@ public class CarDto {
     private Long co2Emission;
     private Long grossPrice;
     private Long netPrice;
+    private Long millage;
 }

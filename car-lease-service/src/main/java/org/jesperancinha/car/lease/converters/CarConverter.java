@@ -13,12 +13,14 @@ public class CarConverter {
         return CarDto
                 .builder()
                 .id(car.getId())
+                .version(car.getVersion())
                 .model(car.getModel())
                 .co2Emission(car.getCo2Emission())
                 .make(car.getMake())
                 .netPrice(car.getNetPrice())
                 .numberDoors(car.getNumberDoors())
                 .grossPrice(car.getGrossPrice())
+                .millage(car.getMillage())
                 .build();
     }
 
@@ -26,12 +28,14 @@ public class CarConverter {
         return Car
                 .builder()
                 .id(car.getId())
+                .version(car.getVersion())
                 .model(car.getModel())
                 .co2Emission(car.getCo2Emission())
                 .make(car.getMake())
                 .netPrice(car.getNetPrice())
                 .numberDoors(car.getNumberDoors())
                 .grossPrice(car.getGrossPrice())
+                .millage(car.getMillage())
                 .build();
     }
 }

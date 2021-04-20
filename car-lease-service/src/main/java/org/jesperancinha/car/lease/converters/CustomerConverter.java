@@ -13,6 +13,7 @@ public class CustomerConverter {
                 .zipCode(customer.getZipCode())
                 .place(customer.getPlace())
                 .phoneNumber(customer.getPhoneNumber())
+                .id(customer.getId())
                 .build();
     }
 
@@ -25,6 +26,7 @@ public class CustomerConverter {
                 .zipCode(customerDto.getZipCode())
                 .place(customerDto.getPlace())
                 .phoneNumber(customerDto.getPhoneNumber())
+                .id(customerDto.getId())
                 .build();
     }
 }

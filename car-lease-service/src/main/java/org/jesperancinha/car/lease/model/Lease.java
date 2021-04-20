@@ -32,9 +32,6 @@ public class Lease {
     private Customer customer;
 
     @Column
-    private Long millage;
-
-    @Column
     private Long duration;
 
     @Column

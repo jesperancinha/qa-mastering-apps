@@ -5,6 +5,7 @@ import org.jesperancinha.car.lease.services.LeaseService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,8 @@ public class LeaseController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public LeaseDto createLease(LeaseDto leaseDto) {
+    public LeaseDto createLease(@RequestBody
+                                        LeaseDto leaseDto) {
         return leaseService.createLease(leaseDto);
     }
 }
