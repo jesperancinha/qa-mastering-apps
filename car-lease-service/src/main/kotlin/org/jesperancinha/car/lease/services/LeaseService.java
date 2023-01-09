@@ -14,19 +14,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class LeaseServiceImpl implements LeaseService {
+public class LeaseService {
 
     private final LeaseRepository leaseRepository;
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
 
-    public LeaseServiceImpl(LeaseRepository leaseRepository, CarRepository carRepository, CustomerRepository customerRepository) {
+    public LeaseService(LeaseRepository leaseRepository, CarRepository carRepository, CustomerRepository customerRepository) {
         this.leaseRepository = leaseRepository;
         this.carRepository = carRepository;
         this.customerRepository = customerRepository;
     }
 
-    @Override
     public LeaseDto createLease(LeaseDto leaseDto) {
         final Car car = carRepository.getOne(leaseDto.getCarId());
         final Customer customer = customerRepository.getOne(leaseDto.getCustomerId());
@@ -39,22 +38,18 @@ public class LeaseServiceImpl implements LeaseService {
         return LeaseConverter.toDto(leaseRepository.save(leaseObject));
     }
 
-    @Override
     public LeaseDto getLeaseById(Long id) {
         return LeaseConverter.toDto(leaseRepository.findById(id).orElse(null));
     }
 
-    @Override
     public LeaseDto updateLease(LeaseDto leaseDto) {
         return LeaseConverter.toDto(leaseRepository.save(LeaseConverter.toData(leaseDto)));
     }
 
-    @Override
     public void deleteCustomerById(Long id) {
         leaseRepository.deleteById(id);
     }
 
-    @Override
     public List<LeaseDto> getAll() {
         return leaseRepository.findAll().stream().map(LeaseConverter::toDto).collect(Collectors.toList());
     }

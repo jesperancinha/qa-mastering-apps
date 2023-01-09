@@ -1,8 +1,8 @@
 package org.jesperancinha.car.lease.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jesperancinha.car.lease.dto.CarDto;
-import org.jesperancinha.car.lease.services.CarServiceImpl;
+import org.jesperancinha.car.lease.dto.CustomerDto;
+import org.jesperancinha.car.lease.services.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,48 +20,45 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(CarController.class)
-class CarControllerTest {
+@WebMvcTest(CustomerController.class)
+class CustomerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CarServiceImpl carService;
+    private CustomerService customerService;
 
-    private final CarDto carDto = CarDto.builder()
-            .make("Fiat")
-            .model("Panda")
-            .version("1234")
-            .millage(1000L)
+    private final CustomerDto customerDto = CustomerDto.builder()
+            .name("Joao")
             .build();
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @BeforeEach
     public void setUp() {
-        when(carService.getAll())
-                .thenReturn(List.of(carDto));
-        when(carService.createCar(carDto)).thenReturn(carDto);
+        when(customerService.getAll())
+                .thenReturn(List.of(customerDto));
+        when(customerService.createCustomer(customerDto)).thenReturn(customerDto);
     }
 
     @Test
     @WithMockUser(username = "Joao",
             roles = "USER")
-    public void testListCars_whenCalled_thenGetFullList() throws Exception {
-        mockMvc.perform(get("/cars"))
+    public void testListCustomers_Cars_whenCalled_thenGetFullList() throws Exception {
+        mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(List.of(carDto))));
+                .andExpect(content().json(objectMapper.writeValueAsString(List.of(customerDto))));
     }
 
     @Test
     @WithMockUser(username = "Joao",
             roles = "USER")
-    public void testCreateCar_whenCalled_thenCreateCar() throws Exception {
-        mockMvc.perform(post("/cars")
+    public void testCreateCustomer_whenCalled_thenCreateCar() throws Exception {
+        mockMvc.perform(post("/customers")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(carDto)))
+                .content(objectMapper.writeValueAsString(customerDto)))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(carDto)));
+                .andExpect(content().json(objectMapper.writeValueAsString(customerDto)));
     }
 }

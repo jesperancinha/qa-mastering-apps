@@ -1,7 +1,6 @@
 package org.jesperancinha.car.lease.controller;
 
 import org.jesperancinha.car.lease.dto.CarDto;
-import org.jesperancinha.car.lease.dto.CustomerDto;
 import org.jesperancinha.car.lease.services.CarService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

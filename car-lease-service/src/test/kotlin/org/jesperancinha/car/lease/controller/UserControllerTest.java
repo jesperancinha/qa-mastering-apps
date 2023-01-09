@@ -2,7 +2,7 @@ package org.jesperancinha.car.lease.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jesperancinha.car.lease.dto.UserDto;
-import org.jesperancinha.car.lease.services.UserServiceImpl;
+import org.jesperancinha.car.lease.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-@ContextConfiguration(classes = {UserController.class, UserServiceImpl.class, BCryptPasswordEncoder.class})
+@ContextConfiguration(classes = {UserController.class, UserService.class, BCryptPasswordEncoder.class})
 class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserServiceImpl userService;
+    private UserService userService;
 
     private final UserDto userDto = UserDto
             .builder().username("joao").password("pass").build();
