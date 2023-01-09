@@ -10,6 +10,7 @@
 	<artifactId>car-lease-service</artifactId>
 	<name>Car Lease Service</name>
 	<description>Demo project for Spring Boot</description>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.auth0</groupId>
@@ -123,6 +124,23 @@
 						<version>${kotlin.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*Test</include>
+						<include>**/*Tests</include>
+						<include>**/*IT</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
