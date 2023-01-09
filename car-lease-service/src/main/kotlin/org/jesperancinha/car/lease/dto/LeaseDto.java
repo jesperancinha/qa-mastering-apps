@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.jesperancinha.car.lease.model.Car;
-import org.jesperancinha.car.lease.model.Customer;
 
 @Data
 @Builder

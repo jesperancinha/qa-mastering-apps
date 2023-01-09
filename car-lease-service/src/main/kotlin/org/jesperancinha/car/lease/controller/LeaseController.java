@@ -3,11 +3,7 @@ package org.jesperancinha.car.lease.controller;
 import org.jesperancinha.car.lease.dto.LeaseDto;
 import org.jesperancinha.car.lease.services.LeaseService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

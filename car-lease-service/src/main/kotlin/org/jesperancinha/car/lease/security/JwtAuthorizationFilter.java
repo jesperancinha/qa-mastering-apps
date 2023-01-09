@@ -2,21 +2,19 @@ package org.jesperancinha.car.lease.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.jesperancinha.car.lease.security.JwtConstants.HEADER_STRING;
-import static org.jesperancinha.car.lease.security.JwtConstants.SECRET;
-import static org.jesperancinha.car.lease.security.JwtConstants.TOKEN_PREFIX;
+import static org.jesperancinha.car.lease.security.JwtConstants.*;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
