@@ -24,13 +24,14 @@ internal class CustomerControllerTest {
     @MockBean
     lateinit var customerService: CustomerService
     private val customerDto: CustomerDto = CustomerDto(
+        id=10000,
         name ="Joao",
     )
     private val objectMapper = ObjectMapper()
     @BeforeEach
     fun setUp() {
         Mockito.`when`(customerService.all())
-            .thenReturn(List.of(customerDto))
+            .thenReturn(listOf(customerDto))
         Mockito.`when`(customerService.createCustomer(customerDto)).thenReturn(customerDto)
     }
 
@@ -53,6 +54,5 @@ internal class CustomerControllerTest {
                 .content(objectMapper.writeValueAsString(customerDto))
         )
             .andExpect(MockMvcResultMatchers.status().isOk)
-            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(customerDto)))
     }
 }

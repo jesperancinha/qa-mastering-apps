@@ -119,7 +119,6 @@ class User(
 ) : Serializable
 
 interface CarRepository : JpaRepository<Car, Long>
-
 interface CustomerRepository : JpaRepository<Customer, Long>
 interface LeaseRepository : JpaRepository<Lease, Long>
 interface UserRepository : JpaRepository<User, Long> {

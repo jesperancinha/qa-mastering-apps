@@ -8,7 +8,6 @@ import org.jesperancinha.car.lease.dao.Car
 import org.jesperancinha.car.lease.dao.Customer
 import org.jesperancinha.car.lease.dao.Lease
 import org.jesperancinha.car.lease.dao.User
-import java.util.*
 
 
 fun Car.toDto() = CarDto(
@@ -46,7 +45,7 @@ fun Customer.toDto() = CustomerDto(
     phoneNumber = phoneNumber
 )
 
-fun CustomerDto.toDate() = Customer(
+fun CustomerDto.toData() = Customer(
     id = id,
     name = name,
     email = email,

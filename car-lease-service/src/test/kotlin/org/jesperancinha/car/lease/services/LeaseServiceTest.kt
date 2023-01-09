@@ -17,8 +17,10 @@ import org.mockito.Mockito
 import org.mockito.invocation.InvocationOnMock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import java.util.*
 
 @ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [LeaseService::class])
@@ -37,10 +39,10 @@ internal class LeaseServiceTest @Autowired constructor(
 
     @BeforeEach
     fun setup() {
-        Mockito.`when`(customerRepository!!.getOne(1L))
-            .thenReturn(Customer())
-        Mockito.`when`(carRepository!!.getOne(1L))
-            .thenReturn(Car(millage = 10000L, netPrice = 20000L))
+        Mockito.`when`(customerRepository!!.findById(1L))
+            .thenReturn(Optional.of(Customer()))
+        Mockito.`when`(carRepository!!.findById(1L))
+            .thenReturn(Optional.of(Car(millage = 10000L, netPrice = 20000L)))
         Mockito.`when`<Any>(leaseRepository!!.save(ArgumentMatchers.any()))
             .thenAnswer { invocationOnMock: InvocationOnMock -> invocationOnMock.arguments[0] }
     }
