@@ -23,6 +23,9 @@
 
 This is an Auto Lease app
 
+#### Stable releases
+
+-   [0.0.0](https://github.com/jesperancinha/car-lease/tree/0.0.0) - [0b502ad1366c2dbdbb4adecc703cffa3f54dbb84](https://github.com/jesperancinha/car-lease/tree/0.0.0) - JDK 17 / H2 / Spring Boot 3.0.1
 
 ## How to test
 
