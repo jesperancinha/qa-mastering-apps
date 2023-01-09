@@ -1,5 +1,29 @@
 # Car Lease
 
+---
+
+[![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=%20Checkout%20this%20%40github%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//github.com/jesperancinha/car-lease)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=car-lease%20🚗&color=informational)](https://github.com/jesperancinha/car-lease)
+
+[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+
+[![CLM Build, Test, Coverage and Report](https://github.com/jesperancinha/car-lease/actions/workflows/car-lease-manager.yml/badge.svg)](https://github.com/jesperancinha/car-lease/actions/workflows/car-lease-manager.yml)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/af73a199a556499288d9c91ce94956de)](https://www.codacy.com/gh/jesperancinha/car-lease/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/car-lease&amp;utm_campaign=Badge_Grade)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c087adeb61914ad9ab259e0abbcb6c27)](https://www.codacy.com/gh/jesperancinha/car-lease/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/car-lease&utm_campaign=Badge_Coverage)
+[![Coverage Status](https://coveralls.io/repos/github/jesperancinha/car-lease/badge.svg?branch=main)](https://coveralls.io/github/jesperancinha/car-lease?branch=main)
+
+[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/car-lease.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/car-lease.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/car-lease.svg)](#)
+
+---
+## Introduction
+
+This is an Auto Lease app
+
+
 ## How to test
 
 
