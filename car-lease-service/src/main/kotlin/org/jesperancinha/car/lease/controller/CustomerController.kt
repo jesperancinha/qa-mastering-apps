@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("customers")
 class CustomerController(private val customerService: CustomerService) {
     @GetMapping
-    fun listCustomers(): List<CustomerDto?>? {
-        return customerService.all
-    }
+    fun listCustomers(): List<CustomerDto?>? = customerService.all()
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
-    fun createCustomer(@RequestBody customerDto: CustomerDto): CustomerDto? {
-        return customerService.createCustomer(customerDto)
-    }
+    fun createCustomer(@RequestBody customerDto: CustomerDto): CustomerDto? = customerService.createCustomer(customerDto)
 }

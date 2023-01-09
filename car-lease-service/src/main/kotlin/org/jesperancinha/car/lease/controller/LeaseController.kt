@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 class LeaseController(private val leaseService: LeaseService) {
     @GetMapping
     fun listLeases(): List<LeaseDto?>? {
-        return leaseService.all
+        return leaseService.all()
     }
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])

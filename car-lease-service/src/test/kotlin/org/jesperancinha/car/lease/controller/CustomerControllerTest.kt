@@ -22,14 +22,14 @@ internal class CustomerControllerTest {
     private val mockMvc: MockMvc? = null
 
     @MockBean
-    private val customerService: CustomerService? = null
-    private val customerDto: CustomerDto = CustomerDto.builder()
-        .name("Joao")
-        .build()
+    lateinit var customerService: CustomerService
+    private val customerDto: CustomerDto = CustomerDto(
+        name ="Joao",
+    )
     private val objectMapper = ObjectMapper()
     @BeforeEach
     fun setUp() {
-        Mockito.`when`(customerService!!.all)
+        Mockito.`when`(customerService.all())
             .thenReturn(List.of(customerDto))
         Mockito.`when`(customerService.createCustomer(customerDto)).thenReturn(customerDto)
     }

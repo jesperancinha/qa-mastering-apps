@@ -1,5 +1,7 @@
 package org.jesperancinha.car.lease.services
 
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions
 import org.jesperancinha.car.lease.dto.LeaseDto
 import org.jesperancinha.car.lease.dao.Car
@@ -20,9 +22,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [LeaseService::class])
-internal class LeaseServiceTest {
-    @Autowired
-    private val leaseService: LeaseService? = null
+internal class LeaseServiceTest @Autowired constructor(
+    private val leaseService: LeaseService
+) {
 
     @MockBean
     private val customerRepository: CustomerRepository? = null
@@ -32,27 +34,27 @@ internal class LeaseServiceTest {
 
     @MockBean
     private val leaseRepository: LeaseRepository? = null
+
     @BeforeEach
     fun setup() {
         Mockito.`when`(customerRepository!!.getOne(1L))
-            .thenReturn(Customer.builder().build())
+            .thenReturn(Customer())
         Mockito.`when`(carRepository!!.getOne(1L))
-            .thenReturn(Car.builder().millage(10000L).netPrice(20000L).build())
+            .thenReturn(Car(millage = 10000L, netPrice = 20000L))
         Mockito.`when`<Any>(leaseRepository!!.save(ArgumentMatchers.any()))
             .thenAnswer { invocationOnMock: InvocationOnMock -> invocationOnMock.arguments[0] }
     }
 
     @Test
     fun testCreateLease() {
-        val leaseDto: LeaseDto = LeaseDto
-            .builder()
-            .duration(10000L)
-            .carId(1L)
-            .customerId(1L)
-            .interestRate(2L)
-            .build()
-        val lease = leaseService!!.createLease(leaseDto)
-        Assertions.assertThat(lease).isNotNull
-        assertThat(lease.getLeaseRate()).isEqualTo(450.0)
+        val leaseDto = LeaseDto(
+            duration = 10000L,
+            carId = 1L,
+            customerId = 1L,
+            interestRate = 2L
+        )
+        val lease = leaseService.createLease(leaseDto)
+        lease.shouldNotBeNull()
+        lease.leaseRate shouldBe 450.0
     }
 }

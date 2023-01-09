@@ -22,17 +22,19 @@ internal class CarControllerTest {
     private val mockMvc: MockMvc? = null
 
     @MockBean
-    private val carService: CarService? = null
-    private val carDto: CarDto = CarDto.builder()
-        .make("Fiat")
-        .model("Panda")
-        .version("1234")
-        .millage(1000L)
-        .build()
+    lateinit var carService: CarService
+
+    private val carDto: CarDto = CarDto(
+        make= "Fiat",
+        model = "Panda",
+        version = "1234",
+        millage = 1000L,
+        netPrice = 0L
+    )
     private val objectMapper = ObjectMapper()
     @BeforeEach
     fun setUp() {
-        Mockito.`when`(carService!!.all)
+        Mockito.`when`(carService.all())
             .thenReturn(List.of(carDto))
         Mockito.`when`(carService.createCar(carDto)).thenReturn(carDto)
     }

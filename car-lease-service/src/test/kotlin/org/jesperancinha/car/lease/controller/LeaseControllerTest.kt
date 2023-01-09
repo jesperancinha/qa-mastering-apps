@@ -22,14 +22,15 @@ internal class LeaseControllerTest {
     private val mockMvc: MockMvc? = null
 
     @MockBean
-    private val leaseService: LeaseService? = null
-    private val leaseDto: LeaseDto = LeaseDto.builder()
-        .duration(1000L)
-        .build()
+    lateinit var leaseService: LeaseService
+    private val leaseDto: LeaseDto = LeaseDto(
+        duration =1000L,
+        interestRate = 0L
+    )
     private val objectMapper = ObjectMapper()
     @BeforeEach
     fun setUp() {
-        Mockito.`when`(leaseService!!.all)
+        Mockito.`when`(leaseService.all())
             .thenReturn(List.of(leaseDto))
         Mockito.`when`(leaseService.createLease(leaseDto)).thenReturn(leaseDto)
     }
