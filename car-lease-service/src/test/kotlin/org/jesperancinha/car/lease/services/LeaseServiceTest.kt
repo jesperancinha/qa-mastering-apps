@@ -2,11 +2,11 @@ package org.jesperancinha.car.lease.services
 
 import org.assertj.core.api.Assertions
 import org.jesperancinha.car.lease.dto.LeaseDto
-import org.jesperancinha.car.lease.model.Car
-import org.jesperancinha.car.lease.model.Customer
-import org.jesperancinha.car.lease.repository.CarRepository
-import org.jesperancinha.car.lease.repository.CustomerRepository
-import org.jesperancinha.car.lease.repository.LeaseRepository
+import org.jesperancinha.car.lease.dao.Car
+import org.jesperancinha.car.lease.dao.Customer
+import org.jesperancinha.car.lease.dao.CarRepository
+import org.jesperancinha.car.lease.dao.CustomerRepository
+import org.jesperancinha.car.lease.dao.LeaseRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

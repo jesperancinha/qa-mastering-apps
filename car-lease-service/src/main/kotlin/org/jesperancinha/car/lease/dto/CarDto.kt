@@ -8,6 +8,6 @@ data class CarDto(
     val numberDoors: Long? = null,
     val co2Emission: Long? = null,
     val grossPrice: Long? = null,
-    val netPrice: Long? = null,
-    val millage: Long? = null
+    val netPrice: Long,
+    val millage: Long
 )

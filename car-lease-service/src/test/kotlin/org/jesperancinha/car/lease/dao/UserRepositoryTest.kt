@@ -1,6 +1,6 @@
-package org.jesperancinha.car.lease.repository
+package org.jesperancinha.car.lease.dao
 
-import org.jesperancinha.car.lease.model.User
+import org.jesperancinha.car.lease.dao.User
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest

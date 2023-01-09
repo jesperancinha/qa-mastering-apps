@@ -1,14 +1,10 @@
 package org.jesperancinha.car.lease
 
-import org.springframework.context.annotation.Bean
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
 class CarLeaseServiceApplication {
-    @Bean
-    fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
 
     companion object {
         @JvmStatic

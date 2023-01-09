@@ -1,31 +1,22 @@
 package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.CarConverter
 import org.jesperancinha.car.lease.converters.toData
 import org.jesperancinha.car.lease.converters.toDto
 import org.jesperancinha.car.lease.dto.CarDto
-import org.jesperancinha.car.lease.model.Car
-import org.jesperancinha.car.lease.repository.CarRepository
+import org.jesperancinha.car.lease.dao.Car
+import org.jesperancinha.car.lease.dao.CarRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.util.stream.Collectors
 
 @Service
 class CarService(private val carRepository: CarRepository) {
-    fun createCar(carDto: CarDto): CarDto {
-        return carRepository.save(carDto.toData()).toDto()
-    }
+    fun createCar(carDto: CarDto): CarDto = carRepository.save(carDto.toData()).toDto()
 
-    fun getCarById(id: Long): CarDto? {
-        return CarConverter.toDto(carRepository.findById(id).orElse(null)!!)
-    }
+    fun getCarById(id: Long): CarDto? = carRepository.findByIdOrNull(id)?.toDto()
 
-    fun updateCar(carDto: CarDto): CarDto? {
-        return CarConverter.toDto(carRepository.save(CarConverter.toData(carDto)))
-    }
+    fun updateCar(carDto: CarDto): CarDto? = carRepository.save(carDto.toData()).toDto()
 
-    fun deleteCarById(id: Long) {
-        carRepository.deleteById(id)
-    }
+    fun deleteCarById(id: Long) = carRepository.deleteById(id)
 
-    fun all(): List<CarDto> = carRepository.findAll().stream().map { obj: Car? -> CarConverter.toDto() }.collect(Collectors.toList())
+    fun all(): List<CarDto> = carRepository.findAll().filterNotNull().map { obj: Car -> obj.toDto() }
 }

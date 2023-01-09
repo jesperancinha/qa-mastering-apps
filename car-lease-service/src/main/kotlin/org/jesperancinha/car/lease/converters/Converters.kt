@@ -4,10 +4,10 @@ import org.jesperancinha.car.lease.dto.CarDto
 import org.jesperancinha.car.lease.dto.CustomerDto
 import org.jesperancinha.car.lease.dto.LeaseDto
 import org.jesperancinha.car.lease.dto.UserDto
-import org.jesperancinha.car.lease.model.Car
-import org.jesperancinha.car.lease.model.Customer
-import org.jesperancinha.car.lease.model.Lease
-import org.jesperancinha.car.lease.model.User
+import org.jesperancinha.car.lease.dao.Car
+import org.jesperancinha.car.lease.dao.Customer
+import org.jesperancinha.car.lease.dao.Lease
+import org.jesperancinha.car.lease.dao.User
 import java.util.*
 
 
@@ -57,38 +57,26 @@ fun CustomerDto.toDate() = Customer(
     phoneNumber = phoneNumber
 )
 
-object LeaseConverter {
-    fun toData(leaseDto: LeaseDto): Lease {
-        return Lease.builder()
-            .id(leaseDto.id)
-            .duration(leaseDto.duration)
-            .leaseRate(leaseDto.leaseRate)
-            .interestRate(leaseDto.interestRate)
-            .build()
-    }
+fun LeaseDto.toData() = Lease(
+    id = id,
+    duration = duration,
+    leaseRate = leaseRate,
+    interestRate = interestRate
+)
 
-    fun toDto(lease: Lease): LeaseDto? {
-        return if (Objects.isNull(lease)) {
-            null
-        } else LeaseDto.builder()
-            .id(lease.id)
-            .carId(lease.car.id)
-            .customerId(lease.customer.id)
-            .duration(lease.duration)
-            .leaseRate(lease.leaseRate)
-            .interestRate(lease.interestRate)
-            .build()
-    }
-}
+fun Lease.toDto() = LeaseDto(
+    id = id,
+    carId = car?.id,
+    customerId = customer?.id,
+    duration = duration,
+    leaseRate = leaseRate,
+    interestRate = interestRate
+)
 
-object UserConverter {
-    fun toUser(userDto: UserDto): User {
-        return User.builder()
-            .username(userDto.username)
-            .password(userDto.password)
-            .email(userDto.email)
-            .firstName(userDto.firstName)
-            .lastName(userDto.lastName)
-            .build()
-    }
-}
+fun UserDto.toData() = User(
+    username = username,
+    password = password,
+    email = email,
+    firstName = firstName,
+    lastName = lastName
+)

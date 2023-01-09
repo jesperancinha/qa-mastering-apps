@@ -1,13 +1,14 @@
 package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.LeaseConverter
+import org.jesperancinha.car.lease.converters.toData
+import org.jesperancinha.car.lease.converters.toDto
+import org.jesperancinha.car.lease.dao.CarRepository
+import org.jesperancinha.car.lease.dao.CustomerRepository
+import org.jesperancinha.car.lease.dao.Lease
+import org.jesperancinha.car.lease.dao.LeaseRepository
 import org.jesperancinha.car.lease.dto.LeaseDto
-import org.jesperancinha.car.lease.model.Lease
-import org.jesperancinha.car.lease.repository.CarRepository
-import org.jesperancinha.car.lease.repository.CustomerRepository
-import org.jesperancinha.car.lease.repository.LeaseRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.util.stream.Collectors
 
 @Service
 class LeaseService(
@@ -16,30 +17,24 @@ class LeaseService(
     private val customerRepository: CustomerRepository
 ) {
     fun createLease(leaseDto: LeaseDto): LeaseDto? {
-        val car = carRepository.getOne(leaseDto.carId)
-        val customer = customerRepository.getOne(leaseDto.customerId)
-        val lease =
-            car.millage.toDouble() / 12 * leaseDto.duration / car.netPrice + leaseDto.interestRate.toDouble() / 100 * car.netPrice / 12
-        leaseDto.leaseRate = lease
-        val leaseObject = LeaseConverter.toData(leaseDto)
-        leaseObject.car = car
-        leaseObject.customer = customer
-        return LeaseConverter.toDto(leaseRepository.save(leaseObject))
+        val car = carRepository.findByIdOrNull(leaseDto.carId)
+        val customer = customerRepository.findByIdOrNull(leaseDto.customerId)
+        car?.let { realCar ->
+            customer?.let {
+                val lease =
+                    realCar.millage.toDouble() / 12 * leaseDto.duration / car.netPrice + leaseDto.interestRate.toDouble() / 100 * car.netPrice / 12
+                val leaseObject = leaseDto.copy(leaseRate = lease).toData().copy(car = car, customer = customer)
+                return leaseRepository.save(leaseObject).toDto()
+            }
+        }
+        return null
     }
 
-    fun getLeaseById(id: Long): LeaseDto? {
-        return LeaseConverter.toDto(leaseRepository.findById(id).orElse(null)!!)
-    }
+    fun getLeaseById(id: Long): LeaseDto? = leaseRepository.findByIdOrNull(id)?.toDto()
 
-    fun updateLease(leaseDto: LeaseDto): LeaseDto? {
-        return LeaseConverter.toDto(leaseRepository.save(LeaseConverter.toData(leaseDto)))
-    }
+    fun updateLease(leaseDto: LeaseDto): LeaseDto? = leaseRepository.save(leaseDto.toData()).toDto()
 
-    fun deleteCustomerById(id: Long) {
-        leaseRepository.deleteById(id)
-    }
+    fun deleteCustomerById(id: Long) = leaseRepository.deleteById(id)
 
-    val all: List<LeaseDto?>
-        get() = leaseRepository.findAll().stream().map { obj: Lease? -> LeaseConverter.toDto() }
-            .collect(Collectors.toList())
+    fun all(): List<LeaseDto> = leaseRepository.findAll().filterNotNull().map { obj: Lease -> obj.toDto() }
 }
