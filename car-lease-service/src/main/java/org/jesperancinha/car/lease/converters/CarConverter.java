@@ -1,5 +1,6 @@
 package org.jesperancinha.car.lease.converters;
 
+import lombok.Getter;
 import org.jesperancinha.car.lease.dto.CarDto;
 import org.jesperancinha.car.lease.model.Car;
 
