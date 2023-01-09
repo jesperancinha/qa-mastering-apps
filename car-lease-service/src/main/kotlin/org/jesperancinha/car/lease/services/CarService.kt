@@ -1,39 +1,31 @@
-package org.jesperancinha.car.lease.services;
+package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.CarConverter;
-import org.jesperancinha.car.lease.dto.CarDto;
-import org.jesperancinha.car.lease.repository.CarRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.jesperancinha.car.lease.converters.CarConverter
+import org.jesperancinha.car.lease.converters.toData
+import org.jesperancinha.car.lease.converters.toDto
+import org.jesperancinha.car.lease.dto.CarDto
+import org.jesperancinha.car.lease.model.Car
+import org.jesperancinha.car.lease.repository.CarRepository
+import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 @Service
-public class CarService {
-
-    private final CarRepository carRepository;
-
-    public CarService(CarRepository carRepository) {
-        this.carRepository = carRepository;
+class CarService(private val carRepository: CarRepository) {
+    fun createCar(carDto: CarDto): CarDto {
+        return carRepository.save(carDto.toData()).toDto()
     }
 
-    public CarDto createCar(CarDto carDto) {
-        return CarConverter.toDto(carRepository.save(CarConverter.toData(carDto)));
+    fun getCarById(id: Long): CarDto? {
+        return CarConverter.toDto(carRepository.findById(id).orElse(null)!!)
     }
 
-    public CarDto getCarById(Long id) {
-        return CarConverter.toDto(carRepository.findById(id).orElse(null));
+    fun updateCar(carDto: CarDto): CarDto? {
+        return CarConverter.toDto(carRepository.save(CarConverter.toData(carDto)))
     }
 
-    public CarDto updateCar(CarDto carDto) {
-        return CarConverter.toDto(carRepository.save(CarConverter.toData(carDto)));
+    fun deleteCarById(id: Long) {
+        carRepository.deleteById(id)
     }
 
-    public void deleteCarById(Long id) {
-        carRepository.deleteById(id);
-    }
-
-    public List<CarDto> getAll() {
-        return carRepository.findAll().stream().map(CarConverter::toDto).collect(Collectors.toList());
-    }
+    fun all(): List<CarDto> = carRepository.findAll().stream().map { obj: Car? -> CarConverter.toDto() }.collect(Collectors.toList())
 }

@@ -1,40 +1,32 @@
-package org.jesperancinha.car.lease.services;
+package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.UserConverter;
-import org.jesperancinha.car.lease.dto.UserDto;
-import org.jesperancinha.car.lease.model.User;
-import org.jesperancinha.car.lease.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
+import org.jesperancinha.car.lease.model.User
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-public class UserService implements UserDetailsService {
+class UserService(bCryptPasswordEncoder: BCryptPasswordEncoder, userRepository: UserRepository) : UserDetailsService {
+    private val bCryptPasswordEncoder: BCryptPasswordEncoder
+    private val userRepository: UserRepository
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    private final UserRepository userRepository;
-
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userRepository = userRepository;
+    init {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder
+        this.userRepository = userRepository
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    public Long saveDto(UserDto userDto) {
-        userDto.setPassword(bCryptPasswordEncoder
-                .encode(userDto.getPassword()));
-        return userRepository.save(UserConverter.toUser(userDto)).getId();
+    @Transactional(rollbackFor = [Exception::class])
+    fun saveDto(userDto: UserDto): Long {
+        userDto.setPassword(
+            bCryptPasswordEncoder
+                .encode(userDto.getPassword())
+        )
+        return userRepository.save<User>(UserConverter.toUser(userDto)).getId()
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final User byUsername = userRepository.findByUsername(username);
-        return new org.springframework.security.core.userdetails.User(byUsername.getUsername(), byUsername.getPassword(), List.of());
+    @Throws(UsernameNotFoundException::class)
+    fun loadUserByUsername(username: String?): UserDetails {
+        val byUsername: User = userRepository.findByUsername(username)
+        return User(byUsername.username, byUsername.password, listOf())
     }
 }

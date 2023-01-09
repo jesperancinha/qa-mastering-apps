@@ -1,65 +1,58 @@
-package org.jesperancinha.car.lease.controller;
+package org.jesperancinha.car.lease.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jesperancinha.car.lease.dto.LeaseDto;
-import org.jesperancinha.car.lease.services.LeaseService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.jesperancinha.car.lease.dto.LeaseDto
+import org.jesperancinha.car.lease.services.LeaseService
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import java.util.List
 
-import java.util.List;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@WebMvcTest(LeaseController.class)
-class LeaseControllerTest {
-
+@WebMvcTest(LeaseController::class)
+internal class LeaseControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    private val mockMvc: MockMvc? = null
 
     @MockBean
-    private LeaseService leaseService;
-
-    private final LeaseDto leaseDto = LeaseDto.builder()
-            .duration(1000L)
-            .build();
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+    private val leaseService: LeaseService? = null
+    private val leaseDto: LeaseDto = LeaseDto.builder()
+        .duration(1000L)
+        .build()
+    private val objectMapper = ObjectMapper()
     @BeforeEach
-    public void setUp() {
-        when(leaseService.getAll())
-                .thenReturn(List.of(leaseDto));
-        when(leaseService.createLease(leaseDto)).thenReturn(leaseDto);
+    fun setUp() {
+        Mockito.`when`(leaseService!!.all)
+            .thenReturn(List.of(leaseDto))
+        Mockito.`when`(leaseService.createLease(leaseDto)).thenReturn(leaseDto)
     }
 
     @Test
-    @WithMockUser(username = "Joao",
-            roles = "USER")
-    public void testListLeases_whenCalled_thenGetFullList() throws Exception {
-        mockMvc.perform(get("/leases"))
-                .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(List.of(leaseDto))));
+    @WithMockUser(username = "Joao", roles = ["USER"])
+    @Throws(Exception::class)
+    fun testListLeases_whenCalled_thenGetFullList() {
+        mockMvc!!.perform(MockMvcRequestBuilders.get("/leases"))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(leaseDto))))
     }
 
     @Test
-    @WithMockUser(username = "Joao",
-            roles = "USER")
-    public void testCreateLease_whenCalled_thenCreateCar() throws Exception {
-        mockMvc.perform(post("/leases")
+    @WithMockUser(username = "Joao", roles = ["USER"])
+    @Throws(Exception::class)
+    fun testCreateLease_whenCalled_thenCreateCar() {
+        mockMvc!!.perform(
+            MockMvcRequestBuilders.post("/leases")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(leaseDto)))
-                .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(leaseDto)));
+                .content(objectMapper.writeValueAsString(leaseDto))
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(leaseDto)))
     }
-
 }

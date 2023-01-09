@@ -1,12 +1,11 @@
-package org.jesperancinha.car.lease.model;
+package org.jesperancinha.car.lease.model
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
+import jakarta.persistence.*
+import lombok.AllArgsConstructor
+import lombok.Builder
+import lombok.Data
+import lombok.NoArgsConstructor
+import java.io.Serializable
 
 @Data
 @Table
@@ -14,24 +13,23 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
-
+class User : Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private val id: Long? = null
 
     @Column
-    private String username;
+    private val username: String? = null
 
     @Column
-    private String password;
+    private val password: String? = null
 
     @Column
-    private String firstName;
+    private val firstName: String? = null
 
     @Column
-    private String lastName;
+    private val lastName: String? = null
 
     @Column
-    private String email;
+    private val email: String? = null
 }

@@ -1,29 +1,16 @@
-package org.jesperancinha.car.lease.controller;
+package org.jesperancinha.car.lease.controller
 
-import org.jesperancinha.car.lease.dto.CarDto;
-import org.jesperancinha.car.lease.services.CarService;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.jesperancinha.car.lease.dto.CarDto
+import org.jesperancinha.car.lease.services.CarService
+import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("cars")
-public class CarController {
-
-    private final CarService carService;
-
-    public CarController(CarService carService) {
-        this.carService = carService;
-    }
-
+class CarController(private val carService: CarService) {
     @GetMapping
-    public List<CarDto> listCars() {
-        return carService.getAll();
-    }
+    fun listCars(): List<CarDto> = carService.all()
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CarDto createCar(@RequestBody CarDto carDto) {
-        return carService.createCar(carDto);
-    }
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
+    fun createCar(@RequestBody carDto: CarDto): CarDto = carService.createCar(carDto)
 }

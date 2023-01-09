@@ -1,56 +1,45 @@
-package org.jesperancinha.car.lease.services;
+package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.LeaseConverter;
-import org.jesperancinha.car.lease.dto.LeaseDto;
-import org.jesperancinha.car.lease.model.Car;
-import org.jesperancinha.car.lease.model.Customer;
-import org.jesperancinha.car.lease.model.Lease;
-import org.jesperancinha.car.lease.repository.CarRepository;
-import org.jesperancinha.car.lease.repository.CustomerRepository;
-import org.jesperancinha.car.lease.repository.LeaseRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.jesperancinha.car.lease.converters.LeaseConverter
+import org.jesperancinha.car.lease.dto.LeaseDto
+import org.jesperancinha.car.lease.model.Lease
+import org.jesperancinha.car.lease.repository.CarRepository
+import org.jesperancinha.car.lease.repository.CustomerRepository
+import org.jesperancinha.car.lease.repository.LeaseRepository
+import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 @Service
-public class LeaseService {
-
-    private final LeaseRepository leaseRepository;
-    private final CarRepository carRepository;
-    private final CustomerRepository customerRepository;
-
-    public LeaseService(LeaseRepository leaseRepository, CarRepository carRepository, CustomerRepository customerRepository) {
-        this.leaseRepository = leaseRepository;
-        this.carRepository = carRepository;
-        this.customerRepository = customerRepository;
+class LeaseService(
+    private val leaseRepository: LeaseRepository,
+    private val carRepository: CarRepository,
+    private val customerRepository: CustomerRepository
+) {
+    fun createLease(leaseDto: LeaseDto): LeaseDto? {
+        val car = carRepository.getOne(leaseDto.carId)
+        val customer = customerRepository.getOne(leaseDto.customerId)
+        val lease =
+            car.millage.toDouble() / 12 * leaseDto.duration / car.netPrice + leaseDto.interestRate.toDouble() / 100 * car.netPrice / 12
+        leaseDto.leaseRate = lease
+        val leaseObject = LeaseConverter.toData(leaseDto)
+        leaseObject.car = car
+        leaseObject.customer = customer
+        return LeaseConverter.toDto(leaseRepository.save(leaseObject))
     }
 
-    public LeaseDto createLease(LeaseDto leaseDto) {
-        final Car car = carRepository.getOne(leaseDto.getCarId());
-        final Customer customer = customerRepository.getOne(leaseDto.getCustomerId());
-        double lease = ((((double) car.getMillage() / 12) * leaseDto.getDuration()) / car.getNetPrice())
-                + ((((double) leaseDto.getInterestRate() / 100) * car.getNetPrice()) / 12);
-        leaseDto.setLeaseRate(lease);
-        final Lease leaseObject = LeaseConverter.toData(leaseDto);
-        leaseObject.setCar(car);
-        leaseObject.setCustomer(customer);
-        return LeaseConverter.toDto(leaseRepository.save(leaseObject));
+    fun getLeaseById(id: Long): LeaseDto? {
+        return LeaseConverter.toDto(leaseRepository.findById(id).orElse(null)!!)
     }
 
-    public LeaseDto getLeaseById(Long id) {
-        return LeaseConverter.toDto(leaseRepository.findById(id).orElse(null));
+    fun updateLease(leaseDto: LeaseDto): LeaseDto? {
+        return LeaseConverter.toDto(leaseRepository.save(LeaseConverter.toData(leaseDto)))
     }
 
-    public LeaseDto updateLease(LeaseDto leaseDto) {
-        return LeaseConverter.toDto(leaseRepository.save(LeaseConverter.toData(leaseDto)));
+    fun deleteCustomerById(id: Long) {
+        leaseRepository.deleteById(id)
     }
 
-    public void deleteCustomerById(Long id) {
-        leaseRepository.deleteById(id);
-    }
-
-    public List<LeaseDto> getAll() {
-        return leaseRepository.findAll().stream().map(LeaseConverter::toDto).collect(Collectors.toList());
-    }
+    val all: List<LeaseDto?>
+        get() = leaseRepository.findAll().stream().map { obj: Lease? -> LeaseConverter.toDto() }
+            .collect(Collectors.toList())
 }

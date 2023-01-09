@@ -1,41 +1,36 @@
-package org.jesperancinha.car.lease.model;
+package org.jesperancinha.car.lease.model
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.*
 
-@Data
+
 @Entity
-@Getter
 @Table
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Car {
+class Car(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    val id: Long? = null,
 
     @Column
-    private String make;
+    val make: String? = null,
 
     @Column
-    private String model;
+    val model: String? = null,
 
     @Column
-    private String version;
+    val version: String? = null,
 
     @Column
-    private Long numberDoors;
+    val numberDoors: Long? = null,
 
     @Column
-    private Long co2Emission;
+    val co2Emission: Long? = null,
 
     @Column
-    private Long grossPrice;
+    val grossPrice: Long? = null,
 
     @Column
-    private Long netPrice;
+    val netPrice: Long? = null,
 
     @Column
-    private Long millage;
-}
+    val millage: Long? = null
+)

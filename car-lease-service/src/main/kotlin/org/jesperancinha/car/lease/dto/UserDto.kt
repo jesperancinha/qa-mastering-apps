@@ -1,21 +1,15 @@
-package org.jesperancinha.car.lease.dto;
+package org.jesperancinha.car.lease.dto
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Builder
+import lombok.Data
 
 @Data
 @Builder
-public class UserDto {
-
-    private Long id;
-
-    private String username;
-
-    private String password;
-
-    private String firstName;
-
-    private String lastName;
-
-    private String email;
+class UserDto {
+    private val id: Long? = null
+    private val username: String? = null
+    private val password: String? = null
+    private val firstName: String? = null
+    private val lastName: String? = null
+    private val email: String? = null
 }

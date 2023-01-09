@@ -1,39 +1,31 @@
-package org.jesperancinha.car.lease.services;
+package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.car.lease.converters.CustomerConverter;
-import org.jesperancinha.car.lease.dto.CustomerDto;
-import org.jesperancinha.car.lease.repository.CustomerRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.jesperancinha.car.lease.converters.CustomerConverter
+import org.jesperancinha.car.lease.dto.CustomerDto
+import org.jesperancinha.car.lease.model.Customer
+import org.jesperancinha.car.lease.repository.CustomerRepository
+import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 @Service
-public class CustomerService {
-
-    private final CustomerRepository customerRepository;
-
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+class CustomerService(private val customerRepository: CustomerRepository) {
+    fun createCustomer(customerDto: CustomerDto): CustomerDto? {
+        return CustomerConverter.toDto(customerRepository.save(CustomerConverter.toData(customerDto)))
     }
 
-    public CustomerDto createCustomer(CustomerDto customerDto) {
-        return CustomerConverter.toDto(customerRepository.save(CustomerConverter.toData(customerDto)));
+    fun getCustomerById(id: Long?): CustomerDto? {
+        return null
     }
 
-    public CustomerDto getCustomerById(Long id) {
-        return null;
+    fun updateCustomer(customerDto: CustomerDto): CustomerDto? {
+        return CustomerConverter.toDto(customerRepository.save(CustomerConverter.toData(customerDto)))
     }
 
-    public CustomerDto updateCustomer(CustomerDto customerDto) {
-        return CustomerConverter.toDto(customerRepository.save(CustomerConverter.toData(customerDto)));
+    fun deleteCustomerById(id: Long) {
+        customerRepository.deleteById(id)
     }
 
-    public void deleteCustomerById(Long id) {
-        customerRepository.deleteById(id);
-    }
-
-    public List<CustomerDto> getAll() {
-        return customerRepository.findAll().stream().map(CustomerConverter::toDto).collect(Collectors.toList());
-    }
+    val all: List<CustomerDto?>
+        get() = customerRepository.findAll().stream().map { obj: Customer? -> CustomerConverter.toDto() }
+            .collect(Collectors.toList())
 }

@@ -1,22 +1,13 @@
-package org.jesperancinha.car.lease.dto;
+package org.jesperancinha.car.lease.dto
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class CarDto {
-    private Long id;
-    private String make;
-    private String model;
-    private String version;
-    private Long numberDoors;
-    private Long co2Emission;
-    private Long grossPrice;
-    private Long netPrice;
-    private Long millage;
-}
+data class CarDto(
+    val id: Long? = null,
+    val make: String? = null,
+    val model: String? = null,
+    val version: String? = null,
+    val numberDoors: Long? = null,
+    val co2Emission: Long? = null,
+    val grossPrice: Long? = null,
+    val netPrice: Long? = null,
+    val millage: Long? = null
+)

@@ -1,67 +1,61 @@
-package org.jesperancinha.car.lease.controller;
+package org.jesperancinha.car.lease.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jesperancinha.car.lease.dto.CarDto;
-import org.jesperancinha.car.lease.services.CarService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.jesperancinha.car.lease.dto.CarDto
+import org.jesperancinha.car.lease.services.CarService
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import java.util.List
 
-import java.util.List;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@WebMvcTest(CarController.class)
-class CarControllerTest {
-
+@WebMvcTest(CarController::class)
+internal class CarControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    private val mockMvc: MockMvc? = null
 
     @MockBean
-    private CarService carService;
-
-    private final CarDto carDto = CarDto.builder()
-            .make("Fiat")
-            .model("Panda")
-            .version("1234")
-            .millage(1000L)
-            .build();
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+    private val carService: CarService? = null
+    private val carDto: CarDto = CarDto.builder()
+        .make("Fiat")
+        .model("Panda")
+        .version("1234")
+        .millage(1000L)
+        .build()
+    private val objectMapper = ObjectMapper()
     @BeforeEach
-    public void setUp() {
-        when(carService.getAll())
-                .thenReturn(List.of(carDto));
-        when(carService.createCar(carDto)).thenReturn(carDto);
+    fun setUp() {
+        Mockito.`when`(carService!!.all)
+            .thenReturn(List.of(carDto))
+        Mockito.`when`(carService.createCar(carDto)).thenReturn(carDto)
     }
 
     @Test
-    @WithMockUser(username = "Joao",
-            roles = "USER")
-    public void testListCars_whenCalled_thenGetFullList() throws Exception {
-        mockMvc.perform(get("/cars"))
-                .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(List.of(carDto))));
+    @WithMockUser(username = "Joao", roles = ["USER"])
+    @Throws(Exception::class)
+    fun testListCars_whenCalled_thenGetFullList() {
+        mockMvc!!.perform(MockMvcRequestBuilders.get("/cars"))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(carDto))))
     }
 
     @Test
-    @WithMockUser(username = "Joao",
-            roles = "USER")
-    public void testCreateCar_whenCalled_thenCreateCar() throws Exception {
-        mockMvc.perform(post("/cars")
+    @WithMockUser(username = "Joao", roles = ["USER"])
+    @Throws(Exception::class)
+    fun testCreateCar_whenCalled_thenCreateCar() {
+        mockMvc!!.perform(
+            MockMvcRequestBuilders.post("/cars")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(carDto)))
-                .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(carDto)));
+                .content(objectMapper.writeValueAsString(carDto))
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(carDto)))
     }
 }

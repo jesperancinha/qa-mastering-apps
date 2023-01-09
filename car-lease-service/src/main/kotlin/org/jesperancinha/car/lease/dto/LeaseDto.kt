@@ -1,25 +1,19 @@
-package org.jesperancinha.car.lease.dto;
+package org.jesperancinha.car.lease.dto
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor
+import lombok.Builder
+import lombok.Data
+import lombok.NoArgsConstructor
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeaseDto {
-
-    private Long id;
-
-    private Long carId;
-
-    private Long customerId;
-
-    private Long duration;
-
-    private Long interestRate;
-
-    private Double leaseRate;
+class LeaseDto {
+    private val id: Long? = null
+    private val carId: Long? = null
+    private val customerId: Long? = null
+    private val duration: Long? = null
+    private val interestRate: Long? = null
+    private val leaseRate: Double? = null
 }

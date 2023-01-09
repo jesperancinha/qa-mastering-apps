@@ -1,9 +1,8 @@
-package org.jesperancinha.car.lease.security;
+package org.jesperancinha.car.lease.security
 
-public class JwtConstants {
-
-    public static final String SECRET = "SECRET_KEY";
-    public static final long EXPIRATION_TIME = 900_000;
-    public static final String TOKEN_PREFIX = "Bearer ";
-    public static final String HEADER_STRING = "Authorization";
+object JwtConstants {
+    const val SECRET = "SECRET_KEY"
+    const val EXPIRATION_TIME: Long = 900000
+    const val TOKEN_PREFIX = "Bearer "
+    const val HEADER_STRING = "Authorization"
 }

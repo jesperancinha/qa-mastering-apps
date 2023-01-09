@@ -1,8 +1,8 @@
-package org.jesperancinha.car.lease.repository;
+package org.jesperancinha.car.lease.repository
 
-import org.jesperancinha.car.lease.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.jesperancinha.car.lease.model.User
+import org.springframework.data.jpa.repository.JpaRepository
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+interface UserRepository : JpaRepository<User?, Long?> {
+    fun findByUsername(username: String?): User?
 }

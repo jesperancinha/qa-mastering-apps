@@ -1,64 +1,52 @@
-package org.jesperancinha.car.lease.security;
+package org.jesperancinha.car.lease.security
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.jesperancinha.car.lease.model.User;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import com.auth0.jwt.algorithms.Algorithm
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import org.jesperancinha.car.lease.model.User
+import org.springframework.security.authentication.AuthenticationManager
+import java.util.*
 
-import java.io.IOException;
-import java.util.Date;
+class JwtAuthenticationFilter(authenticationManager: AuthenticationManager) : UsernamePasswordAuthenticationFilter() {
+    private val authenticationManager: AuthenticationManager
 
-import static org.jesperancinha.car.lease.security.JwtConstants.EXPIRATION_TIME;
-import static org.jesperancinha.car.lease.security.JwtConstants.SECRET;
-
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
-    private final AuthenticationManager authenticationManager;
-
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-
-        setFilterProcessesUrl("/login");
+    init {
+        this.authenticationManager = authenticationManager
+        setFilterProcessesUrl("/login")
     }
 
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest req,
-                                                HttpServletResponse res) throws AuthenticationException {
-        try {
-            final var credentials = new ObjectMapper()
-                    .readValue(req.getInputStream(), User.class);
-
-            return authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            credentials.getUsername(),
-                            credentials.getPassword()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    @Throws(AuthenticationException::class)
+    fun attemptAuthentication(
+        req: HttpServletRequest,
+        res: HttpServletResponse?
+    ): Authentication {
+        return try {
+            val credentials: User = ObjectMapper()
+                .readValue<User>(req.inputStream, User::class.java)
+            authenticationManager.authenticate(
+                UsernamePasswordAuthenticationToken(
+                    credentials.username,
+                    credentials.password
+                )
+            )
+        } catch (e: IOException) {
+            throw RuntimeException(e)
         }
     }
 
-    @Override
-    protected void successfulAuthentication(HttpServletRequest req,
-                                            HttpServletResponse res,
-                                            FilterChain chain,
-                                            Authentication auth) throws IOException {
-        final var token = JWT.create()
-                .withSubject(((UserDetails) auth.getPrincipal()).getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(Algorithm.HMAC512(SECRET.getBytes()));
-
-        final var body = ((UserDetails) auth.getPrincipal()).getUsername() + " " + token;
-
-        res.getWriter().write(body);
-        res.getWriter().flush();
+    @Throws(IOException::class)
+    protected fun successfulAuthentication(
+        req: HttpServletRequest?,
+        res: HttpServletResponse,
+        chain: FilterChain?,
+        auth: Authentication
+    ) {
+        val token: String = JWT.create()
+            .withSubject((auth.getPrincipal() as UserDetails).getUsername())
+            .withExpiresAt(Date(System.currentTimeMillis() + JwtConstants.EXPIRATION_TIME))
+            .sign(Algorithm.HMAC512(JwtConstants.SECRET.toByteArray()))
+        val body: String = (auth.getPrincipal() as UserDetails).getUsername() + " " + token
+        res.writer.write(body)
+        res.writer.flush()
     }
 }

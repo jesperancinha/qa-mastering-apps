@@ -1,23 +1,19 @@
-package org.jesperancinha.car.lease.repository;
+package org.jesperancinha.car.lease.repository
 
-import org.jesperancinha.car.lease.model.Customer;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.jesperancinha.car.lease.model.Customer
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 
 @DataJpaTest
-class CustomerRepositoryTest {
-
+internal class CustomerRepositoryTest {
     @Autowired
-    private CustomerRepository customerRepository;
-
+    private val customerRepository: CustomerRepository? = null
     @Test
-    public void testSaveCar_whenGoodCar_thenSaveCar() {
-        final var customer = Customer.builder().name("customer").build();
-        final var customerSave = customerRepository.save(customer);
-        assertThat(customerSave.getId()).isNotNull();
-        assertThat(customerSave.getName()).isEqualTo("customer");
+    fun testSaveCar_whenGoodCar_thenSaveCar() {
+        val customer: Unit = Customer.builder().name("customer").build()
+        val customerSave = customerRepository!!.save<Customer>(customer)
+        assertThat(customerSave.getId()).isNotNull()
+        assertThat(customerSave.getName()).isEqualTo("customer")
     }
 }

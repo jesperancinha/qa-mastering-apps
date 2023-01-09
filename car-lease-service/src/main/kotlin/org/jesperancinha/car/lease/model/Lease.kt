@@ -1,10 +1,10 @@
-package org.jesperancinha.car.lease.model;
+package org.jesperancinha.car.lease.model
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*
+import lombok.AllArgsConstructor
+import lombok.Builder
+import lombok.Data
+import lombok.NoArgsConstructor
 
 @Entity
 @Table
@@ -12,27 +12,26 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Lease {
-
+class Lease {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private val id: Long? = null
 
     @OneToOne
-    private Car car;
+    private val car: Car? = null
 
     @OneToOne
-    private Customer customer;
+    private val customer: Customer? = null
 
     @Column
-    private Long duration;
+    private val duration: Long? = null
 
     @Column
-    private Long interestRate;
+    private val interestRate: Long? = null
 
     @Column
-    private Long netPrice;
+    private val netPrice: Long? = null
 
-   @Column
-   private Double leaseRate;
+    @Column
+    private val leaseRate: Double? = null
 }
