@@ -17,7 +17,7 @@
         <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
         <kotlin.version>1.8.0</kotlin.version>
 
-        <spring-boot.version>3.0.1</spring-boot.version>
+        <spring-boot.version>3.0.2</spring-boot.version>
 
         <omni-coveragereporter-maven-plugin.version>0.3.2</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
