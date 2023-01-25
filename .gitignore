@@ -1,0 +1,15 @@
+# Intellij
+
+.idea
+*.iml
+
+# Eclipse
+
+.project
+.classpath
+
+# Build
+
+target
+build
+*.jar
