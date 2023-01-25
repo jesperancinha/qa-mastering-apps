@@ -1,0 +1,16 @@
+version: "3.7"
+
+networks:
+  isbn-stacks:
+
+services:
+  backend-kotlin:
+    hostname: backend-kotlin
+    build:
+      context: backend-kotlin/.
+    ports:
+      - "8080:8080"
+    networks:
+      - isbn-stacks
+
+

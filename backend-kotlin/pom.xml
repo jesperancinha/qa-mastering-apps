@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>backend-kotlin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <name>Library Books :: Backend Kotlin</name>
     <properties>
         <kotlin-maven-serialization.version>1.4.21</kotlin-maven-serialization.version>
     </properties>
@@ -103,9 +103,6 @@
                 </executions>
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
-                    <args>
-                        <arg>-Xjsr305=strict</arg>
-                    </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
                         <plugin>jpa</plugin>

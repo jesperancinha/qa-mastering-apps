@@ -1,0 +1,11 @@
+version: "3.7"
+
+networks:
+  library-books:
+
+services:
+  backend-kotlin:
+    ports:
+      - "8080:8080"
+
+

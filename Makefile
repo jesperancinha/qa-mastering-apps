@@ -6,3 +6,10 @@ build-maven:
 run:
 	java -jar backend-kotlin/target/backend-kotlin.jar
 build-run: b run
+dcd:
+	docker-compose down
+dcup: dcd
+	docker-compose up -d
+dbuild:
+	docker-compose build
+dcup-build-run: b dbuild dcup
