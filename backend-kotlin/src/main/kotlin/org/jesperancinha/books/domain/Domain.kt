@@ -2,7 +2,6 @@ package org.jesperancinha.books.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
-import java.time.LocalDate
 
 typealias Author = String
 
