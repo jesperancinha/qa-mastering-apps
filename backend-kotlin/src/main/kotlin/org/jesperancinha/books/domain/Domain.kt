@@ -3,13 +3,21 @@ package org.jesperancinha.books.domain
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.*
 
 typealias Author = String
 
-typealias Publisher = String
+typealias Publisher = String?
 
 typealias Category = String
+
+data class Results(
+    @JsonProperty
+    val kind: String,
+    @JsonProperty
+    val totalItems: Long,
+    @JsonProperty
+    val items: List<Book>
+)
 
 data class Book(
     @JsonProperty
@@ -21,13 +29,13 @@ data class Book(
     @JsonProperty
     val selflink: String?,
     @JsonProperty
-    val volumeInfo: VolumeInfo,
+    val volumeInfo: VolumeInfo?,
     @JsonProperty
-    val layerInfo: LayerInfo,
+    val layerInfo: LayerInfo?,
     @JsonProperty
-    val saleInfo: SaleInfo,
+    val saleInfo: SaleInfo?,
     @JsonProperty
-    val accessInfo: AccessInfo
+    val accessInfo: AccessInfo?
 )
 
 data class AccessInfo(
@@ -57,7 +65,7 @@ data class Epub(
     @JsonProperty
     val isAvailable: Boolean,
     @JsonProperty
-    val acsTokenLink: String
+    val acsTokenLink: String?
 )
 
 data class LayerInfo(
@@ -78,13 +86,13 @@ data class SaleInfo(
     @JsonProperty
     val isEbook: Boolean,
     @JsonProperty
-    val listPrice: ListPrice,
+    val listPrice: ListPrice?,
     @JsonProperty
     val retailPrice: RetailPrice?,
     @JsonProperty
-    val buyLink: String,
+    val buyLink: String?,
     @JsonProperty
-    val offers: List<Offer>
+    val offers: List<Offer>?
 )
 
 data class Offer(
@@ -100,7 +108,7 @@ data class RetailPrice(
     @JsonProperty
     val amount: BigDecimal?,
     @JsonProperty
-    val currency: Currency?
+    val currency: String?
 )
 
 data class ListPrice(
@@ -109,7 +117,7 @@ data class ListPrice(
     @JsonProperty
     val amountInMicros: BigDecimal? = null,
     @JsonProperty
-    val currency: Currency?
+    val currency: String?
 )
 
 data class Layer(
@@ -123,15 +131,15 @@ data class VolumeInfo(
     @JsonProperty
     val title: String,
     @JsonProperty
-    val subtitle: String,
+    val subtitle: String?,
     @JsonProperty
-    val authors: List<Author>,
+    val authors: List<Author>?,
     @JsonProperty
     val publisher: Publisher,
     @JsonProperty
-    val publisherDate: LocalDate?,
+    val publishedDate: String?,
     @JsonProperty
-    val description: String,
+    val description: String?,
     @JsonProperty
     val industryIdentifiers: List<IndustryIdentifier>,
     @JsonProperty
@@ -141,15 +149,15 @@ data class VolumeInfo(
     @JsonProperty
     val printedPageCount: Long,
     @JsonProperty
-    val dimensions: Dimensions,
+    val dimensions: Dimensions?,
     @JsonProperty
     val printType: String,
     @JsonProperty
-    val categories: List<Category>,
+    val categories: List<Category>?,
     @JsonProperty
-    val averageRating: BigDecimal,
+    val averageRating: BigDecimal?,
     @JsonProperty
-    val ratingsCount: Int,
+    val ratingsCount: Int = 0,
     @JsonProperty
     val maturityRating: String,
     @JsonProperty
@@ -157,11 +165,11 @@ data class VolumeInfo(
     @JsonProperty
     val contentVersion: String,
     @JsonProperty
-    val panelizationSummary: PanelizationSummary,
+    val panelizationSummary: PanelizationSummary?,
     @JsonProperty
-    val imageLinks: ImageLinks,
+    val imageLinks: ImageLinks?,
     @JsonProperty
-    val language: Language,
+    val language: Language?,
     @JsonProperty
     val previewLink: String,
     @JsonProperty
@@ -186,7 +194,7 @@ data class ReadingModes(
 
 data class Dimensions(
     @JsonProperty
-    val height: String
+    val height: String?
 )
 
 data class PanelizationSummary(
@@ -198,21 +206,28 @@ data class PanelizationSummary(
 
 data class ImageLinks(
     @JsonProperty
-    val smallThumbnail: String,
+    val smallThumbnail: String?,
     @JsonProperty
-    val thumbnail: String,
+    val thumbnail: String?,
     @JsonProperty
-    val small: String,
+    val small: String?,
     @JsonProperty
-    val medium: String,
+    val medium: String?,
     @JsonProperty
-    val large: String
+    val large: String?
 )
 
 enum class Language {
-    en, nl
+    en, nl, de
 }
 
 enum class Country {
-    EN, NL
+    EN, NL, DE
 }
+
+data class SearchResult (
+    val title:String,
+    val author: String,
+    val isbn:String,
+    val publicationDate: String
+)
