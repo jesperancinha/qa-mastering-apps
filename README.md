@@ -1,6 +1,47 @@
 # library-books
-Book searcher
 
+Book searcher.
+
+This runnable uses the Books Google API to make searches about books. It's a simple coroutine project.
+
+## Project structure
+
+- [backend-java](backend-java) - under construction
+- [backend-kotlin](backend-kotlin)
+
+## How to start
+
+Make sure to have JDK17 installed before continuing.
+I suggest using [SDK-MAN](https://sdkman.io/)
+
+##### 1. Kotlin version
+
+1. Run the build with the make file or just run `mvn clean install`:
+
+```shell
+make b
+```
+
+2. Run with `java -jar backend-kotlin/target/backend-kotlin.jar` or just run:
+
+```shell
+make run
+```
+
+## Running examples:
+
+```shell
+curl http://localhost:8080/?query=coming%20out&language=nl
+```
+```shell
+curl http://localhost:8080/?query=Metallicat&language=nl
+```
+```shell
+curl http://localhost:8080/?query=Kabeljauw&language=nl
+```
+```shell
+curl http://localhost:8080/?query=Kaas&language=nl
+```
 
 ## References
 

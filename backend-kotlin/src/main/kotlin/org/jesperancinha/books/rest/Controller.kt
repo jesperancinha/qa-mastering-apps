@@ -36,12 +36,12 @@ class Controller(
         .toSearchResult()
 }
 
-private fun Book.toSearchResult() = this.volumeInfo?.let {
+private fun Book.toSearchResult() = this.volumeInfo?.let { volumeInfo ->
     SearchResult(
-        title = this.volumeInfo.title,
-        author = this.volumeInfo.authors?.joinToString(",") ?: "",
-        isbn = this.volumeInfo.industryIdentifiers.joinToString(",") { it.identifier },
-        publicationDate = this.volumeInfo.publishedDate?.toDate()
+        title = volumeInfo.title,
+        author = volumeInfo.authors?.joinToString(",") ?: "",
+        isbn = volumeInfo.industryIdentifiers?.joinToString(",") { it.identifier } ?: "",
+        publicationDate = volumeInfo.publishedDate?.toDate()
             ?.format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.of("NL")))
             ?: ""
     )

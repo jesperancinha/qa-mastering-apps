@@ -25,6 +25,10 @@
         <kotlinx-coroutines-core.version>1.6.4</kotlinx-coroutines-core.version>
         <jackson-module-kotlin.version>2.14.0</jackson-module-kotlin.version>
         <coroutinecache.version>0.9.0</coroutinecache.version>
+        <hazelcast.version>5.2.1</hazelcast.version>
+        <mockk.version>1.13.2</mockk.version>
+        <kotest.version>5.5.4</kotest.version>
+        <springmockk.version>4.0.0</springmockk.version>
     </properties>
 
     <dependencyManagement>
@@ -85,6 +89,41 @@
                 <groupId>com.epam.coroutinecache</groupId>
                 <artifactId>coroutinecache</artifactId>
                 <version>${coroutinecache.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>${hazelcast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-core-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk-core-jvm</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk-jvm</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-framework-api-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ninja-squad</groupId>
+                <artifactId>springmockk</artifactId>
+                <version>${springmockk.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

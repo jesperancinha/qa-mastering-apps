@@ -130,17 +130,17 @@ data class VolumeInfo(
     @JsonProperty
     val title: String,
     @JsonProperty
-    val subtitle: String?,
+    val subtitle: String? = null,
     @JsonProperty
-    val authors: List<Author>?,
+    val authors: List<Author>? = null,
     @JsonProperty
     val publisher: Publisher,
     @JsonProperty
-    val publishedDate: String?,
+    val publishedDate: String? = null,
     @JsonProperty
-    val description: String?,
+    val description: String? = null,
     @JsonProperty
-    val industryIdentifiers: List<IndustryIdentifier>,
+    val industryIdentifiers: List<IndustryIdentifier>? = null,
     @JsonProperty
     val readingModes: ReadingModes,
     @JsonProperty
@@ -148,13 +148,13 @@ data class VolumeInfo(
     @JsonProperty
     val printedPageCount: Long,
     @JsonProperty
-    val dimensions: Dimensions?,
+    val dimensions: Dimensions? = null,
     @JsonProperty
     val printType: String,
     @JsonProperty
-    val categories: List<Category>?,
+    val categories: List<Category>? = null,
     @JsonProperty
-    val averageRating: BigDecimal?,
+    val averageRating: BigDecimal? = null,
     @JsonProperty
     val ratingsCount: Int = 0,
     @JsonProperty
@@ -164,11 +164,11 @@ data class VolumeInfo(
     @JsonProperty
     val contentVersion: String,
     @JsonProperty
-    val panelizationSummary: PanelizationSummary?,
+    val panelizationSummary: PanelizationSummary? = null,
     @JsonProperty
-    val imageLinks: ImageLinks?,
+    val imageLinks: ImageLinks? = null,
     @JsonProperty
-    val language: Language?,
+    val language: Language? = null,
     @JsonProperty
     val previewLink: String,
     @JsonProperty
@@ -224,9 +224,9 @@ enum class Country {
     EN, NL, DE, FR
 }
 
-data class SearchResult (
-    val title:String,
+data class SearchResult(
+    val title: String,
     val author: String,
-    val isbn:String,
+    val isbn: String,
     val publicationDate: String
 )
