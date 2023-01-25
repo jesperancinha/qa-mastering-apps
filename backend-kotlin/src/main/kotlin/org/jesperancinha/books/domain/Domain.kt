@@ -217,11 +217,11 @@ data class ImageLinks(
 )
 
 enum class Language {
-    en, nl, de
+    en, nl, de, fr
 }
 
 enum class Country {
-    EN, NL, DE
+    EN, NL, DE, FR
 }
 
 data class SearchResult (

@@ -2,6 +2,7 @@ package org.jesperancinha.books.dao
 
 import com.hazelcast.core.HazelcastInstance
 import org.jesperancinha.books.domain.Book
+import org.jesperancinha.books.domain.Language
 import org.jesperancinha.books.domain.Results
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpMethod
@@ -27,8 +28,8 @@ class BookRepositorySearchDao(
         .awaitBody<Book>()
         .also { mapVolumes()[volume] = it }
 
-    suspend fun findBooksByQueryAndLanguage(query: String, language: String): Results = mapQueries()["$query+$language"] ?: webClient
-        .method(HttpMethod.GET).uri("?q=${query}&maxResults=10&langRestrict=${language}")
+    suspend fun findBooksByQueryAndLanguage(query: String, language: Language): Results = mapQueries()["$query+$language"] ?: webClient
+        .method(HttpMethod.GET).uri("?q=${query}&maxResults=10&langRestrict=${language.toString().lowercase()}")
         .retrieve()
         .awaitBody<Results>()
         .also { mapQueries()["$query+$language"] = it }

@@ -2,10 +2,12 @@ package org.jesperancinha.books.rest
 
 import org.jesperancinha.books.dao.BookRepositorySearchDao
 import org.jesperancinha.books.domain.Book
+import org.jesperancinha.books.domain.Language
 import org.jesperancinha.books.domain.Results
 import org.jesperancinha.books.domain.SearchResult
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -29,7 +31,7 @@ class Controller(
     @GetMapping
     suspend fun get10VolumesByTextAndLanguage(
         @RequestParam("query") query: String,
-        @RequestParam("language") language: String
+        @RequestParam("language") language: Language
     ): List<SearchResult?> = bookRepositorySearchDao.findBooksByQueryAndLanguage(query, language)
         .toSearchResult()
 }
@@ -47,10 +49,13 @@ private fun Book.toSearchResult() = this.volumeInfo?.let {
 
 fun String.toDate(): LocalDate? = when (this.length) {
     4 -> LocalDate.of(this.toInt(), 1, 1)
-    8 -> LocalDate.parse(this)
+    7 -> try { this.toDate("yyyy-MM") }  catch (_:Exception) { this.toDate("yyyy/MM") }
+    10 -> try { LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd")) }  catch (_:Exception) { LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy/MM/dd")) }
     else -> null
 }
 
+private fun String.toDate(format: String): LocalDate = YearMonth.parse(this, DateTimeFormatter.ofPattern(format)).atDay(1)
+
 private fun Results.toSearchResult() =
-    this.items.sortedByDescending { it.volumeInfo?.publishedDate }.mapNotNull { it.toSearchResult() }
+    this.items.mapNotNull { it.toSearchResult() }.sortedByDescending { it.publicationDate }
 
