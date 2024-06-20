@@ -24,4 +24,8 @@ src/main/webapp/node_modules
 *.iml
 yarn-error.log
 
-
+## Automation
+cypressUpdateOne.sh
+docker-composetmp.yml
+packagetmp.json
+pluginUpdatesOne.sh
