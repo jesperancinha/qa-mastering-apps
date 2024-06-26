@@ -8,10 +8,11 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apk update
-      - run: sudo apk add make
-      - run: sudo apk add build-base
-      - run: sudo apk add maven
+      - run: apk update
+      - run: apk add make
+      - run: apk add build-base
+      - run: apk add maven
+      - run: apk update
       - run: make build
       - run: mvn clean install jacoco:prepare-agent package jacoco:report
 
