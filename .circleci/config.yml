@@ -2,18 +2,19 @@ version: 2
 jobs:
   build-maven:
     docker:
-      - image: cimg/openjdk:17.0.1
+      - image: eclipse-temurin:21-alpine
 
     working_directory: ~/repo
 
     steps:
       - checkout
+      - run: apk add maven
       - run: make build
       - run: mvn clean install jacoco:prepare-agent package jacoco:report
 
   report-all:
     docker:
-      - image: cimg/openjdk:17.0.1
+      - image: eclipse-temurin:21-alpine
 
     working_directory: ~/repo
 
