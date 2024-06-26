@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - checkout
-      - run: apk add maven make
+      - run: apk add maven make build-base
       - run: make build
       - run: mvn clean install jacoco:prepare-agent package jacoco:report
 
@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - checkout
-      - run: apk add maven make
+      - run: apk add maven make build-base
       - run: mvn clean install jacoco:prepare-agent package jacoco:report
       - run: mvn omni-coveragereporter:report
 
