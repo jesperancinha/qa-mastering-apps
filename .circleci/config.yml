@@ -9,7 +9,8 @@ jobs:
     steps:
       - checkout
       - run: apk update
-      - run: apk add maven make build-base autoconf automake
+      - run: apk add build-base
+      - run: apk add maven make autoconf automake
       - run: make build
       - run: mvn clean install jacoco:prepare-agent package jacoco:report
 
