@@ -5,3 +5,4 @@ bin
 *.class
 *.classpath
 .mvn/wrapper/maven-wrapper.jar
+.java-version
