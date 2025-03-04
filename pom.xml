@@ -29,7 +29,7 @@
         <coroutinecache.version>0.9.0</coroutinecache.version>
         <hazelcast.version>5.2.1</hazelcast.version>
         <mockk.version>1.13.2</mockk.version>
-        <kotest.version>5.5.4</kotest.version>
+        <kotest.version>5.9.1</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
     </properties>
 
