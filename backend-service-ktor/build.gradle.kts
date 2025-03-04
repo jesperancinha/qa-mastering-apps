@@ -21,7 +21,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core-jvm:2.3.6")
+    implementation("io.ktor:ktor-server-core-jvm:3.1.1")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.6")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:2.3.6")
     implementation("io.ktor:ktor-serialization-gson-jvm:2.3.6")
