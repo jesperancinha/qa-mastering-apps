@@ -135,6 +135,11 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.jesperancinha.plugins</groupId>
+                    <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                    <version>${omni-coveragereporter-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacoco-maven-plugin.version}</version>
