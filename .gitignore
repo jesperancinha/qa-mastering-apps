@@ -13,3 +13,5 @@
 target
 build
 *.jar
+.gradle
+.kotlin

@@ -33,7 +33,7 @@ updates:
           - "micrometer*"
 
   - package-ecosystem: "gradle"
-    directory: "/"
+    directory: "/backend-service-ktor"
     schedule:
       interval: "daily"
     groups:
