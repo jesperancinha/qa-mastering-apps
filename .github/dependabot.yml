@@ -1,0 +1,47 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "jakarta.servlet:jakarta.servlet-api"
+        versions: ["6.0.0"]
+    groups:
+      postgresql:
+        patterns:
+          - "*postgresql*"
+      maven:
+        patterns:
+          - "*maven*"
+      kotlin:
+        patterns:
+          - "*kotlin*"
+      spring:
+        patterns:
+          - "*spring*"
+      openrewrite:
+        patterns:
+          - "*openrewrite*"
+      jackson:
+        patterns:
+          - "*jackson*"
+          - "jackson*"
+      micrometer:
+        patterns:
+          - "*micrometer*"
+          - "micrometer*"
+
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      kotlin:
+        patterns:
+          - "org.jetbrains.kotlin.*"
+          - "com.google.devtools.ksp"
+      jackson:
+        patterns:
+          - "*jackson*"
+          - "jackson*"

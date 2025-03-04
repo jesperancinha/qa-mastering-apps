@@ -1,0 +1,32 @@
+name: Library Books Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request_target:
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: Set up JDK 21
+          uses: actions/setup-java@v4
+          with:
+            java-version: '21'
+            distribution: 'adopt'
+
+        - name: Build
+          run:  make build-maven
+
+        - name: Test
+          run:  make test-maven
+
+        - name: Coverage Reports
+          run: make coverage-maven
+          env:
+             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+             CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+             CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
