@@ -21,11 +21,12 @@ kotlin {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core-jvm:3.1.1")
-    implementation("io.ktor:ktor-server-netty-jvm:3.1.1")
-    implementation("io.ktor:ktor-server-content-negotiation-jvm:3.1.1")
-    implementation("io.ktor:ktor-serialization-gson-jvm:3.1.1")
-    testImplementation("io.ktor:ktor-server-tests-jvm:2.3.13")
+    implementation(platform("io.ktor:ktor-bom:3.1.1"))
+    implementation("io.ktor:ktor-server-core-jvm")
+    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm")
+    implementation("io.ktor:ktor-serialization-gson-jvm")
+    testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
