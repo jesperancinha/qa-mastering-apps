@@ -24,7 +24,7 @@ dependencies {
     implementation("io.ktor:ktor-server-core-jvm:3.1.1")
     implementation("io.ktor:ktor-server-netty-jvm:2.3.6")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:3.1.1")
-    implementation("io.ktor:ktor-serialization-gson-jvm:2.3.6")
+    implementation("io.ktor:ktor-serialization-gson-jvm:3.1.1")
     testImplementation("io.ktor:ktor-server-tests-jvm:2.3.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
