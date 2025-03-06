@@ -8,7 +8,7 @@ import io.ktor.server.netty.Netty
 fun Application.module() {
     routing {
         get("/hello") {
-            call.respondText("Hello, Ktor!")
+            call.respondText("Hello, it's me!")
         }
     }
 }

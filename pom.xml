@@ -8,6 +8,7 @@
     <modules>
         <module>backend-kotlin</module>
         <module>backend-java</module>
+        <module>backend-service-ktor-fork-maven</module>
     </modules>
 
     <properties>
