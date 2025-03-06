@@ -9,10 +9,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
 tasks.test {
     useJUnitPlatform()
 }
@@ -27,8 +23,11 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-serialization-gson-jvm")
     testImplementation("io.ktor:ktor-server-test-host")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
+    testImplementation(platform("org.junit:junit-bom:5.12.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.platform:junit-platform-engine")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
 }
 

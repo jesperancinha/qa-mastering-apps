@@ -27,23 +27,20 @@ class ApplicationTest {
 
     @Test
     @Execution(ExecutionMode.SAME_THREAD)
-    fun testHelloEndpoint1() = testApplication {
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
-        }
-    }
+    fun testHelloEndpoint1() = commonTest()
 
     @Test
     @Execution(ExecutionMode.SAME_THREAD)
-    fun testHelloEndpoint2() = testApplication {
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
+    fun testHelloEndpoint2() = commonTest()
+
+    private fun commonTest() {
+        testApplication {
+            application(testApp())
+            client.get("/hello").apply {
+                assertEquals(HttpStatusCode.OK, status)
+                assertEquals("Hello, it's me!", bodyAsText())
+                delay(5.seconds)
+            }
         }
     }
 }
