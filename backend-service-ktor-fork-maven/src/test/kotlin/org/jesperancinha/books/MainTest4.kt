@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test
 import java.lang.management.ManagementFactory
 import kotlin.time.Duration.Companion.seconds
 
-class ApplicationTest3 {
+class Application4Test {
 
     private fun testApp(): Application.() -> Unit = {
         install(ContentNegotiation) { gson() }
@@ -58,7 +58,7 @@ class ApplicationTest3 {
 
     private suspend fun ApplicationTestBuilder.commonTest() {
         println(Thread.currentThread())
-        println("Test running in: ${System.identityHashCode(this)}")
+        println("Test running with identityHashCode: ${System.identityHashCode(this)}")
         val pid = ManagementFactory.getRuntimeMXBean().name.split("@")[0]
         println("Running in JVM with PID: $pid")
         application(testApp())

@@ -1,2 +1,2 @@
 test:
-	 ./gradlew build test --info --rerun-task
+	 ./gradlew build test  --no-daemon --parallel --info --rerun-tasks

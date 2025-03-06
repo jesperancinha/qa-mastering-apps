@@ -13,9 +13,10 @@ import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import java.lang.management.ManagementFactory
 import kotlin.time.Duration.Companion.seconds
 
-class ApplicationTest3 {
+class Application3Test {
 
     private fun testApp(): Application.() -> Unit = {
         install(ContentNegotiation) { gson() }
@@ -26,63 +27,46 @@ class ApplicationTest3 {
 
     @Test
     fun testHelloEndpoint1() = testApplication {
-        println(Thread.currentThread())
-        println("Test running in JVM: ${System.identityHashCode(this)}")
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
-        }
+        commonTest()
     }
+
 
     @Test
     fun testHelloEndpoint2() = testApplication {
-        println(Thread.currentThread())
-        println("Test running in JVM: ${System.identityHashCode(this)}")
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
-        }
-        println(Thread.currentThread())
+        commonTest()
     }
+
     @Test
     fun testHelloEndpoint3() = testApplication {
-        println(Thread.currentThread())
-        println("Test running in JVM: ${System.identityHashCode(this)}")
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
-        }
-        println(Thread.currentThread())
+        commonTest()
     }
+
     @Test
     fun testHelloEndpoint4() = testApplication {
-        println(Thread.currentThread())
-        println("Test running in JVM: ${System.identityHashCode(this)}")
-        application(testApp())
-        client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
-        }
-        println(Thread.currentThread())
+        commonTest()
     }
+
     @Test
     fun testHelloEndpoint5() = testApplication {
+        commonTest()
+    }
+
+    @Test
+    fun testHelloEndpoint6() = testApplication {
+        commonTest()
+    }
+
+    private suspend fun ApplicationTestBuilder.commonTest() {
         println(Thread.currentThread())
-        println("Test running in JVM: ${System.identityHashCode(this)}")
+        println("Test running in: ${System.identityHashCode(this)}")
+        val pid = ManagementFactory.getRuntimeMXBean().name.split("@")[0]
+        println("Running in JVM with PID: $pid")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
-        println(Thread.currentThread())
+        delay(5.seconds)
     }
 
     companion object {

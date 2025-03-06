@@ -24,10 +24,15 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
 }
 
-tasks.test {
+tasks.withType(Test::class) {
     useJUnitPlatform()
     maxParallelForks = 4
     forkEvery = 1
+
+    testLogging {
+        events("started", "passed", "failed", "skipped")
+        showStandardStreams = true
+    }
 }
 
 kotlin {
