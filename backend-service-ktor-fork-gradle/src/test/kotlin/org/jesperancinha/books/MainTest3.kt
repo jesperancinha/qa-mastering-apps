@@ -27,56 +27,64 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint1() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
+        delay(5.seconds)
     }
 
     @Test
     fun testHelloEndpoint2() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
+        delay(5.seconds)
         println(Thread.currentThread())
     }
+
     @Test
     fun testHelloEndpoint3() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
+        delay(5.seconds)
         println(Thread.currentThread())
     }
+
     @Test
     fun testHelloEndpoint4() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
+        delay(5.seconds)
         println(Thread.currentThread())
     }
+
     @Test
     fun testHelloEndpoint5() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
             assertEquals("Hello, it's me!", bodyAsText())
-            delay(5.seconds)
         }
+        delay(5.seconds)
         println(Thread.currentThread())
     }
 

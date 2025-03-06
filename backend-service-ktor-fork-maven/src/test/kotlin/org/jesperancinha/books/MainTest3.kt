@@ -27,6 +27,7 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint1() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
@@ -38,6 +39,7 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint2() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
@@ -49,6 +51,7 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint3() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
@@ -60,6 +63,7 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint4() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)
@@ -71,6 +75,7 @@ class ApplicationTest3 {
     @Test
     fun testHelloEndpoint5() = testApplication {
         println(Thread.currentThread())
+        println("Test running in JVM: ${System.identityHashCode(this)}")
         application(testApp())
         client.get("/hello").apply {
             assertEquals(HttpStatusCode.OK, status)

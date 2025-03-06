@@ -1,2 +1,2 @@
 test:
-	./gradlew test --rerun-tasks
+	 ./gradlew build test --info --rerun-task
