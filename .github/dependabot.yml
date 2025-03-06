@@ -45,3 +45,17 @@ updates:
         patterns:
           - "*jackson*"
           - "jackson*"
+
+  - package-ecosystem: "gradle"
+    directory: "/backend-service-ktor-fork-gradle"
+    schedule:
+      interval: "daily"
+    groups:
+      kotlin:
+        patterns:
+          - "org.jetbrains.kotlin.*"
+          - "com.google.devtools.ksp"
+      jackson:
+        patterns:
+          - "*jackson*"
+          - "jackson*"
