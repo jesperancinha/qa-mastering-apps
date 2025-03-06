@@ -17,71 +17,119 @@
     <artifactId>backend-service-ktor-fork-maven</artifactId>
 
     <dependencies>
-        <!-- Ktor Client -->
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-client-core</artifactId>
-            <version>${ktor.version}</version>
+            <artifactId>ktor-client-core-jvm</artifactId>
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-client-cio</artifactId> <!-- or ktor-client-okhttp -->
-            <version>${ktor.version}</version>
-        </dependency>
-
-        <!-- Ktor Server -->
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-core</artifactId>
-            <version>${ktor.version}</version>
+            <artifactId>ktor-server-core-jvm</artifactId>
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-netty</artifactId> <!-- or ktor-server-cio -->
-            <version>${ktor.version}</version>
+            <artifactId>ktor-server-netty-jvm</artifactId>
         </dependency>
-
-        <!-- Ktor Testing -->
         <dependency>
             <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-tests</artifactId>
-            <version>${ktor.version}</version>
-            <scope>test</scope>
+            <artifactId>ktor-server-content-negotiation-jvm</artifactId>
         </dependency>
-
-        <!-- Ktor HTTP -->
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-http</artifactId>
-            <version>${ktor.version}</version>
-        </dependency>
-
-        <!-- Ktor Response -->
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-core</artifactId>
-            <version>${ktor.version}</version>
-        </dependency>
-
-        <!-- Ktor Content Negotiation -->
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-server-content-negotiation</artifactId>
-            <version>${ktor.version}</version>
-        </dependency>
-
-        <!-- Ktor Gson Serialization -->
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-serialization-gson-jvm</artifactId>
-            <version>${ktor.version}</version>
         </dependency>
-
-        <!-- KotlinX Coroutines -->
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core-jvm</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-serialization-json-jvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-test-host-jvm</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>src/main/kotlin</sourceDirs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>src/test/kotlin</sourceDirs>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>${java.version}</jvmTarget>
+                    <compilerPlugins>
+                        <plugin>no-arg</plugin>
+                        <plugin>all-open</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-noarg</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-serialization</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <forkCount>5</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

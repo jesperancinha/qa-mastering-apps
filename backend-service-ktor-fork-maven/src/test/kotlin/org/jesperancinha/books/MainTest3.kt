@@ -13,8 +13,6 @@ import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode
 import kotlin.time.Duration.Companion.seconds
 
 class ApplicationTest3 {
@@ -27,7 +25,6 @@ class ApplicationTest3 {
     }
 
     @Test
-    @Execution(ExecutionMode.CONCURRENT)
     fun testHelloEndpoint1() = testApplication {
         println(Thread.currentThread())
         application(testApp())
@@ -39,7 +36,6 @@ class ApplicationTest3 {
     }
 
     @Test
-    @Execution(ExecutionMode.CONCURRENT)
     fun testHelloEndpoint2() = testApplication {
         println(Thread.currentThread())
         application(testApp())
@@ -51,7 +47,6 @@ class ApplicationTest3 {
         println(Thread.currentThread())
     }
     @Test
-    @Execution(ExecutionMode.CONCURRENT)
     fun testHelloEndpoint3() = testApplication {
         println(Thread.currentThread())
         application(testApp())
@@ -63,7 +58,6 @@ class ApplicationTest3 {
         println(Thread.currentThread())
     }
     @Test
-    @Execution(ExecutionMode.CONCURRENT)
     fun testHelloEndpoint4() = testApplication {
         println(Thread.currentThread())
         application(testApp())
@@ -75,7 +69,6 @@ class ApplicationTest3 {
         println(Thread.currentThread())
     }
     @Test
-    @Execution(ExecutionMode.CONCURRENT)
     fun testHelloEndpoint5() = testApplication {
         println(Thread.currentThread())
         application(testApp())
