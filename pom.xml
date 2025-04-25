@@ -26,7 +26,7 @@
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
-        <jackson-module-kotlin.version>2.18.3</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.19.0</jackson-module-kotlin.version>
         <coroutinecache.version>0.9.0</coroutinecache.version>
         <hazelcast.version>5.5.0</hazelcast.version>
         <mockk.version>1.14.0</mockk.version>
