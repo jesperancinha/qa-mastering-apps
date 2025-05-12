@@ -19,7 +19,7 @@
 
         <spring-boot.version>3.4.5</spring-boot.version>
 
-        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
 
         <h2.version>2.3.232</h2.version>
