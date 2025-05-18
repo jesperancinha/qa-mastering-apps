@@ -1,0 +1,28 @@
+### Create a product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Block of buttons",
+  "description": "Buttons driven by the J",
+  "category": "Super Smartphones",
+  "price": 100
+}
+
+### Update a product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Block of buttons",
+  "description": "Buttons driven by the J",
+  "category": "Super Smartphones",
+  "price": 10000
+}
+
+### Search for products
+GET http://localhost:8080/products/search?q=buttons
+Accept: application/json
+
+### Reset all
+POST http://localhost:8080/products/reset
