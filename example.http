@@ -3,11 +3,15 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-  "name": "Galaxy S24",
-  "description": "Latest Samsung phone with AI features",
-  "category": "Smartphones"
+  "name": "Block of buttons",
+  "description": "Buttons driven by the J",
+  "category": "Super Smartphones",
+  "price": 100
 }
 
 ### Search for products
-GET http://localhost:8080/products/search?q=samsung
+GET http://localhost:8080/products/search?q=100
 Accept: application/json
+
+### Reset all
+POST http://localhost:8080/products/reset

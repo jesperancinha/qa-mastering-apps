@@ -14,7 +14,7 @@ class ElasticsearchService(
     private val esClient: ElasticsearchClient
 ) {
 
-    suspend fun indexProduct(product: Product) {
+    suspend fun indexProduct(product: ProductDto) {
         esClient.index {
             it.index("products")
                 .id(product.id.toString())
@@ -29,7 +29,7 @@ class ElasticsearchService(
                 .query { q -> q
                     .multiMatch { mm ->
                         mm.query(query)
-                            .fields("name", "description", "category")
+                            .fields("name", "description", "category", "price")
                     }
                 }
             }, ProductDto::class.java)
@@ -37,6 +37,13 @@ class ElasticsearchService(
 
         for (hit in response.hits().hits()) {
             emit(hit.source() as ProductDto)
+        }
+    }
+
+    fun reset() {
+        val exists = esClient.indices().exists { e -> e.index("products") }
+        if (exists.value()) {
+            esClient.indices().delete { it.index("products") }
         }
     }
 }

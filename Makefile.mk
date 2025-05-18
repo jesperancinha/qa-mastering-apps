@@ -17,4 +17,5 @@ dcup:
 dcup-rebuild: stop-all-containers dcd
 	docker-compose up -d --build --force-recreate
 dcd:
+	docker volume prune -f
 	docker-compose down

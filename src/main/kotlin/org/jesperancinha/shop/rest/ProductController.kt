@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RestController
 class ProductController(private val productService: ProductService) {
 
     @PostMapping
-    suspend fun create(@RequestBody product: ProductDto): Product {
+    suspend fun create(@RequestBody product: ProductDto): ProductDto {
         return productService.saveProduct(product)
     }
 
     @GetMapping("/search")
     suspend fun search(@RequestParam("q") query: String): Flow<ProductDto> =
         productService.searchProducts(query)
+
+    @PostMapping("/reset")
+            suspend fun reset() = productService.reset()
 }
