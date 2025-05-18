@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 class ElasticsearchService(
     private val esClient: ElasticsearchClient,
     @Value("\${elasticsearch.index}") private val index: String,
-    ) {
+) {
 
     suspend fun indexProduct(product: ProductDto) {
         esClient.index {
@@ -24,7 +24,7 @@ class ElasticsearchService(
         }
     }
 
-    suspend fun searchProducts(query: String): Flow<ProductDto> = flow {
+    fun searchProducts(query: String): Flow<ProductDto> = flow {
         val response = withContext(Dispatchers.IO) {
             esClient.search({
                 it
