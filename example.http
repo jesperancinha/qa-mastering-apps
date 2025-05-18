@@ -1,0 +1,13 @@
+### Create a product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Galaxy S24",
+  "description": "Latest Samsung phone with AI features",
+  "category": "Smartphones"
+}
+
+### Search for products
+GET http://localhost:8080/products/search?q=samsung
+Accept: application/json

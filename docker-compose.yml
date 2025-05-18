@@ -39,9 +39,6 @@ services:
       - xpack.security.enabled=false
       - xpack.security.transport.ssl.enabled=false
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
-    ports:
-      - "9200:9200"
-      - "9300:9300"
     volumes:
       - esdata:/usr/share/elasticsearch/data
 
