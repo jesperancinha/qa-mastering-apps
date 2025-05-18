@@ -25,7 +25,7 @@ class ProductService(
         return productDto
     }
 
-    suspend fun searchProducts(query: String): Flow<ProductDto> =
+    fun searchProducts(query: String): Flow<ProductDto> =
         elasticsearchService.searchProducts(query)
 
     @Transactional
