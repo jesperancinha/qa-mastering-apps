@@ -9,6 +9,17 @@ Content-Type: application/json
   "price": 100
 }
 
+### Create second product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Block of mega buttons",
+  "description": "Buttons driven by the J",
+  "category": "Super Smartphones",
+  "price": 100
+}
+
 ### Update a product
 POST http://localhost:8080/products
 Content-Type: application/json
@@ -18,6 +29,17 @@ Content-Type: application/json
   "description": "Buttons driven by the J",
   "category": "Super Smartphones",
   "price": 10000
+}
+
+### Update second product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Block of mega buttons",
+  "description": "Buttons driven by the J",
+  "category": "Super Smartphones",
+  "price": 200
 }
 
 ### Search for products
