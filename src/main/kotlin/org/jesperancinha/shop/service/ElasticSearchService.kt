@@ -5,7 +5,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
-import org.jesperancinha.shop.domain.Product
 import org.jesperancinha.shop.dto.ProductDto
 import org.springframework.stereotype.Service
 
