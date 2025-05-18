@@ -5,17 +5,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import org.jesperancinha.shop.config.reset
 import org.jesperancinha.shop.dto.ProductDto
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 @Service
 class ElasticsearchService(
-    private val esClient: ElasticsearchClient
-) {
+    private val esClient: ElasticsearchClient,
+    @Value("\${elasticsearch.index}") private val index: String,
+    ) {
 
     suspend fun indexProduct(product: ProductDto) {
         esClient.index {
-            it.index("products")
+            it.index(index)
                 .id(product.id.toString())
                 .document(product)
         }
@@ -23,14 +26,16 @@ class ElasticsearchService(
 
     suspend fun searchProducts(query: String): Flow<ProductDto> = flow {
         val response = withContext(Dispatchers.IO) {
-            esClient.search({ it
-                .index("products")
-                .query { q -> q
-                    .multiMatch { mm ->
-                        mm.query(query)
-                            .fields("name", "description", "category", "price")
+            esClient.search({
+                it
+                    .index(index)
+                    .query { q ->
+                        q
+                            .multiMatch { mm ->
+                                mm.query(query)
+                                    .fields("name", "description", "category", "price")
+                            }
                     }
-                }
             }, ProductDto::class.java)
         }
 
@@ -40,9 +45,6 @@ class ElasticsearchService(
     }
 
     fun reset() {
-        val exists = esClient.indices().exists { e -> e.index("products") }
-        if (exists.value()) {
-            esClient.indices().delete { it.index("products") }
-        }
+        esClient.reset()
     }
 }
