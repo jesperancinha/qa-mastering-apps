@@ -15,9 +15,9 @@ class ProductController(private val productService: ProductService) {
     }
 
     @GetMapping("/search")
-    suspend fun search(@RequestParam("q") query: String): Flow<ProductDto> =
+    fun search(@RequestParam("q") query: String): Flow<ProductDto> =
         productService.searchProducts(query)
 
     @PostMapping("/reset")
-            suspend fun reset() = productService.reset()
+    suspend fun reset() = productService.reset()
 }
