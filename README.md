@@ -17,7 +17,7 @@ More available on the scratch pad file here: [example.http](example.http).
 ```json
 {
   "name": "Block of buttons",
-  "description": "Buttons driven by the J",
+  "description": "Buttons for the block",
   "category": "Super Smartphones",
   "price": 100
 }
@@ -28,7 +28,7 @@ curl -X POST http://localhost:8080/products \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Block of buttons",
-    "description": "Buttons driven by the J",
+    "description": "Buttons for the block",
     "category": "Super Smartphones",
     "price": 100
   }'
@@ -39,7 +39,7 @@ curl -X POST http://localhost:8080/products \
 ```json
 {
   "name": "Block of buttons",
-  "description": "Buttons driven by the J",
+  "description": "Buttons for the block",
   "category": "Super Smartphones",
   "price": 10000
 }
@@ -50,7 +50,7 @@ curl -X POST http://localhost:8080/products \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Block of buttons",
-    "description": "Buttons driven by the J",
+    "description": "Buttons for the block",
     "category": "Super Smartphones",
     "price": 10000
   }'

@@ -29,6 +29,7 @@ class ElasticsearchService(
             esClient.search({
                 it
                     .index(index)
+                    .explain(true)
                     .query { q ->
                         q
                             .multiMatch { mm ->
@@ -37,6 +38,11 @@ class ElasticsearchService(
                             }
                     }
             }, ProductDto::class.java)
+        }
+
+        for (hit in response.hits().hits()) {
+            println("Score explanation for ${hit.id()}:")
+            println(hit.explanation())
         }
 
         for (hit in response.hits().hits()) {
