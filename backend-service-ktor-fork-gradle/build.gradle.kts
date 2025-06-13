@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.ktor:ktor-bom:3.1.3"))
+    implementation(platform("io.ktor:ktor-bom:3.2.0"))
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
