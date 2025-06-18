@@ -1,0 +1,16 @@
+## Intellij
+.idea
+*.iml
+
+## Build
+target
+
+## ActiveMQ
+activemq-data
+
+## Node JS Build
+node_modules
+dist
+
+## MACOS
+.DS_Store
