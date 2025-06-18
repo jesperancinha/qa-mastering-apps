@@ -26,24 +26,21 @@ class DeliveryService(
     @Transactional
     fun createDelivery(request: DeliveryRequestDto): DeliveryResponseDto {
         when (request.status) {
-            DeliveryStatus.IN_PROGRESS -> {
-                if (request.finishedAt != null) {
-                    throw IllegalArgumentException("finishedAt must be null for IN_PROGRESS deliveries")
+            DeliveryStatus.IN_PROGRESS ->
+                require(request.finishedAt == null) {
+                    "finishedAt must be null for IN_PROGRESS deliveries"
                 }
-            }
 
-            DeliveryStatus.DELIVERED -> {
-                if (request.finishedAt == null) {
-                    throw IllegalArgumentException("finishedAt must be provided for DELIVERED deliveries")
+            DeliveryStatus.DELIVERED ->
+                requireNotNull(request.finishedAt) {
+                    "finishedAt must be provided for DELIVERED deliveries"
                 }
-            }
         }
 
         val delivery = DeliveryMapper.fromDto(request)
         val saved = deliveryRepository.save<Delivery>(delivery)
         return DeliveryMapper.toDto(saved)
     }
-
 
     fun getInvoicesForDeliveries(request: InvoiceRequestDto) = request.deliveryIds
         .map { deliveryId ->
