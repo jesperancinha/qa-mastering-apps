@@ -1,4 +1,4 @@
-name: OPS Pull Request
+name: QA Mastering Apps Pull Request
 
 on:
   create:

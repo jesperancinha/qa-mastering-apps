@@ -1,4 +1,4 @@
-name: OPS Build
+name: QA Mastering Apps Build
 
 on:
   pull_request:

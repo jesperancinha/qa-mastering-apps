@@ -1,4 +1,4 @@
-name: OPS Dependabot auto-merge
+name: QA Mastering Apps Dependabot auto-merge
 on: pull_request
 
 permissions:
