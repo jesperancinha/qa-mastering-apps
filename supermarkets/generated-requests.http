@@ -1,0 +1,59 @@
+###
+POST http://localhost:8080/deliveries
+Content-Type: application/json
+
+{
+  "vehicleId": "AHV-589",
+  "address": "Example street 15A",
+  "startedAt": "2023-10-09T12:45:34.678Z",
+  "status": "IN_PROGRESS",
+  "finishedAt": null
+}
+
+###
+POST http://localhost:8080/deliveries
+Content-Type: application/json
+
+{
+  "vehicleId": "AHV-589",
+  "address": "Example street 15A",
+  "startedAt": "2025-06-08T12:45:34.678Z",
+  "status": "IN_PROGRESS",
+  "finishedAt": null
+}
+
+###
+POST http://localhost:8080/deliveries
+Content-Type: application/json
+
+{
+  "vehicleId": "AHV-589",
+  "address": "Example street 15A",
+  "startedAt": "2025-06-08T12:55:34.678Z",
+  "status": "IN_PROGRESS",
+  "finishedAt": null
+}
+
+
+###
+POST http://localhost:8080/deliveries/invoice
+Content-Type: application/json
+
+{
+  "deliveryIds": [
+    "2af39634-53f4-4fc3-a1e8-3efb8c5f062d"
+  ]
+}
+
+
+###
+GET http://localhost:8080/deliveries/business-summary
+
+###
+POST http://localhost:8000/v1/invoices
+Content-Type: application/json
+
+{
+      "deliveryId": "7167fc04-0625-49fc-98a9-8785a4a32b60",
+      "address": "Example street 15A"
+}

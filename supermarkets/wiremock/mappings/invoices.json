@@ -1,0 +1,23 @@
+{
+   "request": {
+      "method": "POST",
+      "urlPathPattern": "/v1/invoices",
+      "bodyPatterns": [
+         { "matchesJsonPath": "$.[?($.deliveryId =~ /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)]" },
+         { "matchesJsonPath": "$.address" }
+      ]
+   },
+   "response": {
+      "status": 200,
+      "jsonBody": {
+         "id": "{{randomValue type='UUID'}}",
+         "sent": true
+      },
+      "headers": {
+         "Content-Type": "application/json"
+      },
+      "transformers": [
+         "response-template"
+      ]
+   }
+}
