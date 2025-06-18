@@ -1,4 +1,4 @@
-FROM cimg/openjdk:19.0
+FROM eclipse-temurin:21-alpine
 
 WORKDIR /home/root
 

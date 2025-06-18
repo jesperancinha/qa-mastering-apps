@@ -1,4 +1,4 @@
-FROM jesperancinha/je-all-runtime-jdk-11:0.0.1
+FROM eclipse-temurin:21-alpine
 
 ENV ROCKSTARS /usr/local/bin/
 
