@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>commons</artifactId>
-    <name>RadioactiveNarwhalsShop :: Commons</name>
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop :: Commons</name>
     <properties>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     </properties>

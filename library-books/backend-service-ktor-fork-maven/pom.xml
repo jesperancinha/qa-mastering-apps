@@ -9,7 +9,7 @@
         <version>0.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <name>Library Books :: Backend Ktor Fork Maven Tests</name>
+    <name>QA Mastering Apps :: Library Books :: Backend Ktor Fork Maven Tests</name>
     <properties>
         <ktor.version>2.3.11</ktor.version>
     </properties>

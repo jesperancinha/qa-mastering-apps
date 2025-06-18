@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>backend</artifactId>
-    <name>RadioactiveNarwhalsShop :: Backend</name>
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop :: Backend</name>
     <dependencies>
         <dependency>
             <groupId>org.jesperancinha.qa</groupId>

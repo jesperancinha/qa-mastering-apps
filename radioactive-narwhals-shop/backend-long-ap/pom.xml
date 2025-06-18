@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>backend-long-ap</artifactId>
-    <name>RadioactiveNarwhalsShop :: Long Naif Solution</name>
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop :: Long Naif Solution</name>
     <dependencies>
         <dependency>
             <groupId>org.jesperancinha.qa</groupId>

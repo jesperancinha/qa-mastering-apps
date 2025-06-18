@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>auto-loader-backend</artifactId>
-    <name>RadioactiveNarwhalsShop :: Auto Loader Backend</name>
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop :: Auto Loader Backend</name>
 
     <dependencies>
         <dependency>

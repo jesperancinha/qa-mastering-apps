@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>rn-data-reader</artifactId>
-    <name>RadioactiveNarwhalsShop :: RN Data reader</name>
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop :: RN Data reader</name>
     <properties>
         <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
     </properties>

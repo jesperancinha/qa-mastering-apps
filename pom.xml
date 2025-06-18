@@ -10,7 +10,7 @@
         <module>supermarket</module>
     </modules>
     <packaging>pom</packaging>
-
+    <name>QA Mastering Apps :: Parent</name>
     <properties>
         <java.version>21</java.version>
         <kotlin.version>2.1.21</kotlin.version>

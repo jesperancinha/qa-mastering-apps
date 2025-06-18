@@ -9,7 +9,7 @@
         <version>0.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <name>Library Books :: Backend Java</name>
+    <name>QA Mastering Apps :: Library Books :: Backend Java</name>
 
     <artifactId>backend-java</artifactId>
 </project>
