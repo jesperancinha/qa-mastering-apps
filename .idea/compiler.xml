@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="supermarket" />
+        <module name="backend-long-ap" />
+        <module name="rn-data-reader" />
+        <module name="backend-kotlin" />
+        <module name="backend-java" />
+        <module name="rockstars-manager" />
+        <module name="auto-loader-backend" />
+        <module name="backend" />
+        <module name="backend-long-vanilla" />
+        <module name="commons" />
+        <module name="backend-service-ktor-fork-maven" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="supermarket" options="-parameters" />
+    </option>
+  </component>
+</project>

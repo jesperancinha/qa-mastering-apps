@@ -1,0 +1,13 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jesperancinha.qa</groupId>
+    <artifactId>qa-mastering-apps</artifactId>
+    <version>0.0.0</version>
+    <modules>
+        <module>library-books</module>
+        <module>radioactive-narwhals-shop</module>
+        <module>rockstars-manager</module>
+        <module>supermarket</module>
+    </modules>
+    <packaging>pom</packaging>
+</project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/backend-java/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-java/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-kotlin/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-kotlin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-service-ktor-fork-maven/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend-service-ktor-fork-maven/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-java/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-java/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-kotlin/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-kotlin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-service-ktor-fork-maven/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/backend-service-ktor-fork-maven/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library-books/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/auto-loader-backend/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/auto-loader-backend/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend-long-ap/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend-long-ap/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend-long-vanilla/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend-long-vanilla/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/backend/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/commons/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/rn-data-reader/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/rn-data-reader/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/radioactive-narwhals-shop/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/supermarket/src/main/java" charset="UTF-8" />
+  </component>
+</project>
