@@ -1,9 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jesperancinha.narwhals</groupId>
+
+    <parent>
+        <groupId>org.jesperancinha.qa</groupId>
+        <artifactId>qa-mastering-apps</artifactId>
+        <version>0.0.0</version>
+    </parent>
     <artifactId>radioactive-narwhals-shop</artifactId>
-    <version>0.0.0</version>
-    <name>RadioactiveNarwhalsShop :: Parent</name>
+
+    <name>QA Mastering Apps :: RadioactiveNarwhalsShop</name>
 
     <modules>
         <module>commons</module>

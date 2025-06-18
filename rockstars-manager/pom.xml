@@ -3,10 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jesperancinha.rockstarts</groupId>
+    <parent>
+        <groupId>org.jesperancinha.qa</groupId>
+        <artifactId>qa-mastering-apps</artifactId>
+        <version>0.0.0</version>
+    </parent>
+
     <artifactId>rockstars-manager</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
-    <name>rockstars-manager</name>
+    <name>QA Mastering Apps :: Rockstars Manager</name>
     <description>Rockstars Manager</description>
 
     <properties>

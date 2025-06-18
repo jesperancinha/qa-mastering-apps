@@ -1,9 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jesperancinha.books</groupId>
+
+    <parent>
+        <groupId>org.jesperancinha.qa</groupId>
+        <artifactId>qa-mastering-apps</artifactId>
+        <version>0.0.0</version>
+    </parent>
+
     <artifactId>library-books</artifactId>
-    <version>0.0.0</version>
-    <name>Library Books :: Parent</name>
+    <name>QA Mastering Apps :: Library Books</name>
 
     <modules>
         <module>backend-kotlin</module>
