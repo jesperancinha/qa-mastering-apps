@@ -12,7 +12,7 @@ Repos under handler [jesperancinha](https://github.com/jesperancinha) can be dif
 * [online-product-shop](online-product-shop)
 * [radioactive-narwhals-shop](radioactive-narwhals-shop)
 * [rockstars-manager](rockstars-manager)
-* [supermarket](supermarkets)
+* [supermarket](supermarket)
 
 All of these projects used to be in separated repos, but eventually managing them became too costly for what they are and represent.
 
