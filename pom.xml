@@ -20,6 +20,10 @@
         <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
         <spring-boot.version>3.5.0</spring-boot.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
+        <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
+        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -36,6 +40,13 @@
                 <version>${kotlin.version}</version> <!-- or your Kotlin version -->
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-bom</artifactId>
+                <version>${kotlinx-coroutines-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>

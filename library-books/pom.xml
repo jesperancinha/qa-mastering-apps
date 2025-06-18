@@ -18,10 +18,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
-        <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
-        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
         <coroutinecache.version>0.9.0</coroutinecache.version>
         <hazelcast.version>5.5.0</hazelcast.version>
         <mockk.version>1.14.2</mockk.version>
@@ -36,13 +32,6 @@
                 <groupId>io.ktor</groupId>
                 <artifactId>ktor-bom</artifactId>
                 <version>${ktor-bom.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-bom</artifactId>
-                <version>${kotlinx-coroutines-bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
