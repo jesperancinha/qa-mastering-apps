@@ -4,6 +4,11 @@ import org.jesperancinha.supermaket.domain.DeliveryStatus
 import java.time.Instant
 import java.util.*
 
+// For a small project there is NO inconvenience in using DTOS in one single file.
+// If anyone says otherwise for a small project like this one, then please think of how that would look like.
+// It would look like Java code, but in Kotlin, which isn't what is intended with Kotlin files.
+// This is perfect and the way to declare Dtos in projects, if there are that many Dtos's in a project then they can be declared in separate files, where the concern makes sense.
+
 data class DeliveryRequestDto(
     val vehicleId: String,
     val address: String,
