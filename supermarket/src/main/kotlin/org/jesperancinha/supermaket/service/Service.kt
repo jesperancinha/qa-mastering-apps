@@ -46,47 +46,46 @@ class DeliveryService(
 
 
     fun getInvoicesForDeliveries(request: InvoiceRequestDto) = request.deliveryIds
-            .map { deliveryId ->
-                SendInvoiceRequestDto(
-                    deliveryId = deliveryId,
-                    address = deliveryRepository
-                        .findByIdOrNull(deliveryId)?.address ?: throw RuntimeException("Delivery $deliveryId not found!")
-                ).let { sendInvoiceRequestDto ->
-                    restTemplate.postForObject(
-                        "$externalApiUrl/v1/invoices",
-                        sendInvoiceRequestDto,
-                        SendInvoiceResponseDto::class.java
-                    ).let { sendInvoiceResponseDto ->
-                        InvoiceResponseDto(
-                            deliveryId = deliveryId,
-                            invoiceId = sendInvoiceResponseDto?.id
-                                ?: throw RuntimeException("No Invoice has been returned for $deliveryId")
-                        )
-                    }
+        .map { deliveryId ->
+            SendInvoiceRequestDto(
+                deliveryId = deliveryId,
+                address = deliveryRepository
+                    .findByIdOrNull(deliveryId)?.address ?: throw RuntimeException("Delivery $deliveryId not found!")
+            ).let { sendInvoiceRequestDto ->
+                restTemplate.postForObject(
+                    "$externalApiUrl/v1/invoices",
+                    sendInvoiceRequestDto,
+                    SendInvoiceResponseDto::class.java
+                ).let { sendInvoiceResponseDto ->
+                    InvoiceResponseDto(
+                        deliveryId = deliveryId,
+                        invoiceId = sendInvoiceResponseDto?.id
+                            ?: throw RuntimeException("No Invoice has been returned for $deliveryId")
+                    )
                 }
             }
-
-        fun getYesterdayDeliveriesSummary(): DeliveriesSummaryDto {
-            val zoneId = ZoneId.of("Europe/Amsterdam")
-            val today = LocalDate.now(zoneId)
-            val yesterday = today.minusDays(1)
-            val startOfYesterday = yesterday.atStartOfDay(zoneId).toInstant()
-            val endOfYesterday = yesterday.plusDays(1).atStartOfDay(zoneId).toInstant()
-            val deliveries =
-                deliveryRepository.findByStartedAtBetweenOrderByStartedAtAsc(startOfYesterday, endOfYesterday)
-            val count = deliveries.size
-            val avgMinutesBetween: Long = if (count < 2) {
-                0L
-            } else {
-                val durations = deliveries.zipWithNext { a, b ->
-                    Duration.between(a.startedAt, b.startedAt).toMinutes()
-                }
-                durations.average().roundToLong()
-            }
-
-            return DeliveriesSummaryDto(
-                deliveries = count,
-                averageMinutesBetweenDeliveryStart = avgMinutesBetween
-            )
         }
+
+    fun getYesterdayDeliveriesSummary(): DeliveriesSummaryDto {
+        val zoneId = ZoneId.of("Europe/Amsterdam")
+        val today = LocalDate.now(zoneId)
+        val yesterday = today.minusDays(1)
+        val startOfYesterday = yesterday.atStartOfDay(zoneId).toInstant()
+        val endOfYesterday = yesterday.plusDays(1).atStartOfDay(zoneId).toInstant()
+        val deliveries =
+            deliveryRepository.findByStartedAtBetweenOrderByStartedAtAsc(startOfYesterday, endOfYesterday)
+        val count = deliveries.size
+        val avgMinutesBetween: Long = deliveries
+            .zipWithNext()
+            .map { (a, b) -> Duration.between(a.startedAt, b.startedAt).toMinutes().toDouble() }
+            .takeIf { it.isNotEmpty() }
+            ?.average()
+            ?.roundToLong()
+            ?: 0L
+
+        return DeliveriesSummaryDto(
+            deliveries = count,
+            averageMinutesBetweenDeliveryStart = avgMinutesBetween
+        )
     }
+}
