@@ -2,6 +2,7 @@ package org.jesperancinha.books.configuration
 
 import com.hazelcast.config.Config
 import com.hazelcast.core.Hazelcast
+import com.hazelcast.core.HazelcastInstance
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cache.CacheManager
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager
@@ -24,5 +25,5 @@ internal class BooksConfiguration(
     fun cacheManager(): CacheManager = ConcurrentMapCacheManager("books")
 
     @Bean
-    fun hazelcastInstance() = Config().apply { clusterName = "books" }.let {  Hazelcast.newHazelcastInstance(it) }
+    fun hazelcastInstance(): HazelcastInstance = Config().apply { clusterName = "books" }.let {  Hazelcast.newHazelcastInstance(it) }
 }
