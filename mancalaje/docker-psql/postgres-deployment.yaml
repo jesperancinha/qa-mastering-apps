@@ -1,0 +1,42 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mancalaje-postgresql
+spec:
+  selector:
+    app: mancalaje-postgresql
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 5432
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mancalaje-postgresql
+spec:
+  selector:
+    matchLabels:
+      app: mancalaje-postgresql
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mancalaje-postgresql
+        tier: backend
+    spec:
+      containers:
+        - name: mancalaje-postgresql
+          image: mancalaje-postgresql:latest
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "admin"
+            - name: POSTGRES_DB
+              value: "mancalajedb"
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5432

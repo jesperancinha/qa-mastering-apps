@@ -8,6 +8,7 @@
         <module>radioactive-narwhals-shop</module>
         <module>rockstars-manager</module>
         <module>supermarket</module>
+        <module>mancalaje</module>
     </modules>
     <packaging>pom</packaging>
     <name>QA Mastering Apps :: Parent</name>

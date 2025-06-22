@@ -1,0 +1,63 @@
+name: mancalaje
+
+on:
+  push:
+    branches: [ master ]
+  pull_request_target:
+    types:
+      - closed
+
+jobs:
+  build-test-coverage-report:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v3
+        - name: Set up JDK 20
+          uses: actions/setup-java@v3
+          with:
+            java-version: '20'
+            distribution: 'adopt'
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '22'
+
+        - name: Install Jest Kala Game Web
+          run: cd kala-game-web && yarn && yarn add jest --dev
+
+        - name: Install Jest Mancala Je Fe
+          run: cd mancalaje-fe && yarn && yarn add jest --dev
+
+        - name: Build and Test
+          run:  mvn clean install jacoco:prepare-agent package jacoco:report
+
+        - name: Node Coverage Kala Game Web
+          run: cd kala-game-web && npm run coverage
+
+        - name: Node Coverage Mancala Je Fe
+          run: cd mancalaje-fe && npm run coverage
+
+        - name: Coverage Reports
+          run: mvn omni-coveragereporter:report
+          env:
+             COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+             CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+             CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+        - name: Maven OWASP Security Check
+          run: mvn clean install -Powasp
+
+        - name: Install SNYK
+          run: npm install -g snyk
+
+        - name: NPM Snyk Security Check Kalah Game Web
+          run: cd kala-game-web && yarn install && npm run snyk
+          env:
+             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+        - name: NPM Snyk Security Check Mancala Je Fe
+          run: cd mancalaje-fe && yarn install && npm run snyk
+          env:
+             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+        - name: Version statuses
+          run: make version-status

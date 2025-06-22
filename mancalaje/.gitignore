@@ -1,0 +1,81 @@
+# Maven
+target/
+build/
+
+# Bower
+src/main/webapp/resources/bower_components
+node_modules
+
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Karma and NodeJS
+node/
+npm-debug.log
+
+# Grunt
+output.css
+
+# Webpack
+src/main/webapp/resources/js
+
+# ActiveMQ
+activemq-data
+
+# OS
+.DS_Store
+
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.idea/
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### cUrl
+cookies.txt
+cookies2.txt
+
+# Coveralls
+.coveralls.yml
+
+# Codecov
+codecov.yml
+
+# Coverage documents
+coverage
+
+# Yarn
+yarn-error.log
+yarn.lock
+package-lock.json
