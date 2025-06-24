@@ -42,8 +42,8 @@ class KalahGameService(
         val lastWasher2 = generateHalfBoard(kalahWashers, kalahTable2) { kalahBoard.kalahWasherTwo = it }
         lastWasher2.nextKalahTable = kalahTable
         kalahWashers.forEach { kalahWasher: KalahWasher -> kalahWasherService.update(kalahWasher) }
-        kalahBoard.kalahTableOne = tableRepository.findByIdOrNull(kalahTable.id)
-        kalahBoard.kalahTableTwo = tableRepository.findByIdOrNull(kalahTable2.id)
+        kalahBoard.kalahTableOne = tableRepository.findById(requireNotNull(kalahTable.id)).get()
+        kalahBoard.kalahTableTwo = tableRepository.findById(requireNotNull(kalahTable2.id)).get()
         return boardRepository.save(kalahBoard)
     }
 

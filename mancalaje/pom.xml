@@ -29,7 +29,6 @@
         <liquibase-core.version>4.32.0</liquibase-core.version>
         <spring-security-oauth2-autoconfigure.version>2.6.8</spring-security-oauth2-autoconfigure.version>
 
-        <spring-boot.version>3.5.3</spring-boot.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
 
         <springmockk.version>4.0.2</springmockk.version>
@@ -70,11 +69,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-aop</artifactId>
-                <version>${spring-boot.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -94,17 +88,6 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib-jdk8</artifactId>
-                <version>${kotlin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-reflect</artifactId>
-                <version>${kotlin.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-test-junit</artifactId>
