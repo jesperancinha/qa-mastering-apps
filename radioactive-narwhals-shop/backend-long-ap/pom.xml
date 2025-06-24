@@ -17,12 +17,12 @@
         <dependency>
             <groupId>org.jesperancinha.qa</groupId>
             <artifactId>commons</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jesperancinha.qa</groupId>
             <artifactId>commons</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>

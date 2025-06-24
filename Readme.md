@@ -14,6 +14,7 @@ Repos under handler [jesperancinha](https://github.com/jesperancinha) can be dif
 * [rockstars-manager](rockstars-manager)
 * [supermarket](supermarket)
 * [mancalaje](mancalaje)
+* [car-lease](car-lease)
 
 All of these projects used to be in separated repos, but eventually managing them became too costly for what they are and represent.
 
