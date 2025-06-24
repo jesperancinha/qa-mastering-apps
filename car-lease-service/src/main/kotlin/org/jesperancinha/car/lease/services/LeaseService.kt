@@ -17,8 +17,8 @@ class LeaseService(
     private val customerRepository: CustomerRepository
 ) {
     fun createLease(leaseDto: LeaseDto): LeaseDto? {
-        val car = carRepository.findByIdOrNull(leaseDto.carId)
-        val customer = customerRepository.findByIdOrNull(leaseDto.customerId)
+        val car = carRepository.findByIdOrNull(requireNotNull(leaseDto.carId))
+        val customer = customerRepository.findByIdOrNull(requireNotNull(leaseDto.customerId))
         car?.let { realCar ->
             customer?.let {
                 val lease =
