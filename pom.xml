@@ -29,7 +29,7 @@
         <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
         <cucumber-bom.version>7.23.0</cucumber-bom.version>
         <kotest-bom.version>5.9.1</kotest-bom.version>
-        <camel-spring-boot-bom.version>4.11.0</camel-spring-boot-bom.version>
+        <camel-spring-boot-bom.version>4.12.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
     </properties>
     <dependencyManagement>
