@@ -8,7 +8,7 @@
 		<version>0.0.0</version>
 	</parent>
 	<artifactId>car-lease-service</artifactId>
-	<name>Car Lease Service</name>
+	<name>QA Mastering Apps :: Car Lease Service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<dependencies>
