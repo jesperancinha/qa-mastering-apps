@@ -1,0 +1,19 @@
+image: cimg/openjdk:17.0.1
+
+pipelines:
+  branches:
+    master:
+      - step:
+          caches:
+            - maven
+          script:
+            - make build
+  custom:
+    renovate:
+      - step:
+          image: renovate/renovate
+          caches:
+            - maven
+          script:
+            - export RENOVATE_CONFIG=$(< renovate.json)
+            - renovate

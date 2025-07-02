@@ -4,6 +4,7 @@
     <artifactId>qa-mastering-apps</artifactId>
     <version>0.0.0</version>
     <modules>
+        <module>airports-app</module>
         <module>library-books</module>
         <module>radioactive-narwhals-shop</module>
         <module>rockstars-manager</module>
@@ -27,9 +28,17 @@
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
         <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
         <cucumber-bom.version>7.23.0</cucumber-bom.version>
+        <kotest-bom.version>5.8.0</kotest-bom.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-bom</artifactId>
+                <version>${kotest-bom.version}</version> <!-- Use latest version -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
