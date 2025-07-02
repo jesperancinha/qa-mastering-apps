@@ -61,7 +61,6 @@
 		<dependency>
 			<groupId>io.kotest</groupId>
 			<artifactId>kotest-assertions-core-jvm</artifactId>
-			<version>5.9.1</version>
 		</dependency>
 	</dependencies>
 

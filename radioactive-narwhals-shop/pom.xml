@@ -137,12 +137,6 @@
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.kotest</groupId>
-                <artifactId>kotest-assertions-core-jvm</artifactId>
-                <version>${kotest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>io.mockk</groupId>
                 <artifactId>mockk-core-jvm</artifactId>
                 <version>${mockk.version}</version>
@@ -157,7 +151,6 @@
             <dependency>
                 <groupId>io.kotest</groupId>
                 <artifactId>kotest-framework-api-jvm</artifactId>
-                <version>${kotest.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

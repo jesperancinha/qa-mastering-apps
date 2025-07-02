@@ -21,7 +21,6 @@
 
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
-        <kotest-assertions-core-jvm.version>5.9.1</kotest-assertions-core-jvm.version>
         <springmockk.version>4.0.2</springmockk.version>
     </properties>
 
@@ -119,7 +118,6 @@
         <dependency>
             <groupId>io.kotest</groupId>
             <artifactId>kotest-assertions-core-jvm</artifactId>
-            <version>${kotest-assertions-core-jvm.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ninja-squad</groupId>
