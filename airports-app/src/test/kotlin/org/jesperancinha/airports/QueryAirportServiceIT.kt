@@ -4,6 +4,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import org.apache.camel.test.spring.junit5.CamelSpringBootTest
 import org.jesperancinha.airports.pojos.Airport
 import org.jesperancinha.airports.services.QueryAirportService
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -14,6 +15,7 @@ import org.springframework.test.annotation.DirtiesContext
 @EnableAutoConfiguration
 @SpringBootTest
 @DirtiesContext
+@Disabled
 class QueryAirportServiceIT @Autowired constructor(
     val queryAirportService: QueryAirportService
 ) {

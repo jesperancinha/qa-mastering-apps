@@ -29,6 +29,8 @@
         <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
         <cucumber-bom.version>7.23.0</cucumber-bom.version>
         <kotest-bom.version>5.8.0</kotest-bom.version>
+        <camel-spring-boot-bom.version>4.11.0</camel-spring-boot-bom.version>
+        <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -76,6 +78,18 @@
                 <version>${cucumber-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-spring-boot-bom</artifactId>
+                <version>${camel-spring-boot-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.springboot</groupId>
+                <artifactId>camel-swagger-java-starter</artifactId>
+                <version>${camel-swagger-java-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

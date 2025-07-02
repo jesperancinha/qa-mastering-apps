@@ -15,7 +15,7 @@ class ReportAirportService(
 ) {
 
     fun getCountriesWithHighestNumberOfAirports(listSize: Int): Map<String, Long> {
-        val listOfAirports = mainContainerService.fullAiportInfo
+        val listOfAirports = mainContainerService.fullAirportInfo
         return listOfAirports
             .sortedBy { it.isoCountry }
             .groupingBy { it.isoCountry }
@@ -29,7 +29,7 @@ class ReportAirportService(
     }
 
     fun getCountriesWithLowesNumberOfAirports(listSize: Int): Map<String, Long> {
-        val listOfAirports = mainContainerService.fullAiportInfo
+        val listOfAirports = mainContainerService.fullAirportInfo
         return listOfAirports
             .sortedBy { it.isoCountry }
             .groupingBy { it.isoCountry }

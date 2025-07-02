@@ -5,9 +5,6 @@ import org.jesperancinha.airports.pojos.Country
 import org.jesperancinha.airports.pojos.Runway
 import org.springframework.stereotype.Service
 
-/**
- * Created by joaofilipesabinoesperancinha on 08-08-16.
- */
 @Service
 class MainContainerService(
 ) {
@@ -17,7 +14,7 @@ class MainContainerService(
     private val airports = airportContainer.airports
     private val countries = countryContainer.countries
     private val runways = runwayContainer.runways
-    val fullAiportInfo by lazy { getFullAirportInfo(airports, countries, runways) }
+    val fullAirportInfo by lazy { getFullAirportInfo(airports, countries, runways) }
 
 
     private fun getFullAirportInfo(

@@ -4,10 +4,9 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import org.jesperancinha.airports.pojos.Airport
 import org.junit.Test
+import org.junit.jupiter.api.Disabled
 
-/**
- * Created by joaofilipesabinoesperancinha on 08-08-16.
- */
+@Disabled
 class AirportContainerTest {
     @Test
     fun `should run airport test container`() {

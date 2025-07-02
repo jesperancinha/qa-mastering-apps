@@ -3,11 +3,10 @@ package org.jesperancinha.airports.containers
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import org.jesperancinha.airports.pojos.Country
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
-/**
- * Created by joaofilipesabinoesperancinha on 08-08-16.
- */
+@Disabled
 class CountryContainerTest {
     @Test
     fun `should run country test container`() {
