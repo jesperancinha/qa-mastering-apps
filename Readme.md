@@ -15,6 +15,7 @@ Repos under handler [jesperancinha](https://github.com/jesperancinha) can be dif
 * [supermarket](supermarket)
 * [mancalaje](mancalaje)
 * [car-lease](car-lease)
+* [airports-app](airports-app)
 
 All of these projects used to be in separated repos, but eventually managing them became too costly for what they are and represent.
 
