@@ -74,7 +74,10 @@ class DeliveryService(
         val count = deliveries.size
         val avgMinutesBetween: Long = deliveries
             .zipWithNext { a, b ->
-                Duration.between(a.startedAt, b.startedAt).toMinutes().toDouble()
+                Duration
+                    .between(
+                        a.startedAt, b.startedAt)
+                    .toMinutes()
             }
             .takeIf { it.isNotEmpty() }
             ?.average()

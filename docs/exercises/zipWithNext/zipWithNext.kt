@@ -3,7 +3,6 @@ val avgMinutesBetween: Long = deliveries
         Duration
             .between(a.startedAt, b.startedAt)
             .toMinutes()
-            .toDouble()
     }
     .takeIf { it.isNotEmpty() }
     ?.average()
