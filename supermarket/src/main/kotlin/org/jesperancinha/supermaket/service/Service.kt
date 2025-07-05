@@ -73,9 +73,9 @@ class DeliveryService(
             deliveryRepository.findByStartedAtBetweenOrderByStartedAtAsc(startOfYesterday, endOfYesterday)
         val count = deliveries.size
         val avgMinutesBetween: Long = deliveries
-            .zipWithNext()
-            .map { (a, b) ->
-                Duration.between(a.startedAt, b.startedAt).toMinutes().toDouble() }
+            .zipWithNext { a, b ->
+                Duration.between(a.startedAt, b.startedAt).toMinutes().toDouble()
+            }
             .takeIf { it.isNotEmpty() }
             ?.average()
             ?.roundToLong()
