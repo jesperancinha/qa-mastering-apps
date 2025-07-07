@@ -4,15 +4,10 @@ import org.jesperancinha.kalah.exception.GameOverException
 import org.jesperancinha.kalah.exception.NotOwnedPitException
 import org.jesperancinha.kalah.exception.PlayerNotJoinedYetException
 import org.jesperancinha.kalah.exception.WrongTurnException
-import org.jesperancinha.kalah.model.KalahBoard
-import org.jesperancinha.kalah.model.KalahCup
-import org.jesperancinha.kalah.model.KalahTable
-import org.jesperancinha.kalah.model.KalahWasher
-import org.jesperancinha.kalah.model.Player
+import org.jesperancinha.kalah.model.*
 import org.jesperancinha.kalah.repository.KalahBoardRepository
 import org.jesperancinha.kalah.repository.KalahPlayerRepository
 import org.jesperancinha.kalah.repository.KalahTableRepository
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.function.Consumer
