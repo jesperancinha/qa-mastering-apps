@@ -8,6 +8,8 @@ build-gradle: clean
 	gradle wrapper --gradle-version $(GRADLE_VERSION); \
 	./gradlew --stop
 	./gradlew clean build test
+rockstars-build:
+	mvn clean install -rf :rockstars-manager
 clean:
 	if [ -d kotlin-js-store ]; then rm -r kotlin-js-store; fi
 deps-plugins-update:
