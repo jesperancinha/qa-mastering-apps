@@ -16,7 +16,7 @@
     <properties>
         <lombok.version>1.18.38</lombok.version>
 
-        <commons-io.version>2.19.0</commons-io.version>
+        <commons-io.version>2.20.0</commons-io.version>
         <h2.version>2.1.214</h2.version>
 
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
