@@ -26,7 +26,7 @@
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
-        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
         <cucumber-bom.version>7.26.0</cucumber-bom.version>
         <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.13.0</camel-spring-boot-bom.version>

@@ -31,7 +31,7 @@
 
         <spring-boot.version>3.5.3</spring-boot.version>
 
-        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
         <jackson.version>2.19.1</jackson.version>
         <coroutinecache.version>0.9.0</coroutinecache.version>
         <hazelcast.version>5.5.0</hazelcast.version>
