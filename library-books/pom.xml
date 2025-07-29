@@ -23,7 +23,7 @@
         <mockk.version>1.14.5</mockk.version>
         <kotest.version>5.9.1</kotest.version>
         <springmockk.version>4.0.2</springmockk.version>
-        <ktor-bom.version>3.2.2</ktor-bom.version>
+        <ktor-bom.version>3.2.3</ktor-bom.version>
     </properties>
 
     <dependencyManagement>
