@@ -6,8 +6,8 @@ import org.jesperancinha.airports.pojos.Country
 import java.io.InputStreamReader
 
 class CountryContainer {
-    private val mapper: CsvMapper by lazy { CsvMapper() }
-    private val schema: CsvSchema by lazy {
+    private val mapper by lazy { CsvMapper() }
+    private val schema by lazy {
         CsvSchema.builder()
             .setColumnSeparator(',')
             .addColumn("id")
@@ -18,12 +18,14 @@ class CountryContainer {
             .addColumn("keywords")
             .build()
     }
-    val countries: List<Country> by lazy {
-        val airportStream = javaClass.getResourceAsStream("/countries.csv")
-        val it = mapper
-            .reader(Country::class.java)
-            .with(schema)
-            .readValues<Country>(InputStreamReader(airportStream))
-        it.readAll()
+    
+    val countries by lazy {
+        javaClass.getResourceAsStream("/countries.csv")?.use { stream ->
+            mapper
+                .reader(Country::class.java)
+                .with(schema)
+                .readValues<Country>(InputStreamReader(stream))
+                .readAll()
+        } ?: emptyList()
     }
 }
