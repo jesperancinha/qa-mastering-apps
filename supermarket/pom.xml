@@ -67,7 +67,6 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
@@ -84,12 +83,12 @@
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-allopen</artifactId>
-                        <version>${kotlin.version}</version>
+                        <version>${kotlin-maven-allopen.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-noarg</artifactId>
-                        <version>${kotlin.version}</version>
+                        <version>${kotlin-maven-noarg.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -123,7 +122,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
                 <executions>
                     <!-- Replacing default-compile as it is treated specially by Maven -->
                     <execution>

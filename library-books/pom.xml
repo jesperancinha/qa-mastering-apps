@@ -53,7 +53,7 @@
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-noarg</artifactId>
-                <version>${kotlin.version}</version>
+                <version>${kotlin-maven-noarg.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.module</groupId>

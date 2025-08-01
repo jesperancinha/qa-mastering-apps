@@ -33,6 +33,8 @@
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
         <mockk.version>1.14.5</mockk.version>
         <springmockk.version>4.0.2</springmockk.version>
+        <kotlin-maven-allopen.version>${kotlin.version}</kotlin-maven-allopen.version>
+        <kotlin-maven-noarg.version>${kotlin.version}</kotlin-maven-noarg.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -119,4 +121,26 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>kotlin-maven-plugin</artifactId>
+                    <version>${kotlin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
