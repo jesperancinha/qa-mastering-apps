@@ -31,6 +31,8 @@
         <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.13.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
+        <mockk.version>1.14.5</mockk.version>
+        <springmockk.version>4.0.2</springmockk.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -90,6 +92,30 @@
                 <groupId>org.apache.camel.springboot</groupId>
                 <artifactId>camel-swagger-java-starter</artifactId>
                 <version>${camel-swagger-java-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk-jvm</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk-core-jvm</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ninja-squad</groupId>
+                <artifactId>springmockk</artifactId>
+                <version>${springmockk.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

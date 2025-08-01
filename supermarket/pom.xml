@@ -49,13 +49,11 @@
         <dependency>
             <groupId>io.mockk</groupId>
             <artifactId>mockk</artifactId>
-            <version>1.13.9</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.ninja-squad</groupId>
             <artifactId>springmockk</artifactId>
-            <version>4.0.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
