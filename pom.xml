@@ -7,8 +7,9 @@
         <module>airports-app</module>
         <module>library-books</module>
         <module>radioactive-narwhals-shop</module>
-        <module>rockstars-manager</module>
+<!--        <module>rockstars-manager</module>-->
         <module>supermarket</module>
+        <module>supermarket-features</module>
         <module>mancalaje</module>
         <module>car-lease</module>
     </modules>
@@ -29,7 +30,7 @@
         <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
         <cucumber-bom.version>7.27.2</cucumber-bom.version>
         <kotest-bom.version>6.0.0</kotest-bom.version>
-        <camel-spring-boot-bom.version>4.13.0</camel-spring-boot-bom.version>
+        <camel-spring-boot-bom.version>4.14.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
         <mockk.version>1.14.5</mockk.version>
         <springmockk.version>4.0.2</springmockk.version>
