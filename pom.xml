@@ -7,8 +7,9 @@
         <module>airports-app</module>
         <module>library-books</module>
         <module>radioactive-narwhals-shop</module>
-        <module>rockstars-manager</module>
+<!--        <module>rockstars-manager</module>-->
         <module>supermarket</module>
+        <module>supermarket-features</module>
         <module>mancalaje</module>
         <module>car-lease</module>
     </modules>
