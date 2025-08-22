@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/deliveries
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+invoice:
+  client:
+    base-url: "http://mock-api:8000/v1"

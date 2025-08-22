@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: backend-assignment
+  datasource:
+    url: jdbc:postgresql://localhost:5432/deliveries
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+invoice:
+  client:
+    base-url: "http://localhost:8000/v1"
+

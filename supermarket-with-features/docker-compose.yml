@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mock-api:
+    image: "wiremock/wiremock:3.5.2"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings
+    entrypoint: ["/docker-entrypoint.sh", "--port=8000"]
+
+
+  postgres:
+    hostname: postgres
+    build:
+      context: docker-psql/.
+    env_file: docker-psql/.env
+    user: postgres
+    volumes:
+      - ./docker-psql:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mock-api
