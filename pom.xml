@@ -9,7 +9,7 @@
         <module>radioactive-narwhals-shop</module>
 <!--        <module>rockstars-manager</module>-->
         <module>supermarket</module>
-        <module>supermarket-features</module>
+        <module>supermarket-with-features</module>
         <module>mancalaje</module>
         <module>car-lease</module>
     </modules>
@@ -29,7 +29,7 @@
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
         <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
         <cucumber-bom.version>7.27.2</cucumber-bom.version>
-        <kotest-bom.version>6.0.0</kotest-bom.version>
+        <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.14.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
         <mockk.version>1.14.5</mockk.version>
@@ -42,6 +42,11 @@
             <dependency>
                 <groupId>io.kotest</groupId>
                 <artifactId>kotest-runner-junit5-jvm</artifactId>
+                <version>${kotest-bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-api-jvm</artifactId>
                 <version>${kotest-bom.version}</version>
             </dependency>
             <dependency>
