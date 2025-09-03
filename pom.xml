@@ -28,7 +28,7 @@
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
         <jackson-module-kotlin.version>2.20.0</jackson-module-kotlin.version>
-        <cucumber-bom.version>7.27.2</cucumber-bom.version>
+        <cucumber-bom.version>7.28.0</cucumber-bom.version>
         <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.14.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
