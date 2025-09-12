@@ -56,11 +56,6 @@
                 <version>${kotlin-maven-noarg.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-kotlin</artifactId>
-                <version>${jackson-module-kotlin.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.epam.coroutinecache</groupId>
                 <artifactId>coroutinecache</artifactId>
                 <version>${coroutinecache.version}</version>
