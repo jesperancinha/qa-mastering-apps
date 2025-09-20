@@ -1,10 +1,6 @@
-package org.jesperancinha.qa.lease.dao
+package org.jesperancinha.car.lease.dao
 
 import jakarta.persistence.*
-import org.jesperancinha.qa.lease.dao.Car
-import org.jesperancinha.qa.lease.dao.Customer
-import org.jesperancinha.qa.lease.dao.Lease
-import org.jesperancinha.qa.lease.dao.User
 import org.springframework.data.jpa.repository.JpaRepository
 import java.io.Serializable
 

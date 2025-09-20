@@ -1,4 +1,4 @@
-package org.jesperancinha.qa.lease.dto
+package org.jesperancinha.car.lease.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

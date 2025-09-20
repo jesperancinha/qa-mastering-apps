@@ -1,8 +1,8 @@
-package org.jesperancinha.qa.lease.controller
+package org.jesperancinha.car.lease.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.jesperancinha.qa.lease.dto.CustomerDto
-import org.jesperancinha.qa.lease.services.CustomerService
+import org.jesperancinha.car.lease.dto.CustomerDto
+import org.jesperancinha.car.lease.services.CustomerService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito

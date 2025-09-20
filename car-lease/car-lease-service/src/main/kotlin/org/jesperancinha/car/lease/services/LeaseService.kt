@@ -1,12 +1,12 @@
-package org.jesperancinha.qa.lease.services
+package org.jesperancinha.car.lease.services
 
-import org.jesperancinha.qa.lease.converters.toData
-import org.jesperancinha.qa.lease.converters.toDto
-import org.jesperancinha.qa.lease.dao.CarRepository
-import org.jesperancinha.qa.lease.dao.CustomerRepository
-import org.jesperancinha.qa.lease.dao.Lease
-import org.jesperancinha.qa.lease.dao.LeaseRepository
-import org.jesperancinha.qa.lease.dto.LeaseDto
+import org.jesperancinha.car.lease.dao.CarRepository
+import org.jesperancinha.car.lease.dao.CustomerRepository
+import org.jesperancinha.car.lease.dao.Lease
+import org.jesperancinha.car.lease.dao.LeaseRepository
+import org.jesperancinha.car.lease.converters.toData
+import org.jesperancinha.car.lease.converters.toDto
+import org.jesperancinha.car.lease.dto.LeaseDto
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 

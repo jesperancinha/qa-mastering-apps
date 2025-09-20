@@ -1,14 +1,9 @@
-package org.jesperancinha.qa.lease.services
+package org.jesperancinha.car.lease.services
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import org.assertj.core.api.Assertions
-import org.jesperancinha.qa.lease.dto.LeaseDto
-import org.jesperancinha.qa.lease.dao.Car
-import org.jesperancinha.qa.lease.dao.Customer
-import org.jesperancinha.qa.lease.dao.CarRepository
-import org.jesperancinha.qa.lease.dao.CustomerRepository
-import org.jesperancinha.qa.lease.dao.LeaseRepository
+import org.jesperancinha.car.lease.dao.*
+import org.jesperancinha.car.lease.dto.LeaseDto
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -17,7 +12,6 @@ import org.mockito.Mockito
 import org.mockito.invocation.InvocationOnMock
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*

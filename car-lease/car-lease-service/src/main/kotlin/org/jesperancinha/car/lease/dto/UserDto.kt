@@ -1,4 +1,4 @@
-package org.jesperancinha.qa.lease.dto
+package org.jesperancinha.car.lease.dto
 
 class UserDto(
     val id: Long? = null,

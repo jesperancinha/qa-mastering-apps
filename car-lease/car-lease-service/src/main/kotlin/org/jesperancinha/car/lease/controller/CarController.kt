@@ -1,7 +1,7 @@
-package org.jesperancinha.qa.lease.controller
+package org.jesperancinha.car.lease.controller
 
-import org.jesperancinha.qa.lease.dto.CarDto
-import org.jesperancinha.qa.lease.services.CarService
+import org.jesperancinha.car.lease.dto.CarDto
+import org.jesperancinha.car.lease.services.CarService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 

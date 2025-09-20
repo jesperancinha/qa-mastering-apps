@@ -1,8 +1,7 @@
-package org.jesperancinha.qa.lease.dao
+package org.jesperancinha.car.lease.dao
 
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import org.jesperancinha.qa.lease.dao.Customer
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest

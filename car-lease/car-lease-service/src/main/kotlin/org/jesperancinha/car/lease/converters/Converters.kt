@@ -1,13 +1,13 @@
-package org.jesperancinha.qa.lease.converters
+package org.jesperancinha.car.lease.converters
 
-import org.jesperancinha.qa.lease.dto.CarDto
-import org.jesperancinha.qa.lease.dto.CustomerDto
-import org.jesperancinha.qa.lease.dto.LeaseDto
-import org.jesperancinha.qa.lease.dto.UserDto
-import org.jesperancinha.qa.lease.dao.Car
-import org.jesperancinha.qa.lease.dao.Customer
-import org.jesperancinha.qa.lease.dao.Lease
-import org.jesperancinha.qa.lease.dao.User
+import org.jesperancinha.car.lease.dao.Car
+import org.jesperancinha.car.lease.dao.Customer
+import org.jesperancinha.car.lease.dao.Lease
+import org.jesperancinha.car.lease.dao.User
+import org.jesperancinha.car.lease.dto.CarDto
+import org.jesperancinha.car.lease.dto.CustomerDto
+import org.jesperancinha.car.lease.dto.LeaseDto
+import org.jesperancinha.car.lease.dto.UserDto
 
 
 fun Car.toDto() = CarDto(
