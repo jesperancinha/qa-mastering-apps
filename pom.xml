@@ -39,7 +39,6 @@
         <mockk.version>1.14.5</mockk.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotlin-maven-allopen.version>${kotlin.version}</kotlin-maven-allopen.version>
-        <kotlin-maven-noarg.version>${kotlin.version}</kotlin-maven-noarg.version>
         <coroutine.cache>0.9.0</coroutine.cache>
         <hazelcast.version>5.5.0</hazelcast.version>
         <ktor-bom.version>3.3.0</ktor-bom.version>
@@ -100,6 +99,21 @@
                 <version>${kotlinx-coroutines-bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-serialization</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-noarg</artifactId>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.cucumber</groupId>

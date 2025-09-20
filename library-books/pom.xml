@@ -36,7 +36,7 @@
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-noarg</artifactId>
-                <version>${kotlin-maven-noarg.version}</version>
+                <version>${kotlin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.hazelcast</groupId>

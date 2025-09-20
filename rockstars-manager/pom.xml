@@ -15,13 +15,7 @@
 
     <properties>
         <lombok.version>1.18.38</lombok.version>
-
         <commons-io.version>2.20.0</commons-io.version>
-        <h2.version>2.1.214</h2.version>
-
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
-        <springmockk.version>4.0.2</springmockk.version>
     </properties>
 
     <dependencies>
@@ -168,7 +162,7 @@
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-noarg</artifactId>
-                        <version>${kotlin-maven-noarg.version}</version>
+                        <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

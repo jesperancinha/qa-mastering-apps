@@ -51,21 +51,6 @@
                 <artifactId>kotlinx-serialization-json-jvm</artifactId>
                 <version>${kotlinx-coroutines-bom.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-reflect</artifactId>
-                <version>${kotlin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-serialization</artifactId>
-                <version>${kotlin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-noarg</artifactId>
-                <version>${kotlin-maven-noarg.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <packaging>pom</packaging>
