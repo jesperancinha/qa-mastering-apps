@@ -11,11 +11,10 @@
 	<name>QA Mastering Apps :: Car Lease Service</name>
 	<description>Demo project for Spring Boot</description>
 
-	<dependencies>
+    <dependencies>
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
-			<version>4.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

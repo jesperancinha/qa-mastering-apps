@@ -41,6 +41,7 @@
         <hazelcast.version>5.5.0</hazelcast.version>
         <ktor-bom.version>3.3.0</ktor-bom.version>
         <servlet-api.version>2.4-20040521</servlet-api.version>
+        <java-jwt.version>4.5.0</java-jwt.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -122,6 +123,11 @@
                 <groupId>com.hazelcast</groupId>
                 <artifactId>hazelcast</artifactId>
                 <version>${hazelcast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
             </dependency>
             <dependency>
                 <groupId>servletapi</groupId>

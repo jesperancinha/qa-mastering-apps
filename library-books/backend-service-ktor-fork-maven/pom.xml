@@ -10,9 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <name>QA Mastering Apps :: Library Books :: Backend Ktor Fork Maven Tests</name>
-    <properties>
-        <ktor.version>2.3.11</ktor.version>
-    </properties>
 
     <artifactId>backend-service-ktor-fork-maven</artifactId>
 
