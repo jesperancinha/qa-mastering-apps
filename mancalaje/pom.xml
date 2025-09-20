@@ -33,7 +33,6 @@
 
         <springmockk.version>4.0.2</springmockk.version>
         <mockk.version>1.14.5</mockk.version>
-        <kotest.version>5.9.1</kotest.version>
         <reactor-test.version>3.7.11</reactor-test.version>
 
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
@@ -92,18 +91,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-test-junit</artifactId>
                 <version>${kotlin.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.mockk</groupId>
-                <artifactId>mockk-jvm</artifactId>
-                <version>${mockk.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.ninja-squad</groupId>
-                <artifactId>springmockk</artifactId>
-                <version>${springmockk.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
