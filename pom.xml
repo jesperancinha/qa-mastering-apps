@@ -30,6 +30,7 @@
         <spring-boot.version>3.5.6</spring-boot.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
+        <picocli.version>4.7.7</picocli.version>
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
         <cucumber-bom.version>7.28.2</cucumber-bom.version>
         <kotest-bom.version>5.9.1</kotest-bom.version>
@@ -143,6 +144,11 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
                 <version>${liquibase-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>info.picocli</groupId>
+                <artifactId>picocli</artifactId>
+                <version>${picocli.version}</version>
             </dependency>
             <dependency>
                 <groupId>servletapi</groupId>

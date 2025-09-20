@@ -13,9 +13,6 @@
 
     <artifactId>backend-kotlin</artifactId>
     <name>QA Mastering Apps :: Library Books :: Backend Kotlin</name>
-    <properties>
-        <kotlin-maven-serialization.version>1.4.21</kotlin-maven-serialization.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

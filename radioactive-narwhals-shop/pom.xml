@@ -19,28 +19,6 @@
         <module>auto-loader-backend</module>
     </modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>21</java.version>
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
-        <kotlin.version>2.2.20</kotlin.version>
-
-        <spring-boot.version>3.5.6</spring-boot.version>
-
-        <jackson-module-kotlin.version>2.20.0</jackson-module-kotlin.version>
-        <hazelcast.version>5.5.0</hazelcast.version>
-        <mockk.version>1.14.5</mockk.version>
-        <springmockk.version>4.0.2</springmockk.version>
-        <picocli.version>4.7.7</picocli.version>
-
-        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -91,28 +69,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-noarg</artifactId>
                 <version>${kotlin-maven-noarg.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>info.picocli</groupId>
-                <artifactId>picocli</artifactId>
-                <version>${picocli.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.kotest</groupId>
-                <artifactId>kotest-framework-api-jvm</artifactId>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
