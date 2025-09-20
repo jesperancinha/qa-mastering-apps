@@ -43,11 +43,6 @@
                 <artifactId>hazelcast</artifactId>
                 <version>${hazelcast.version}</version>
             </dependency>
-            <dependency>
-                <groupId>io.kotest</groupId>
-                <artifactId>kotest-framework-api-jvm</artifactId>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <packaging>pom</packaging>
