@@ -17,6 +17,7 @@
     <name>QA Mastering Apps :: Parent</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>21</java.version>
         <kotlin.version>2.2.20</kotlin.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
@@ -39,6 +40,7 @@
         <coroutine.cache>0.9.0</coroutine.cache>
         <hazelcast.version>5.5.0</hazelcast.version>
         <ktor-bom.version>3.3.0</ktor-bom.version>
+        <servlet-api.version>2.4-20040521</servlet-api.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -120,6 +122,12 @@
                 <groupId>com.hazelcast</groupId>
                 <artifactId>hazelcast</artifactId>
                 <version>${hazelcast.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>servletapi</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.mockk</groupId>
