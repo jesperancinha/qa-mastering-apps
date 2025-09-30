@@ -46,7 +46,7 @@
         <java-jwt.version>4.5.0</java-jwt.version>
         <spring-security-oauth2-autoconfigure.version>2.6.8</spring-security-oauth2-autoconfigure.version>
         <reactor-test.version>3.7.11</reactor-test.version>
-        <liquibase-core.version>4.33.0</liquibase-core.version>
+        <liquibase-core.version>5.0.0</liquibase-core.version>
     </properties>
     <dependencyManagement>
         <dependencies>
