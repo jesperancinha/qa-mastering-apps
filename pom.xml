@@ -32,7 +32,7 @@
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <picocli.version>4.7.7</picocli.version>
         <kotlinx-coroutines-bom.version>1.10.2</kotlinx-coroutines-bom.version>
-        <cucumber-bom.version>7.29.0</cucumber-bom.version>
+        <cucumber-bom.version>7.30.0</cucumber-bom.version>
         <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.14.1</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
