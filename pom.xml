@@ -41,7 +41,7 @@
         <kotlin-maven-allopen.version>${kotlin.version}</kotlin-maven-allopen.version>
         <coroutine.cache>0.9.0</coroutine.cache>
         <hazelcast.version>5.6.0</hazelcast.version>
-        <ktor-bom.version>3.3.1</ktor-bom.version>
+        <ktor-bom.version>3.3.2</ktor-bom.version>
         <servlet-api.version>2.4-20040521</servlet-api.version>
         <java-jwt.version>4.5.0</java-jwt.version>
         <spring-security-oauth2-autoconfigure.version>2.6.8</spring-security-oauth2-autoconfigure.version>
