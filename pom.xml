@@ -36,7 +36,7 @@
         <kotest-bom.version>5.9.1</kotest-bom.version>
         <camel-spring-boot-bom.version>4.16.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
-        <mockk.version>1.14.6</mockk.version>
+        <mockk.version>1.14.7</mockk.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotlin-maven-allopen.version>${kotlin.version}</kotlin-maven-allopen.version>
         <coroutine.cache>0.9.0</coroutine.cache>
