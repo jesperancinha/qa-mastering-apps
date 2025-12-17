@@ -1,5 +1,5 @@
 [versions]
-arrowVersion = "2.2.0"
+arrowVersion = "2.2.1.1"
 jupiterVersion = "6.0.1"
 
 [plugins]
