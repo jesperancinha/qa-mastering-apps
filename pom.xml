@@ -27,7 +27,7 @@
         <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
         <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
         <dependency-check-maven.version>12.1.9</dependency-check-maven.version>
-        <spring-boot.version>3.5.7</spring-boot.version>
+        <spring-boot.version>4.0.0</spring-boot.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <picocli.version>4.7.7</picocli.version>
@@ -37,7 +37,7 @@
         <camel-spring-boot-bom.version>4.16.0</camel-spring-boot-bom.version>
         <camel-swagger-java-starter.version>3.22.4</camel-swagger-java-starter.version>
         <mockk.version>1.14.6</mockk.version>
-        <springmockk.version>4.0.2</springmockk.version>
+        <springmockk.version>5.0.1</springmockk.version>
         <kotlin-maven-allopen.version>${kotlin.version}</kotlin-maven-allopen.version>
         <coroutine.cache>0.9.0</coroutine.cache>
         <hazelcast.version>5.6.0</hazelcast.version>
