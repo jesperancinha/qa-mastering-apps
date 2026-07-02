@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext
 @DirtiesContext
 @Disabled
 class QueryAirportServiceIT @Autowired constructor(
-    val queryAirportService: QueryAirportService
+    private val queryAirportService: QueryAirportService
 ) {
 
     @Test

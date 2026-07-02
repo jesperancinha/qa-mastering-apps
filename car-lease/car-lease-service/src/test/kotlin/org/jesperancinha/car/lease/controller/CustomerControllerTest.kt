@@ -17,12 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import java.util.List
 
 @WebMvcTest(CustomerController::class)
-internal class CustomerControllerTest {
-    @Autowired
-    private val mockMvc: MockMvc? = null
-
-    @MockBean
-    lateinit var customerService: CustomerService
+internal class CustomerControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    @MockBean private val customerService: CustomerService
+) {
     private val customerDto: CustomerDto = CustomerDto(
         id=10000,
         name ="Joao",
@@ -39,7 +37,7 @@ internal class CustomerControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testListCustomers_Cars_whenCalled_thenGetFullList() {
-        mockMvc!!.perform(MockMvcRequestBuilders.get("/customers"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/customers"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(customerDto))))
     }
@@ -48,7 +46,7 @@ internal class CustomerControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testCreateCustomer_whenCalled_thenCreateCar() {
-        mockMvc!!.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/customers")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(customerDto))

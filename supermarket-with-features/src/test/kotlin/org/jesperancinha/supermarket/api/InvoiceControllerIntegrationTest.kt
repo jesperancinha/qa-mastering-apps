@@ -30,11 +30,9 @@ import java.util.*
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 class InvoiceControllerIT @Autowired constructor(
     private val mockMvc: MockMvc,
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper,
+    @MockkBean private val invoiceClient: InvoiceClient
 ) {
-
-    @MockkBean
-    lateinit var invoiceClient: InvoiceClient
 
     @Test
     fun `send invoices returns mapping of deliveryId to invoiceId and calls client`() {

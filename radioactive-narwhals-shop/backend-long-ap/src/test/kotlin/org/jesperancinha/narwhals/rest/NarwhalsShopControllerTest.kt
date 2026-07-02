@@ -30,8 +30,8 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class NarwhalsShopControllerTest @Autowired constructor(
-    val narwhalsWebShopDao: NarwhalsWebShopDao,
-    val testRestTemplate: TestRestTemplate,
+    private val narwhalsWebShopDao: NarwhalsWebShopDao,
+    private val testRestTemplate: TestRestTemplate,
 ) {
     val xmlHeaders = HttpHeaders().apply {
         add("Content-Type", APPLICATION_XML_VALUE)

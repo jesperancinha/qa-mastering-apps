@@ -19,25 +19,19 @@ import java.util.*
 @ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [LeaseService::class])
 internal class LeaseServiceTest @Autowired constructor(
-    private val leaseService: LeaseService
+    private val leaseService: LeaseService,
+    @MockBean private val customerRepository: CustomerRepository,
+    @MockBean private val carRepository: CarRepository,
+    @MockBean private val leaseRepository: LeaseRepository
 ) {
-
-    @MockBean
-    private val customerRepository: CustomerRepository? = null
-
-    @MockBean
-    private val carRepository: CarRepository? = null
-
-    @MockBean
-    private val leaseRepository: LeaseRepository? = null
 
     @BeforeEach
     fun setup() {
-        Mockito.`when`(customerRepository!!.findById(1L))
+        Mockito.`when`(customerRepository.findById(1L))
             .thenReturn(Optional.of(Customer()))
-        Mockito.`when`(carRepository!!.findById(1L))
+        Mockito.`when`(carRepository.findById(1L))
             .thenReturn(Optional.of(Car(millage = 10000L, netPrice = 20000L)))
-        Mockito.`when`<Any>(leaseRepository!!.save(ArgumentMatchers.any()))
+        Mockito.`when`<Any>(leaseRepository.save(ArgumentMatchers.any()))
             .thenAnswer { invocationOnMock: InvocationOnMock -> invocationOnMock.arguments[0] }
     }
 

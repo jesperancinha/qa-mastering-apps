@@ -18,16 +18,11 @@ import java.time.Instant
 import java.util.*
 
 @WebMvcTest(DeliveryController::class)
-class DeliveryControllerTest {
-
-    @Autowired
-    private lateinit var mockMvc: MockMvc
-
-    @Autowired
-    private lateinit var objectMapper: ObjectMapper
-
-    @MockkBean
-    private lateinit var deliveryService: DeliveryService
+class DeliveryControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    private val objectMapper: ObjectMapper,
+    @MockkBean private val deliveryService: DeliveryService
+) {
 
     @Test
     fun `should create delivery and return 201 status`() {

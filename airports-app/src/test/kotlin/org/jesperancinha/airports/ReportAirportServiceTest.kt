@@ -18,10 +18,8 @@ import org.springframework.test.annotation.DirtiesContext
 @SpringBootTest
 @DirtiesContext
 @Disabled
-class ReportAirportServiceTest(
-    @Autowired
-    val reportAirportService: ReportAirportService
-
+class ReportAirportServiceTest @Autowired constructor(
+    private val reportAirportService: ReportAirportService
 ) {
 
     @Test

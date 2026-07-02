@@ -17,13 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import java.util.List
 
 @WebMvcTest(CarController::class)
-internal class CarControllerTest {
-    @Autowired
-    private val mockMvc: MockMvc? = null
-
-    @MockBean
-    lateinit var carService: CarService
-
+internal class CarControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    @MockBean private val carService: CarService
+) {
     private val carDto: CarDto = CarDto(
         make= "Fiat",
         model = "Panda",
@@ -43,7 +40,7 @@ internal class CarControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testListCars_whenCalled_thenGetFullList() {
-        mockMvc!!.perform(MockMvcRequestBuilders.get("/cars"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(carDto))))
     }
@@ -52,7 +49,7 @@ internal class CarControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testCreateCar_whenCalled_thenCreateCar() {
-        mockMvc!!.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/cars")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(carDto))

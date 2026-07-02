@@ -17,12 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import java.util.List
 
 @WebMvcTest(LeaseController::class)
-internal class LeaseControllerTest {
-    @Autowired
-    private val mockMvc: MockMvc? = null
-
-    @MockBean
-    lateinit var leaseService: LeaseService
+internal class LeaseControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    @MockBean private val leaseService: LeaseService
+) {
     private val leaseDto: LeaseDto = LeaseDto(
         duration =1000L,
         interestRate = 0L
@@ -39,7 +37,7 @@ internal class LeaseControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testListLeases_whenCalled_thenGetFullList() {
-        mockMvc!!.perform(MockMvcRequestBuilders.get("/leases"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/leases"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(leaseDto))))
     }
@@ -48,7 +46,7 @@ internal class LeaseControllerTest {
     @WithMockUser(username = "Joao", roles = ["USER"])
     @Throws(Exception::class)
     fun testCreateLease_whenCalled_thenCreateCar() {
-        mockMvc!!.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/leases")
                 .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(leaseDto))

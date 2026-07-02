@@ -1,7 +1,7 @@
 plugins {
 	kotlin("jvm") version "2.3.0"
 	kotlin("plugin.spring") version "2.3.0"
-	id("org.springframework.boot") version "4.0.1"
+	id("org.springframework.boot") version "3.4.1"
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -20,6 +20,10 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+	implementation("org.elasticsearch.client:elasticsearch-rest-client:8.17.1")
+	implementation("co.elastic.clients:elasticsearch-java:8.17.1")
+	implementation("org.apache.httpcomponents:httpclient:4.5.14")
+	implementation("jakarta.json:jakarta.json-api:2.1.3")
 	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")

@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 
 @DataJpaTest
 internal class CustomerRepositoryTest @Autowired constructor(
-     val customerRepository: CustomerRepository
+    private val customerRepository: CustomerRepository
 ) {
 
     @Test

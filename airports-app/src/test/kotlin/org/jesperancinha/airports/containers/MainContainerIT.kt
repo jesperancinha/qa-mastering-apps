@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext
 @DirtiesContext
 @Disabled
 class MainContainerIT @Autowired constructor(
-    val mainContainerService: MainContainerService
+    private val mainContainerService: MainContainerService
 ) {
 
     @Test
