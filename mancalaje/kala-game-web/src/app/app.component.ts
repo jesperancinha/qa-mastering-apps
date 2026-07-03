@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {catchError, retry} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Observable, of} from "rxjs";
+import {ErrorHandlerService} from "./services/error-handler.service";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: "app-root",
@@ -13,22 +14,14 @@ import {Observable, of} from "rxjs";
 export class AppComponent {
   title = "kala-game-web";
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private errorHandler: ErrorHandlerService) {
   }
 
   logout() {
     this.http.post("/logout", {}).pipe(
-      retry(3), catchError(this.handleError<string>())).subscribe(() => {
-        window.location.href = "http://localhost:4200/login";
+      retry(3), catchError(this.errorHandler.handleError<string>())).subscribe(() => {
+        window.location.href = environment.loginRedirectUrl;
       }
     );
-  }
-
-  handleError<T>(operation = "operation", result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
   }
 }

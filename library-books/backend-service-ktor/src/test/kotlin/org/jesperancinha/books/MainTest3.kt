@@ -9,11 +9,9 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
-import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import kotlin.time.Duration.Companion.seconds
 
 class ApplicationTest3 {
 
@@ -46,7 +44,6 @@ class ApplicationTest3 {
             client.get("/hello").apply {
                 assertEquals(HttpStatusCode.OK, status)
                 assertEquals("Hello, it's me!", bodyAsText())
-                delay(5.seconds)
             }
             println(Thread.currentThread())
         }

@@ -2,6 +2,10 @@
 target/
 build/
 
+# Local environment files with real secrets (keep .env.example tracked)
+docker-psql/.env
+!docker-psql/.env.example
+
 # Bower
 src/main/webapp/resources/bower_components
 node_modules

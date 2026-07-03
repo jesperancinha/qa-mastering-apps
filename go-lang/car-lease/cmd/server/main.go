@@ -6,9 +6,13 @@ import (
 	"github.com/jesperancinha/qa-mastering-apps/go-lang/car-lease/internal/model"
 	"log"
 	"net/http"
+	"sync"
 )
 
-var cars = []model.CarDto{}
+var (
+	carsMu sync.RWMutex
+	cars   = []model.CarDto{}
+)
 
 func main() {
 	r := mux.NewRouter()
@@ -20,13 +24,20 @@ func main() {
 }
 
 func listCars(w http.ResponseWriter, r *http.Request) {
+	carsMu.RLock()
+	defer carsMu.RUnlock()
 	json.NewEncoder(w).Encode(cars)
 }
 
 func createCar(w http.ResponseWriter, r *http.Request) {
 	var car model.CarDto
-	json.NewDecoder(r.Body).Decode(&car)
+	if err := json.NewDecoder(r.Body).Decode(&car); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	carsMu.Lock()
 	car.ID = int64(len(cars) + 1)
 	cars = append(cars, car)
+	carsMu.Unlock()
 	json.NewEncoder(w).Encode(car)
 }

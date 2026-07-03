@@ -9,12 +9,10 @@ import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.gson.*
-import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode
-import kotlin.time.Duration.Companion.seconds
 
 class ApplicationTest {
 
@@ -39,7 +37,6 @@ class ApplicationTest {
             client.get("/hello").apply {
                 assertEquals(HttpStatusCode.OK, status)
                 assertEquals("Hello, it's me!", bodyAsText())
-                delay(5.seconds)
             }
         }
     }

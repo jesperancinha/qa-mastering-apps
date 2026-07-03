@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.client.exchange
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod.POST
@@ -62,7 +63,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 javaClass.getResource("/narwhals2.xml")
                     .shouldNotBeNull().readText(), xmlHeaders
             )
-            testRestTemplate.exchange("/rnarwhals-shop/load", POST, entity, String::class.java)
+            testRestTemplate.exchange<String>("/rnarwhals-shop/load", POST, entity)
                 .shouldNotBeNull()
                 .statusCode shouldBe RESET_CONTENT
             narwhalsWebShopDao.mapNarwhals()
@@ -118,7 +119,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -143,7 +144,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/1", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/1", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -168,7 +169,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/1", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/1", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -189,7 +190,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 tusks = 1
             )
         ), jsonHeaders
-    ).let { testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, it, OrderResponse::class.java) }
+    ).let { testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, it) }
 
     fun makeCustomerPersistentRequest(): ResponseEntity<OrderResponse> = HttpEntity(
         CustomerOrder(
@@ -199,14 +200,14 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 tusks = 0
             )
         ), jsonHeaders
-    ).let { testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, it, OrderResponse::class.java) }
+    ).let { testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, it) }
 
     private fun loadNarwhals1() {
         val entity = HttpEntity(
             javaClass.getResource("/narwhals1.xml")
                 .shouldNotBeNull().readText(), xmlHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/load", POST, entity, String::class.java)
+        testRestTemplate.exchange<String>("/rnarwhals-shop/load", POST, entity)
             .shouldNotBeNull()
             .statusCode shouldBe RESET_CONTENT
     }

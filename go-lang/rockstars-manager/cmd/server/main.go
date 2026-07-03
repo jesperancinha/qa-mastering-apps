@@ -7,9 +7,13 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"sync"
 )
 
-var artists = make(map[int64]model.ArtistDto)
+var (
+	artistsMu sync.RWMutex
+	artists   = make(map[int64]model.ArtistDto)
+)
 
 func main() {
 	r := mux.NewRouter()
@@ -25,8 +29,15 @@ func main() {
 
 func getArtist(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	id, _ := strconv.ParseInt(vars["id"], 10, 64)
-	if artist, ok := artists[id]; ok {
+	id, err := strconv.ParseInt(vars["id"], 10, 64)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	artistsMu.RLock()
+	artist, ok := artists[id]
+	artistsMu.RUnlock()
+	if ok {
 		json.NewEncoder(w).Encode(artist)
 	} else {
 		w.WriteHeader(http.StatusNotFound)
@@ -36,6 +47,8 @@ func getArtist(w http.ResponseWriter, r *http.Request) {
 func getArtistByName(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	name := vars["artistName"]
+	artistsMu.RLock()
+	defer artistsMu.RUnlock()
 	for _, artist := range artists {
 		if artist.Name == name {
 			json.NewEncoder(w).Encode(artist)
@@ -47,25 +60,45 @@ func getArtistByName(w http.ResponseWriter, r *http.Request) {
 
 func createArtist(w http.ResponseWriter, r *http.Request) {
 	var artist model.ArtistDto
-	json.NewDecoder(r.Body).Decode(&artist)
+	if err := json.NewDecoder(r.Body).Decode(&artist); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	artistsMu.Lock()
 	artist.ID = int64(len(artists) + 1)
 	artists[artist.ID] = artist
+	artistsMu.Unlock()
 	json.NewEncoder(w).Encode(artist)
 }
 
 func updateArtist(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	id, _ := strconv.ParseInt(vars["id"], 10, 64)
+	id, err := strconv.ParseInt(vars["id"], 10, 64)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	var artist model.ArtistDto
-	json.NewDecoder(r.Body).Decode(&artist)
+	if err := json.NewDecoder(r.Body).Decode(&artist); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	artist.ID = id
+	artistsMu.Lock()
 	artists[id] = artist
+	artistsMu.Unlock()
 	json.NewEncoder(w).Encode(artist)
 }
 
 func deleteArtist(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	id, _ := strconv.ParseInt(vars["id"], 10, 64)
+	id, err := strconv.ParseInt(vars["id"], 10, 64)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	artistsMu.Lock()
 	delete(artists, id)
+	artistsMu.Unlock()
 	w.WriteHeader(http.StatusOK)
 }

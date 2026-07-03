@@ -21,7 +21,10 @@ func main() {
 
 func createDelivery(w http.ResponseWriter, r *http.Request) {
 	var request model.DeliveryRequestDto
-	json.NewDecoder(r.Body).Decode(&request)
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	response := model.DeliveryResponseDto{
 		ID:        uuid.New().String(),
 		VehicleID: request.VehicleID,
@@ -35,7 +38,10 @@ func createDelivery(w http.ResponseWriter, r *http.Request) {
 
 func getInvoices(w http.ResponseWriter, r *http.Request) {
 	var request model.InvoiceRequestDto
-	json.NewDecoder(r.Body).Decode(&request)
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	var invoices []model.InvoiceResponseDto
 	for _, id := range request.DeliveryIDs {
 		invoices = append(invoices, model.InvoiceResponseDto{

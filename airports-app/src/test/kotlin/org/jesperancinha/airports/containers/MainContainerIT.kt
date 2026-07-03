@@ -4,7 +4,6 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import org.apache.camel.test.spring.junit5.CamelSpringBootTest
 import org.jesperancinha.airports.pojos.Airport
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -15,7 +14,6 @@ import org.springframework.test.annotation.DirtiesContext
 @EnableAutoConfiguration
 @SpringBootTest
 @DirtiesContext
-@Disabled
 class MainContainerIT @Autowired constructor(
     private val mainContainerService: MainContainerService
 ) {

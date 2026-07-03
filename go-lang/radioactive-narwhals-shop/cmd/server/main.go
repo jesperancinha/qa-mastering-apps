@@ -26,7 +26,11 @@ func loadNarwhals(w http.ResponseWriter, r *http.Request) {
 
 func getStocks(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	days, _ := strconv.Atoi(vars["days"])
+	days, err := strconv.Atoi(vars["days"])
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	stocks := []model.Stock{
 		{Name: "Radioactive Food", Quantity: 100 - days},
 	}
@@ -44,7 +48,10 @@ func getNarwhals(w http.ResponseWriter, r *http.Request) {
 
 func order(w http.ResponseWriter, r *http.Request) {
 	var customerOrder model.CustomerOrder
-	json.NewDecoder(r.Body).Decode(&customerOrder)
+	if err := json.NewDecoder(r.Body).Decode(&customerOrder); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(customerOrder)
 }

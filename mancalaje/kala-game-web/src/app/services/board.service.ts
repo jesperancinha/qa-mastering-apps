@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
 import {Board} from "../model/board";
+import {ErrorHandlerService} from "./error-handler.service";
 
 
 const createBoardUrl = "/api/create";
@@ -16,50 +16,42 @@ const leaveUrl = "/api/leave";
   providedIn: "root"
 })
 export class BoardService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) {
   }
 
   public createBoard() {
     return this.http.post(createBoardUrl, "").pipe(
-      retry(3), catchError(this.handleError()));
+      retry(3), catchError(this.errorHandler.handleError()));
   }
 
   public getCurrentBoard() {
     return this.http.get<Board>(getPlayerBoarsdUrl)
-      .pipe(retry(3), catchError(this.handleError<Board>()));
+      .pipe(retry(3), catchError(this.errorHandler.handleError<Board>()));
 
   }
 
   public getAllPlayerBoards() {
     return this.http.get<Board[]>(getPlayerBoarsdUrl)
-      .pipe(retry(3), catchError(this.handleError<Board[]>()));
+      .pipe(retry(3), catchError(this.errorHandler.handleError<Board[]>()));
   }
 
   public getAllAvailableBoards() {
     return this.http.get<Board[]>(getAvailableBoarsdUrl)
-      .pipe(retry(3), catchError(this.handleError<Board[]>()));
+      .pipe(retry(3), catchError(this.errorHandler.handleError<Board[]>()));
   }
 
   public joinBoard(id: number) {
     return this.http.put<Board>(joinBoardUrl + "/" + id, {})
-      .pipe(retry(3), catchError(this.handleError<Board>()));
+      .pipe(retry(3), catchError(this.errorHandler.handleError<Board>()));
   }
 
   public move(boardId: number, pitId: number) {
     return this.http.put<Board>(moveUrl + "/" + boardId + "/" + pitId, {})
-      .pipe(retry(3), catchError(this.handleError<Board>()));
+      .pipe(retry(3), catchError(this.errorHandler.handleError<Board>()));
   }
 
   leaveGame() {
     return this.http.put(leaveUrl, {})
-      .pipe(retry(3), catchError(this.handleError()));
-  }
-
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
+      .pipe(retry(3), catchError(this.errorHandler.handleError()));
   }
 }

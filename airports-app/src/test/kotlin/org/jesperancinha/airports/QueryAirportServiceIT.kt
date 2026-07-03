@@ -1,10 +1,11 @@
 package org.jesperancinha.airports
 
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import org.apache.camel.test.spring.junit5.CamelSpringBootTest
 import org.jesperancinha.airports.pojos.Airport
 import org.jesperancinha.airports.services.QueryAirportService
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -15,7 +16,6 @@ import org.springframework.test.annotation.DirtiesContext
 @EnableAutoConfiguration
 @SpringBootTest
 @DirtiesContext
-@Disabled
 class QueryAirportServiceIT @Autowired constructor(
     private val queryAirportService: QueryAirportService
 ) {
@@ -29,6 +29,9 @@ class QueryAirportServiceIT @Autowired constructor(
 
     @Test
     fun `should get airports by country code`() {
+        val airports: List<Airport> = queryAirportService.getAirportsByCountryCode("PT")
 
+        airports.shouldNotBeEmpty()
+        airports.forEach { airport -> airport.isoCountry shouldBe "PT" }
     }
 }

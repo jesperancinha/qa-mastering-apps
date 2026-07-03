@@ -14,7 +14,7 @@ class LeaseController(private val leaseService: LeaseService) {
     }
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
-    fun createLease(@RequestBody leaseDto: LeaseDto): LeaseDto? {
+    fun createLease(@RequestBody leaseDto: LeaseDto): LeaseDto {
         return leaseService.createLease(leaseDto)
     }
 }

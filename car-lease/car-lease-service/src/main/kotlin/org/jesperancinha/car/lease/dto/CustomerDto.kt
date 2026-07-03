@@ -2,7 +2,7 @@ package org.jesperancinha.car.lease.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class CustomerDto(
+data class CustomerDto(
     @JsonProperty("id")
     val id: Long? = null,
     @JsonProperty("name")
