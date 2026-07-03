@@ -11,8 +11,8 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.invocation.InvocationOnMock
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*
 
@@ -20,9 +20,9 @@ import java.util.*
 @ContextConfiguration(classes = [LeaseService::class])
 internal class LeaseServiceTest @Autowired constructor(
     private val leaseService: LeaseService,
-    @MockBean private val customerRepository: CustomerRepository,
-    @MockBean private val carRepository: CarRepository,
-    @MockBean private val leaseRepository: LeaseRepository
+    @MockitoBean private val customerRepository: CustomerRepository,
+    @MockitoBean private val carRepository: CarRepository,
+    @MockitoBean private val leaseRepository: LeaseRepository
 ) {
 
     @BeforeEach

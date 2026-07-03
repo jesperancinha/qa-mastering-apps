@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -19,7 +19,7 @@ import java.util.List
 @WebMvcTest(CarController::class)
 internal class CarControllerTest @Autowired constructor(
     private val mockMvc: MockMvc,
-    @MockBean private val carService: CarService
+    @MockitoBean private val carService: CarService
 ) {
     private val carDto: CarDto = CarDto(
         make= "Fiat",
