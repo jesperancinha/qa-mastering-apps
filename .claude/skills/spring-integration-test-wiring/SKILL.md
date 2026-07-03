@@ -20,8 +20,8 @@ files should be affected.
 ```kotlin
 @SpringBootTest
 class JeorgActionAOPLauncherExtAOPTest @Autowired constructor(
-    private val bonitoCatcher: BonitoCatcher,
-    private val codCatcher: CodCatcher
+  private val bonitoCatcher: BonitoCatcher,
+  private val codCatcher: CodCatcher
 ) {
 }
 ```
@@ -32,11 +32,11 @@ class JeorgActionAOPLauncherExtAOPTest @Autowired constructor(
 @SpringBootTest
 class JeorgActionAOPLauncherExtAOPTest() {
 
-    @Autowired
-    lateinit var bonitoCatcher: BonitoCatcher
+  @Autowired
+  lateinit var bonitoCatcher: BonitoCatcher
 
-    @Autowired
-    lateinit var codCatcher: CodCatcher;
+  @Autowired
+  lateinit var codCatcher: CodCatcher;
 }
 ```
 
@@ -68,16 +68,16 @@ For java this means that we should migrate as en example from something like thi
 
 ```java
 public class Flash16ConfigurationAdapter {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authenticationProvider(new Flash16AuthenticationProvider())
-                .authorizeRequests()
-                .requestMatchers(new AntPathRequestMatcher("/**")).hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin().and().build();
-    }
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    return http.authenticationProvider(new Flash16AuthenticationProvider())
+            .authorizeRequests()
+            .requestMatchers(new AntPathRequestMatcher("/**")).hasRole("ADMIN")
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin().and().build();
+  }
 }
 ```
 
@@ -85,16 +85,16 @@ to this
 
 ```java
 public class Flash16ConfigurationAdapter {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .authenticationProvider(new Flash16AuthenticationProvider())
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().hasRole("ADMIN")
-                )
-                .formLogin(Customizer.withDefaults())
-                .build();
-    }
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    return http
+            .authenticationProvider(new Flash16AuthenticationProvider())
+            .authorizeHttpRequests(auth -> auth
+                    .anyRequest().hasRole("ADMIN")
+            )
+            .formLogin(Customizer.withDefaults())
+            .build();
+  }
 }
 ```
 
@@ -104,20 +104,20 @@ Migrate from this:
 
 ```java
 public class Flash17ConfigurationAdapter {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .userDetailsService(jdbcUserDetailsManager)
-                .authorizeRequests()
-                .requestMatchers(new AntPathRequestMatcher("/open/**"))
-                .permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/**")).hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .and().csrf().disable().build();
-    }
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    return http
+            .userDetailsService(jdbcUserDetailsManager)
+            .authorizeRequests()
+            .requestMatchers(new AntPathRequestMatcher("/open/**"))
+            .permitAll()
+            .requestMatchers(new AntPathRequestMatcher("/**")).hasRole("ADMIN")
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .and().csrf().disable().build();
+  }
 }
 ```
 
@@ -143,7 +143,77 @@ public class Flash17ConfigurationAdapter {
 
 If you find unused imports, please remove them. This is a good practice to keep the code clean and maintainable.
 
-## 4. Test class checklist
+## 4. Replace initMocks with OpenMocks
+
+### Example 1
+
+When finding this:
+
+```kotlin
+initMocks(testRestTemplate)
+```
+
+Replace with:
+
+```kotlin
+openMocks(testRestTemplate)
+```
+
+Also replace imports from `import org.mockito.MockitoAnnotations.initMocks` to `import org.mockito.MockitoAnnotations.openMocks`
+
+## 5 When using Kotlin code make sure to use the kotlin extensions for parsing
+
+### Example 1
+
+When finding this:
+
+```kotlin
+    .getForEntity<String>("/tulips")
+```
+replace with:
+```kotlin
+    .getForEntity("/tulips", String::class.java)
+```
+## 6. Migrate `@MockBean` annotations
+
+The annotation `@MockBean` is deprecated and its usage needs to be replaced by `@MockitoBean`
+
+### Example 1
+
+On a class level, replace this:
+
+```java
+@MockBean(Planet.class)
+private MyService myService;
+```  
+with this:
+
+```java
+@MockitoBean(types = Planet.class)
+private MyService myService;
+```
+
+### Example 2
+
+Replace also the usages of `import org.springframework.boot.test.mock.mockito.MockBean;` with `import org.springframework.test.context.bean.override.mockito.MockitoBean;`
+
+
+### Example 3
+The beans that are declared are like this:
+
+```java
+@MockBean
+private BankCompanyBankRepository bankCompanyBankRepository;
+```
+
+should be replaced to something like:
+
+```java
+@MockitoBean
+private BankCompanyBankRepository bankCompanyBankRepository;
+```
+
+## 7. Test class checklist
 
 Before submitting/reviewing an integration test class, confirm:
 
