@@ -25,3 +25,7 @@ accept-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/acceptPR.sh | bash
 build-from:
 	 mvn clean install -rf :$(MODULE)
+print-error-report:
+	if [ -f build/reports/problems/problems-report.html ]; then cat build/reports/problems/problems-report.html; fi;
+find-print-error-report:
+	grep -r --include="Makefile" -e "print-error-report" .
