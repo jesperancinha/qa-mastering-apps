@@ -9,7 +9,6 @@ import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus.IN_PROGRESS
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD
@@ -21,7 +20,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 
-@SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 class SummaryControllerIT @Autowired constructor(
