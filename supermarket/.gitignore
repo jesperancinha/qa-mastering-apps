@@ -237,3 +237,6 @@ tags
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,java,linux,macos,maven,kotlin,intellij+all,visualstudiocode
+
+# Local secrets - copy docker-psql/.env.example to docker-psql/.env and adjust values
+docker-psql/.env

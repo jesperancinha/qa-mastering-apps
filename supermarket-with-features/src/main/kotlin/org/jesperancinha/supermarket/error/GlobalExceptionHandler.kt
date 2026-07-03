@@ -1,7 +1,6 @@
 package org.jesperancinha.supermarket.common.error
 
 import jakarta.servlet.http.HttpServletRequest
-import jakarta.validation.ConstraintViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -18,21 +17,6 @@ class GlobalExceptionHandler {
     ): ResponseEntity<ApiError> {
         val details = ex.bindingResult.fieldErrors
             .joinToString("; ") { "${it.field}: ${it.defaultMessage}" }
-        val apiError = ApiError(
-            status = HttpStatus.BAD_REQUEST.value(),
-            error = HttpStatus.BAD_REQUEST.reasonPhrase,
-            message = details.ifBlank { ex.message },
-            path = request.requestURI
-        )
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError)
-    }
-
-    @ExceptionHandler(ConstraintViolationException::class)
-    fun handleConstraintViolation(
-        ex: ConstraintViolationException,
-        request: HttpServletRequest
-    ): ResponseEntity<ApiError> {
-        val details = ex.constraintViolations.joinToString("; ") { "${it.propertyPath}: ${it.message}" }
         val apiError = ApiError(
             status = HttpStatus.BAD_REQUEST.value(),
             error = HttpStatus.BAD_REQUEST.reasonPhrase,
@@ -68,5 +52,19 @@ class GlobalExceptionHandler {
             path = request.requestURI
         )
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError)
+    }
+
+    @ExceptionHandler(Exception::class)
+    fun handleUnexpected(
+        ex: Exception,
+        request: HttpServletRequest
+    ): ResponseEntity<ApiError> {
+        val apiError = ApiError(
+            status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            error = HttpStatus.INTERNAL_SERVER_ERROR.reasonPhrase,
+            message = ex.message,
+            path = request.requestURI
+        )
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiError)
     }
 }

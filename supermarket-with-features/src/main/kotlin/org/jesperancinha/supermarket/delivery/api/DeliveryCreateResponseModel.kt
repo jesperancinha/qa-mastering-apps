@@ -45,7 +45,7 @@ data class DeliveryResponse(
 ) {
     companion object {
         fun fromDomain(d: Delivery) = DeliveryResponse(
-            id = d.id,
+            id = checkNotNull(d.id) { "Persisted delivery must have an id" },
             vehicleId = d.vehicleId,
             address = d.address,
             startedAt = d.startedAt,

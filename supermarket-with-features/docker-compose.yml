@@ -9,23 +9,6 @@ services:
       - ./wiremock/mappings:/home/wiremock/mappings
     entrypoint: ["/docker-entrypoint.sh", "--port=8000"]
 
-
-  postgres:
-    hostname: postgres
-    build:
-      context: docker-psql/.
-    env_file: docker-psql/.env
-    user: postgres
-    volumes:
-      - ./docker-psql:/docker-entrypoint-initdb.d
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   application:
     build:
       context: .

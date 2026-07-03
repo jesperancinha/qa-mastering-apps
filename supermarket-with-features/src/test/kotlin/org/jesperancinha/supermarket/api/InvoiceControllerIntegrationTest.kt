@@ -1,10 +1,5 @@
 package org.jesperancinha.supermarket.invoice.api
 
-import org.jesperancinha.supermarket.delivery.api.DeliveryCreateRequest
-import org.jesperancinha.supermarket.delivery.api.DeliveryResponse
-import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus
-import org.jesperancinha.supermarket.invoice.client.InvoiceClient
-import org.jesperancinha.supermarket.invoice.client.InvoiceClientResponse
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.ninjasquad.springmockk.MockkBean
@@ -12,6 +7,12 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.verify
+import org.jesperancinha.supermarket.api.ContainerIntegrationTest
+import org.jesperancinha.supermarket.delivery.api.DeliveryCreateRequest
+import org.jesperancinha.supermarket.delivery.api.DeliveryResponse
+import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus
+import org.jesperancinha.supermarket.invoice.client.InvoiceClient
+import org.jesperancinha.supermarket.invoice.client.InvoiceClientResponse
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -32,7 +33,7 @@ class InvoiceControllerIT @Autowired constructor(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper,
     @MockkBean private val invoiceClient: InvoiceClient
-) {
+) : ContainerIntegrationTest() {
 
     @Test
     fun `send invoices returns mapping of deliveryId to invoiceId and calls client`() {

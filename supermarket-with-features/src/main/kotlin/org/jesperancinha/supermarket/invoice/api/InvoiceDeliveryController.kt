@@ -1,6 +1,6 @@
 package org.jesperancinha.supermarket.invoice.api
 
-import org.jesperancinha.supermarket.invoice.service.InvoiceService
+import org.jesperancinha.supermarket.invoice.service.InvoiceProcessingService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class InvoiceController(
-    private val invoiceService: InvoiceService
+    private val invoiceProcessingService: InvoiceProcessingService
 ) {
 
     @PostMapping("/deliveries/invoice")
     fun sendInvoices(
         @Valid @RequestBody request: DeliveryInvoiceRequest
     ): ResponseEntity<List<DeliveryInvoiceResult>> {
-        val results = invoiceService.sendInvoices(request.deliveryIds)
+        val results = invoiceProcessingService.sendInvoices(request.deliveryIds)
         return ResponseEntity.ok(results)
     }
 }

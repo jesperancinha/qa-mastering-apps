@@ -1,10 +1,11 @@
 package org.jesperancinha.supermarket.delivery.api
 
-import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus.IN_PROGRESS
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import org.jesperancinha.supermarket.api.ContainerIntegrationTest
+import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus.IN_PROGRESS
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -15,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.testcontainers.junit.jupiter.Testcontainers
 import java.time.Instant
 
 @SpringBootTest
@@ -23,7 +25,7 @@ import java.time.Instant
 class DeliveryControllerIT @Autowired constructor(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper
-) {
+) : ContainerIntegrationTest() {
 
     @Test
     fun `create delivery IN_PROGRESS returns 201 and body`() {

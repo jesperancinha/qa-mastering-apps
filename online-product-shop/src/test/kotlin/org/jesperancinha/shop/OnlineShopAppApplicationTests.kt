@@ -8,9 +8,15 @@ import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate
 import org.springframework.test.context.bean.override.mockito.MockitoBean
 
 @SpringBootTest
-@MockitoBean(types = [ElasticsearchClient::class, ElasticsearchTemplate::class])
-class OnlineShopAppApplicationTests {
+class OnlineShopAppApplicationTests @Autowired constructor(
+    @MockitoBean
+    private val elasticsearchClient: ElasticsearchClient,
+    @MockitoBean
+    private val elasticSearchTemplate: ElasticsearchTemplate
+) {
+
     @Test
     fun contextLoads() {
     }
+
 }

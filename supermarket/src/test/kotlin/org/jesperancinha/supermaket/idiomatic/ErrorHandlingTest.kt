@@ -1,7 +1,8 @@
 package org.jesperancinha.supermaket.idiomatic
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-
 
 sealed class Outcome<out T> {
     data class Success<T>(val value: T) : Outcome<T>()
@@ -19,25 +20,25 @@ inline fun <T> outcomeOf(block: () -> T): Outcome<T> = try {
     Outcome.Failure(e)
 }
 
-fun fetchRemoteData(): String {
-    if (Math.random() < 0.5) throw RuntimeException("Network failure")
-    return "42"
-}
-
 class ErrorHandlingTest {
 
     @Test
-    fun `should test error handling with sealed classes`(){
-        val result = outcomeOf { fetchRemoteData() }
+    fun `should map a successful outcome through the chain`() {
+        val result = outcomeOf { "42" }
             .map { it.toInt() }
             .map { it * 2 }
 
-        val message = when (result) {
-            is Outcome.Success -> "Result: ${result.value}"
-            is Outcome.Failure -> "Error: ${result.reason.message}"
-        }
-
-        println(message)
+        assertTrue(result is Outcome.Success)
+        assertEquals(84, (result as Outcome.Success).value)
     }
 
+    @Test
+    fun `should short-circuit mapping when the outcome is a failure`() {
+        val result = outcomeOf<String> { throw RuntimeException("Network failure") }
+            .map { it.toInt() }
+            .map { it * 2 }
+
+        assertTrue(result is Outcome.Failure)
+        assertEquals("Network failure", (result as Outcome.Failure).reason.message)
+    }
 }

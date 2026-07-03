@@ -7,15 +7,23 @@ import org.springframework.stereotype.Service
 import java.util.UUID
 
 @Service
-class InvoiceService(
+class InvoiceProcessingService(
     private val deliveryService: DeliveryService,
     private val invoiceClient: InvoiceClient
 ) {
     fun sendInvoices(deliveryIds: List<UUID>): List<DeliveryInvoiceResult> {
         val deliveries = deliveryService.getByIds(deliveryIds)
+
+        val foundIds = deliveries.mapNotNull { it.id }.toSet()
+        val missingIds = deliveryIds.toSet() - foundIds
+        if (missingIds.isNotEmpty()) {
+            throw NoSuchElementException("Delivery id(s) not found: ${missingIds.joinToString(", ")}")
+        }
+
         return deliveries.map { d ->
-            val resp = invoiceClient.sendInvoice(d.id, d.address)
-            DeliveryInvoiceResult(deliveryId = d.id, invoiceId = resp.id)
+            val deliveryId = checkNotNull(d.id) { "Persisted delivery must have an id" }
+            val resp = invoiceClient.sendInvoice(deliveryId, d.address)
+            DeliveryInvoiceResult(deliveryId = deliveryId, invoiceId = resp.id)
         }
     }
 }

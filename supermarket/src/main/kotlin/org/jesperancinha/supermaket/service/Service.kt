@@ -3,6 +3,8 @@ package org.jesperancinha.supermaket.service
 import org.jesperancinha.supermaket.domain.Delivery
 import org.jesperancinha.supermaket.domain.DeliveryStatus
 import org.jesperancinha.supermaket.dto.*
+import org.jesperancinha.supermaket.exception.DeliveryNotFoundException
+import org.jesperancinha.supermaket.exception.InvoiceNotReturnedException
 import org.jesperancinha.supermaket.mapper.DeliveryMapper
 import org.jesperancinha.supermaket.repository.DeliveryRepository
 import org.springframework.beans.factory.annotation.Value
@@ -47,7 +49,7 @@ class DeliveryService(
             SendInvoiceRequestDto(
                 deliveryId = deliveryId,
                 address = deliveryRepository
-                    .findByIdOrNull(deliveryId)?.address ?: throw RuntimeException("Delivery $deliveryId not found!")
+                    .findByIdOrNull(deliveryId)?.address ?: throw DeliveryNotFoundException(deliveryId)
             ).let { sendInvoiceRequestDto ->
                 restTemplate.postForObject(
                     "$externalApiUrl/v1/invoices",
@@ -57,7 +59,7 @@ class DeliveryService(
                     InvoiceResponseDto(
                         deliveryId = deliveryId,
                         invoiceId = sendInvoiceResponseDto?.id
-                            ?: throw RuntimeException("No Invoice has been returned for $deliveryId")
+                            ?: throw InvoiceNotReturnedException(deliveryId)
                     )
                 }
             }

@@ -16,11 +16,10 @@ class BusinessSummaryService(
 
     fun yesterdaySummary(): BusinessSummaryResponse {
         val yesterday = LocalDate.now(amsterdam).minusDays(1)
+        val startOfYesterday = yesterday.atStartOfDay(amsterdam).toInstant()
+        val endOfYesterday = yesterday.plusDays(1).atStartOfDay(amsterdam).toInstant()
 
-        val deliveriesStartedYesterday = deliveryService.getAll().filter { d ->
-            val zdt = d.startedAt.atZone(amsterdam)
-            zdt.toLocalDate().isEqual(yesterday)
-        }.sortedBy { it.startedAt }
+        val deliveriesStartedYesterday = deliveryService.getByStartedAtRange(startOfYesterday, endOfYesterday)
 
         val count = deliveriesStartedYesterday.size
         val avgMinutes = deliveriesStartedYesterday

@@ -1,11 +1,9 @@
 package org.jesperancinha.supermarket.delivery.domain
 
 import org.jesperancinha.supermarket.repository.DeliveryRepository
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.UUID
-import java.util.concurrent.ConcurrentHashMap
 
 @Service
 class DeliveryService(
@@ -27,7 +25,6 @@ class DeliveryService(
         }
 
         val delivery = Delivery(
-            id = UUID.randomUUID(),
             vehicleId = vehicleId,
             address = address,
             startedAt = startedAt,
@@ -38,11 +35,11 @@ class DeliveryService(
         return deliveryRepository.save(delivery)
     }
 
-    fun getById(id: UUID): Delivery =
-        deliveryRepository.findByIdOrNull(id) ?: throw NoSuchElementException("Delivery not found: $id")
-
     fun getByIds(ids: Collection<UUID>): List<Delivery> =
         deliveryRepository.findAllById(ids).toList()
 
     fun getAll(): List<Delivery> = deliveryRepository.findAll()
+
+    fun getByStartedAtRange(start: Instant, end: Instant): List<Delivery> =
+        deliveryRepository.findByStartedAtBetweenOrderByStartedAtAsc(start, end)
 }

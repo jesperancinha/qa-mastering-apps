@@ -1,5 +1,8 @@
 package org.jesperancinha.supermaket.idiomatic
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 @JvmInline
@@ -39,34 +42,42 @@ fun user(block: UserBuilder.() -> Unit): Pair<ValidationResult, User?> {
     return builder.build()
 }
 
-class DomainSafePrimitivesTest
-{
+class DomainSafePrimitivesTest {
+
     @Test
-    fun `should check the primitive is safe`() {
-        fun test1() {
-            val (status, user) = user {
-                name = "João"
-                rawEmail = "joao@esperancinha.pt"
-            }
-
-            when (status) {
-                is ValidationResult.Valid -> println("Created: $user")
-                is ValidationResult.Invalid -> println("Error: ${status.reason}")
-            }
+    fun `should build a valid user when name and email are well-formed`() {
+        val (status, user) = user {
+            name = "João"
+            rawEmail = "joao@esperancinha.pt"
         }
 
-        fun test2() {
-            val (status, user) = user {
-                name = "João"
-                rawEmail = "nononono"
-            }
+        assertEquals(ValidationResult.Valid, status)
+        assertTrue(user != null)
+        assertEquals("João", user!!.name)
+        assertEquals("joao@esperancinha.pt", user.email.value)
+    }
 
-            when (status) {
-                is ValidationResult.Valid -> println("Created: $user")
-                is ValidationResult.Invalid -> println("Error: ${status.reason}")
-            }
+    @Test
+    fun `should reject a malformed email`() {
+        val (status, user) = user {
+            name = "João"
+            rawEmail = "nononono"
         }
-        test1()
-        test2()
+
+        assertTrue(status is ValidationResult.Invalid)
+        assertEquals("Email is invalid", (status as ValidationResult.Invalid).reason)
+        assertNull(user)
+    }
+
+    @Test
+    fun `should reject a blank name`() {
+        val (status, user) = user {
+            name = ""
+            rawEmail = "joao@esperancinha.pt"
+        }
+
+        assertTrue(status is ValidationResult.Invalid)
+        assertEquals("Name is blank", (status as ValidationResult.Invalid).reason)
+        assertNull(user)
     }
 }
