@@ -4,7 +4,6 @@ import com.hazelcast.core.HazelcastInstance
 import org.jesperancinha.narwhals.NarwhalInterface
 import org.jesperancinha.narwhals.NarwhalsInterface
 import org.jesperancinha.narwhals.safe.*
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.status
@@ -17,7 +16,6 @@ private const val SALES_MAP = "salesMap"
 
 @Service
 class NarwhalsWebShopDao(
-    @Autowired
     private val hazelcastNarwhalsInstance: HazelcastInstance,
 ) {
 

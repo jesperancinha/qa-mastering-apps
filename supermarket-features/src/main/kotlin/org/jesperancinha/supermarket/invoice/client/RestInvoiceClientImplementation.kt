@@ -28,7 +28,7 @@ private data class WiremockInvoiceResponse(
 
 @Component
 class RestInvoiceClient(
-    @param:Value("\${invoice.client.base-url:http://localhost:8080}") private val baseUrl: String
+    @param:Value($$"${invoice.client.base-url:http://localhost:8080}") private val baseUrl: String
 ) : InvoiceClient {
 
     val httpClient: HttpClient = HttpClient.newBuilder()

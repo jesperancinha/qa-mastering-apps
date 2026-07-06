@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class ElasticsearchConfig(
-    @Value("\${elasticsearch.host}") private val host: String,
-    @Value("\${elasticsearch.port}") private val port: Int,
-    @Value("\${elasticsearch.index}") private val index: String,
-    @Value("\${elasticsearch.shards}") private val shards: Int,
-    @Value("\${elasticsearch.replicas}") private val replicas: Int
+    @param:Value($$"${elasticsearch.host}") private val host: String,
+    @param:Value($$"${elasticsearch.port}") private val port: Int,
+    @param:Value($$"${elasticsearch.index}") private val index: String,
+    @param:Value($$"${elasticsearch.shards}") private val shards: Int,
+    @param:Value($$"${elasticsearch.replicas}") private val replicas: Int
 ) {
     @Bean
     fun elasticsearchClient(): ElasticsearchClient {

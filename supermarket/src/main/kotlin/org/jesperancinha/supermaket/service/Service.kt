@@ -21,7 +21,7 @@ import kotlin.math.roundToLong
 class DeliveryService(
     private val deliveryRepository: DeliveryRepository,
     private val restTemplate: RestTemplate,
-    @param:Value("\${invoice-service.url}")
+    @param:Value($$"${invoice-service.url}")
     private val externalApiUrl: String
 ) {
 

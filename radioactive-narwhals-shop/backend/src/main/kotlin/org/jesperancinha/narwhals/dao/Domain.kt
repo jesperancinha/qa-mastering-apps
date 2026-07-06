@@ -14,26 +14,26 @@ data class EffectiveStock(
 )
 
 data class CustomerOrder(
-    @JsonProperty
+    @param:JsonProperty
     val customer: String,
-    @JsonProperty
+    @param:JsonProperty
     val order: Order,
 )
 
 data class Order(
-    @JsonProperty
+    @param:JsonProperty
     val seaCabbage: BigDecimal = BigDecimal.ZERO,
-    @JsonProperty
+    @param:JsonProperty
     val tusks: Int = 0,
 )
 
 data class OrderResponse(
-    @JsonProperty
+    @param:JsonProperty
     val seaCabbage: BigDecimal,
-    @JsonProperty
+    @param:JsonProperty
     val tusks: Int,
-    @JsonProperty("seaCabbage-available-in-days")
+    @param:JsonProperty("seaCabbage-available-in-days")
     val cabbagesAvailableInDays: Int = 0,
-    @JsonProperty("tusks-available-in-days")
+    @param:JsonProperty("tusks-available-in-days")
     val tusksAvailableInDays: Int = 0,
 )

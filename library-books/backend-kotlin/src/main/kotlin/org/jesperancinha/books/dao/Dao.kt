@@ -4,7 +4,6 @@ import com.hazelcast.core.HazelcastInstance
 import org.jesperancinha.books.domain.Book
 import org.jesperancinha.books.domain.Language
 import org.jesperancinha.books.domain.Results
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
@@ -13,9 +12,7 @@ import org.springframework.web.reactive.function.client.awaitBody
 
 @Service
 class BookRepositorySearchDao(
-    @Autowired
     private val webClient: WebClient,
-    @Autowired
     private val hazelcastInstance: HazelcastInstance
 ) {
 

@@ -6,43 +6,43 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Created by joaofilipesabinoesperancinha on 01-08-16.
  */
 data class Airport(
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: String? = null,
-    @JsonProperty("ident")
+    @param:JsonProperty("ident")
     val ident: String? = null,
-    @JsonProperty("type")
+    @param:JsonProperty("type")
     val type: String? = null,
-    @JsonProperty("name")
+    @param:JsonProperty("name")
     val name: String? = null,
-    @JsonProperty("latitudeDeg")
+    @param:JsonProperty("latitudeDeg")
     val latitudeDeg: String? = null,
-    @JsonProperty("longitudeDeg")
+    @param:JsonProperty("longitudeDeg")
     val longitudeDeg: String? = null,
-    @JsonProperty("elevationFt")
+    @param:JsonProperty("elevationFt")
     val elevationFt: String? = null,
-    @JsonProperty("continent")
+    @param:JsonProperty("continent")
     val continent: String? = null,
-    @JsonProperty("isoCountry")
+    @param:JsonProperty("isoCountry")
     val isoCountry: String,
-    @JsonProperty("isoRegion")
+    @param:JsonProperty("isoRegion")
     val isoRegion: String? = null,
-    @JsonProperty("municipality")
+    @param:JsonProperty("municipality")
     val municipality: String? = null,
-    @JsonProperty("scheduledService")
+    @param:JsonProperty("scheduledService")
     val scheduledService: String? = null,
-    @JsonProperty("gpsCode")
+    @param:JsonProperty("gpsCode")
     val gpsCode: String? = null,
-    @JsonProperty("iataCode")
+    @param:JsonProperty("iataCode")
     val iataCode: String? = null,
-    @JsonProperty("localCode")
+    @param:JsonProperty("localCode")
     val localCode: String? = null,
-    @JsonProperty("homeLink")
+    @param:JsonProperty("homeLink")
     val homeLink: String? = null,
-    @JsonProperty("wikipediaLink")
+    @param:JsonProperty("wikipediaLink")
     val wikipediaLink: String? = null,
-    @JsonProperty("keywords")
+    @param:JsonProperty("keywords")
     val keywords: String? = null,
-    @JsonProperty("country")
+    @param:JsonProperty("country")
     var country: Country?=null,
 ) {
     val runways: MutableList<Runway> = mutableListOf()

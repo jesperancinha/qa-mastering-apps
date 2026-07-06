@@ -11,8 +11,9 @@ import org.jesperancinha.narwhals.NarwhalsInterface
 import java.io.File
 import java.io.InputStream
 import java.math.BigDecimal
-import java.math.BigDecimal.*
-import java.math.RoundingMode.*
+import java.math.BigDecimal.ONE
+import java.math.BigDecimal.ZERO
+import java.math.RoundingMode.FLOOR
 import java.nio.charset.Charset
 
 val NARWHAL_YEAR_DURATION = 1000.toBigDecimal()
@@ -33,17 +34,17 @@ data class CurrentStock(
 )
 
 data class CurrentNarwhals(
-    @JsonProperty("narwhals")
+    @param:JsonProperty("narwhals")
     override val narwhal: List<CurrentNarwhal>,
 ) : NarwhalsInterface<NarwhalInterface<BigDecimal>>
 
 data class CurrentNarwhal(
-    @JsonProperty
+    @param:JsonProperty
     override val age: BigDecimal,
-    @JsonProperty
+    @param:JsonProperty
     override val name: String,
     override val sex: String,
-    @JsonProperty("age-last-tusk-shed")
+    @param:JsonProperty("age-last-tusk-shed")
     val ageLastTuskShed: BigDecimal,
 ) : NarwhalInterface<BigDecimal>
 
