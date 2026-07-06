@@ -52,9 +52,9 @@ class DomainSafePrimitivesTest {
         }
 
         assertEquals(ValidationResult.Valid, status)
-        assertTrue(user != null)
-        assertEquals("João", user!!.name)
-        assertEquals("joao@esperancinha.pt", user.email.value)
+        val nonNullUser = requireNotNull(user)
+        assertEquals("João", nonNullUser.name)
+        assertEquals("joao@esperancinha.pt", nonNullUser.email.value)
     }
 
     @Test

@@ -90,7 +90,7 @@ class DeliveryRepositoryTest @Autowired constructor(
             )
         )
 
-        val found = deliveryRepository.findById(saved.id!!)
+        val found = deliveryRepository.findById(requireNotNull(saved.id))
 
         assertTrue(found.isPresent)
         assertEquals(saved.vehicleId, found.get().vehicleId)

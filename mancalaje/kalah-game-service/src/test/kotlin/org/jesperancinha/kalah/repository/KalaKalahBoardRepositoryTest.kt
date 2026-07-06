@@ -68,7 +68,7 @@ internal class KalaKalahBoardRepositoryTest @Autowired constructor(
     fun findBoardsByPlayerTwoIsNull_whenCalled_thenShowAllBoards() {
         val boardsByPlayerTwoIsNull = kalahBoardRepository.findBoardsByPlayerTwoIsNull()
         boardsByPlayerTwoIsNull.shouldHaveSize(2)
-        boardsByPlayerTwoIsNull[0]?.playerOne?.username shouldBe player1.username
-        boardsByPlayerTwoIsNull[1]?.playerOne?.username shouldBe player2.username
+        boardsByPlayerTwoIsNull[0].playerOne?.username shouldBe player1.username
+        boardsByPlayerTwoIsNull[1].playerOne?.username shouldBe player2.username
     }
 }

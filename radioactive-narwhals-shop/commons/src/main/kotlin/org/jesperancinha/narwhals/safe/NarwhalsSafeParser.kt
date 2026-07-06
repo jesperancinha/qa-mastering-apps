@@ -116,7 +116,7 @@ fun ElapsedDays.tuskShedSequence(ageYears: BigDecimal) =
 
 fun NarwhalsInterface<NarwhalInterface<BigDecimal>>.toDomain() =
     Narwhals(
-        narwhal = requireNotNull(narwhal?.map {
+        narwhal = requireNotNull(narwhal.map {
             Narwhal(
                 name = requireNotNull(it.name),
                 age = requireNotNull(it.age),

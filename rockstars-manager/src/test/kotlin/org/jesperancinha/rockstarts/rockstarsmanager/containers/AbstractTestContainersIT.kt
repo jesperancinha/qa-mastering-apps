@@ -16,9 +16,9 @@ object AbstractTestContainersIT {
      }
 
     class DockerPostgresDataInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-        private var jdbcUrl = "spring.datasource.url=" + postgreSQLContainer.jdbcUrl
-        private var username = "spring.datasource.username=" + postgreSQLContainer.username
-        private var password = "spring.datasource.password=" + postgreSQLContainer.password
+        private val jdbcUrl = "spring.datasource.url=" + postgreSQLContainer.jdbcUrl
+        private val username = "spring.datasource.username=" + postgreSQLContainer.username
+        private val password = "spring.datasource.password=" + postgreSQLContainer.password
         override fun initialize(applicationContext: ConfigurableApplicationContext) {
             TestPropertySourceUtils
                 .addInlinedPropertiesToEnvironment(applicationContext, jdbcUrl, username, password)
