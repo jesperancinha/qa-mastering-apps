@@ -8,6 +8,8 @@ import org.jesperancinha.supermaket.domain.DeliveryStatus
 import org.jesperancinha.supermaket.dto.*
 import org.jesperancinha.supermaket.service.DeliveryService
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
@@ -25,6 +27,7 @@ class DeliveryControllerTest @Autowired constructor(
 ) {
 
     @Test
+    @Execution(SAME_THREAD)
     fun `should create delivery and return 201 status`() {
         // Given
         val now = Instant.now()
@@ -65,6 +68,7 @@ class DeliveryControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
     fun `should return 400 when validation fails`() {
         // Given
         val now = Instant.now()
@@ -88,6 +92,7 @@ class DeliveryControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
     fun `should get invoices for deliveries`() {
         // Given
         val deliveryId1 = UUID.randomUUID()
@@ -121,6 +126,7 @@ class DeliveryControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
     fun `should get business summary`() {
         // Given
         val summary = DeliveriesSummaryDto(
@@ -142,6 +148,7 @@ class DeliveryControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
     fun `should handle service exceptions`() {
         // Given
         val now = Instant.now()

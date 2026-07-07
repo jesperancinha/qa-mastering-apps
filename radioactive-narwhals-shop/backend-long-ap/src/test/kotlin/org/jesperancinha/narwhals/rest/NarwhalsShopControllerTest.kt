@@ -14,7 +14,12 @@ import org.jesperancinha.narwhals.dao.NarwhalsWebShopDao
 import org.jesperancinha.narwhals.dao.Order
 import org.jesperancinha.narwhals.dao.OrderResponse
 import org.jesperancinha.narwhals.shouldAssertNarwhals
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
@@ -30,6 +35,7 @@ import org.springframework.http.ResponseEntity
 import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@TestMethodOrder(OrderAnnotation::class)
 class NarwhalsShopControllerTest @Autowired constructor(
     private val narwhalsWebShopDao: NarwhalsWebShopDao,
     private val testRestTemplate: TestRestTemplate,
@@ -96,6 +102,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(3)
     fun `should make multiple purchase request but only one succeeds when stocks are available`(): Unit = runBlocking {
         withContext(Dispatchers.Default) {
             loadNarwhals1()
@@ -109,6 +117,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(2)
     fun `should make partial purchase when stocks are not available`() {
         loadNarwhals1()
         val entity = HttpEntity(
@@ -159,6 +169,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(1)
     fun `should return not found failed when nothing is available`() {
         loadNarwhals1()
         val entity = HttpEntity(

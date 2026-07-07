@@ -14,7 +14,6 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import java.util.List
 
 @WebMvcTest(CustomerController::class)
 internal class CustomerControllerTest @Autowired constructor(
@@ -39,7 +38,7 @@ internal class CustomerControllerTest @Autowired constructor(
     fun testListCustomers_Cars_whenCalled_thenGetFullList() {
         mockMvc.perform(MockMvcRequestBuilders.get("/customers"))
             .andExpect(MockMvcResultMatchers.status().isOk)
-            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(customerDto))))
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(listOf(customerDto))))
     }
 
     @Test

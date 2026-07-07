@@ -90,7 +90,7 @@ fun AgeInYears.tusksForecastInElapsedDays(elapsedDays: Long): Pair<Long, AgeInYe
     var tuskShedDay = 0L
     var lastAge = this
     while (tuskShedDay < elapsedDays - 1 && currentAge <= NARWHAL_YEARS_TO_LIVE * VANILLA_FACTOR) {
-        val shedAfter = (currentAge * NARWHAL_YEAR_DURATION / VANILLA_FACTOR).tusksFall().toLong() / VANILLA_FACTOR
+        val shedAfter = (currentAge * NARWHAL_YEAR_DURATION / VANILLA_FACTOR).tusksFall() / VANILLA_FACTOR
         tuskShedDay += shedAfter
         lastAge = currentAge
         currentAge += shedAfter * VANILLA_FACTOR / NARWHAL_YEAR_DURATION
@@ -109,7 +109,6 @@ private fun ElapsedDays.seaCabbageForecastInElapsedDays(elapsedDays: Long) =
             var accumulatedCabbages = 0L
             it.forEach { elapsedDay ->
                 accumulatedCabbages += ((this * NARWHAL_YEAR_DURATION / VANILLA_FACTOR) + elapsedDay).dailyCabbages()
-                    .toLong()
             }
             accumulatedCabbages
         }

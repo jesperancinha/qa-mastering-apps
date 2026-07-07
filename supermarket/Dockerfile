@@ -1,5 +1,5 @@
 # Builder
-FROM maven:3.9.8-eclipse-temurin-21 AS build
+FROM maven:3.9.11-eclipse-temurin-25 AS build
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Application
-FROM eclipse-temurin:21
+FROM eclipse-temurin:25
 
 WORKDIR /app
 COPY --from=build /app/target/*.jar application.jar

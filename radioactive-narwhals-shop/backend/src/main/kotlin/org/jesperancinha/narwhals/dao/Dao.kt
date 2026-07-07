@@ -40,7 +40,7 @@ class NarwhalsWebShopDao(
 
     fun areNarwhalsActive(days: Int) =
         Narwhals(narwhal = mapNarwhals().map { it.value }).toOutput(days).narwhals.narwhal.any {
-            it.age  < NARWHAL_YEARS_TO_LIVE
+            it.age < NARWHAL_YEARS_TO_LIVE
         }
 
     @Synchronized
@@ -147,9 +147,7 @@ class NarwhalsWebShopDao(
             .let {
                 if (it.firstOrNull { (d, _) -> d == -1 } != null) emptyList() else it
             }
-            .count()
-}
-
+            .count() }
 
 private fun EffectiveStock.hasCabbages(orderedCabbage: BigDecimal) = orderedCabbage <= this.seaCabbage
 private fun EffectiveStock.hasTusks(orderedTusks: Int) = orderedTusks <= this.tusks

@@ -14,7 +14,6 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import java.util.List
 
 @WebMvcTest(CarController::class)
 internal class CarControllerTest @Autowired constructor(
@@ -32,7 +31,7 @@ internal class CarControllerTest @Autowired constructor(
     @BeforeEach
     fun setUp() {
         Mockito.`when`(carService.all())
-            .thenReturn(List.of(carDto))
+            .thenReturn(listOf(carDto))
         Mockito.`when`(carService.createCar(carDto)).thenReturn(carDto)
     }
 
@@ -42,7 +41,7 @@ internal class CarControllerTest @Autowired constructor(
     fun testListCars_whenCalled_thenGetFullList() {
         mockMvc.perform(MockMvcRequestBuilders.get("/cars"))
             .andExpect(MockMvcResultMatchers.status().isOk)
-            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(List.of(carDto))))
+            .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(listOf(carDto))))
     }
 
     @Test

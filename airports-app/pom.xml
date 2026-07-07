@@ -170,9 +170,6 @@
                         <plugin>all-open</plugin>
                         <plugin>no-arg</plugin>
                     </compilerPlugins>
-                    <args>
-                        <arg>-Xannotation-default-target=param-property</arg>
-                    </args>
                 </configuration>
                 <dependencies>
                     <dependency>

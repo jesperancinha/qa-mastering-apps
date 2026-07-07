@@ -18,22 +18,27 @@ import org.jesperancinha.kalah.service.KalahGameService
 import org.jesperancinha.kalah.service.KalahPlayerService
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
+@Execution(ExecutionMode.SAME_THREAD)
 class KalaGameControllerTest @Autowired constructor(
     private val mockMvc: MockMvc,
     @MockkBean(relaxed = true)
@@ -80,7 +85,7 @@ class KalaGameControllerTest @Autowired constructor(
     @WithMockUser("player1")
     fun testMove_whenPlayer2NotJoined_thenFail() {
         val kalahWasher = KalahWasher()
-        kalahBoard.kalahWashers = listOf(kalahWasher)
+        kalahBoard.kalahWashers = mutableListOf(kalahWasher)
         every { boardService.findBoardById(requireNotNull(kalahBoard.id)) } returns kalahBoard
         every {
             gameService.rolloutCupsFromPayersWasherOnBoard(
@@ -101,7 +106,7 @@ class KalaGameControllerTest @Autowired constructor(
     @Disabled
     fun testMove_whenNoStones_thenFail() {
         val kalahWasher = KalahWasher()
-        kalahBoard.kalahWashers = listOf(kalahWasher)
+        kalahBoard.kalahWashers = mutableListOf(kalahWasher)
         every { boardService.findBoardById(kalahBoard.id.shouldNotBeNull()) } returns kalahBoard
         mockMvc.perform(MockMvcRequestBuilders.put("/api/move/1/1"))
             .andExpect(status().isNotFound)

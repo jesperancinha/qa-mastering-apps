@@ -1,11 +1,11 @@
-package org.jesperancinha.supermarket.summary.api
+package org.jesperancinha.supermarket.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.kotest.matchers.shouldBe
-import org.jesperancinha.supermarket.api.ContainerIntegrationTest
 import org.jesperancinha.supermarket.delivery.api.DeliveryCreateRequest
 import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus.IN_PROGRESS
+import org.jesperancinha.supermarket.summary.api.BusinessSummaryResponse
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -16,12 +16,12 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 
 @AutoConfigureMockMvc
-@DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 class SummaryControllerIT @Autowired constructor(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper

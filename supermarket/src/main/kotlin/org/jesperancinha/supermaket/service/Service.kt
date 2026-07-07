@@ -12,6 +12,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.postForObject
 import java.time.Duration
 import java.time.LocalDate
 import java.time.ZoneId
@@ -51,10 +52,9 @@ class DeliveryService(
                 address = deliveryRepository
                     .findByIdOrNull(deliveryId)?.address ?: throw DeliveryNotFoundException(deliveryId)
             ).let { sendInvoiceRequestDto ->
-                restTemplate.postForObject(
+                restTemplate.postForObject<SendInvoiceResponseDto>(
                     "$externalApiUrl/v1/invoices",
-                    sendInvoiceRequestDto,
-                    SendInvoiceResponseDto::class.java
+                    sendInvoiceRequestDto
                 ).let { sendInvoiceResponseDto ->
                     InvoiceResponseDto(
                         deliveryId = deliveryId,

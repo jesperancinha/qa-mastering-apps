@@ -7,12 +7,14 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.verify
+import jakarta.transaction.Transactional
 import org.jesperancinha.supermarket.api.ContainerIntegrationTest
 import org.jesperancinha.supermarket.delivery.api.DeliveryCreateRequest
 import org.jesperancinha.supermarket.delivery.api.DeliveryResponse
 import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus
 import org.jesperancinha.supermarket.invoice.client.InvoiceClient
 import org.jesperancinha.supermarket.invoice.client.InvoiceClientResponse
+import org.jesperancinha.supermarket.repository.DeliveryRepository
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -26,7 +28,6 @@ import java.time.Instant
 import java.util.*
 
 @AutoConfigureMockMvc
-@DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 class InvoiceControllerIT @Autowired constructor(
     private val mockMvc: MockMvc,
     private val objectMapper: ObjectMapper,
