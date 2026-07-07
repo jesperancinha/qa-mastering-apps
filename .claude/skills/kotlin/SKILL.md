@@ -35,4 +35,3 @@ delay(100.milliseconds)
 ```
 
 Add import: `import kotlin.time.Duration.Companion.milliseconds`
-
