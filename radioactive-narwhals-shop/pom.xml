@@ -29,7 +29,6 @@
             <dependency>
                 <groupId>org.jesperancinha.qa</groupId>
                 <artifactId>commons</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>

@@ -4,6 +4,7 @@ import org.jesperancinha.narwhals.safe.CurrentNarwhal
 import org.jesperancinha.narwhals.safe.Output
 import org.jesperancinha.narwhals.safe.parseNarwhals
 import org.jesperancinha.narwhals.safe.toOutput
+import org.slf4j.LoggerFactory
 import picocli.CommandLine
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -13,6 +14,8 @@ import java.util.concurrent.Callable
 import kotlin.system.exitProcess
 
 const val TAB = '\t'
+
+private val logger = LoggerFactory.getLogger(NarwhalsParserCommand::class.java)
 
 @Command(
     name = "rn-data-reader", mixinStandardHelpOptions = true, version = ["0.0.0"],
@@ -28,7 +31,8 @@ class NarwhalsParserCommand : Callable<Int> {
     override fun call(): Int = try {
         println(filename.makePrintOut(days))
         0
-    } catch (_: Exception) {
+    } catch (e: Exception) {
+        logger.error("Failed to read narwhals data from file '$filename': ${e.message}", e)
         1
     }
 }

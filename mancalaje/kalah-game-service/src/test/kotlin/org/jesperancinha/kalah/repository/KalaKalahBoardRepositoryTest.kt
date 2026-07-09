@@ -2,7 +2,6 @@ package org.jesperancinha.kalah.repository
 
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import org.jesperancinha.kalah.containers.AbstractTestContainersIT
 import org.jesperancinha.kalah.containers.AbstractTestContainersIT.DockerPostgresDataInitializer
 import org.jesperancinha.kalah.model.KalahBoard
 import org.jesperancinha.kalah.model.KalahWasher
@@ -18,14 +17,9 @@ import java.util.UUID.randomUUID
 @SpringBootTest
 @Transactional
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
-internal class KalaKalahBoardRepositoryTest(
-    @Autowired
+internal class KalaKalahBoardRepositoryTest @Autowired constructor(
     private val kalahWasherRepository: KalahWasherRepository,
-
-    @Autowired
     private val kalahBoardRepository: KalahBoardRepository,
-
-    @Autowired
     private val kalahPlayerRepository: KalahPlayerRepository
 ) {
     val player1 = kalahPlayerRepository.save(
@@ -74,7 +68,7 @@ internal class KalaKalahBoardRepositoryTest(
     fun findBoardsByPlayerTwoIsNull_whenCalled_thenShowAllBoards() {
         val boardsByPlayerTwoIsNull = kalahBoardRepository.findBoardsByPlayerTwoIsNull()
         boardsByPlayerTwoIsNull.shouldHaveSize(2)
-        boardsByPlayerTwoIsNull[0]?.playerOne?.username shouldBe player1.username
-        boardsByPlayerTwoIsNull[1]?.playerOne?.username shouldBe player2.username
+        boardsByPlayerTwoIsNull[0].playerOne?.username shouldBe player1.username
+        boardsByPlayerTwoIsNull[1].playerOne?.username shouldBe player2.username
     }
 }

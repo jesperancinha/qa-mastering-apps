@@ -10,209 +10,209 @@ typealias Publisher = String?
 typealias Category = String
 
 data class Results(
-    @JsonProperty
+    @param:JsonProperty
     val kind: String,
-    @JsonProperty
+    @param:JsonProperty
     val totalItems: Long,
-    @JsonProperty
+    @param:JsonProperty
     val items: List<Book>
 )
 
 data class Book(
-    @JsonProperty
+    @param:JsonProperty
     val kind: String,
-    @JsonProperty
+    @param:JsonProperty
     val id: String,
-    @JsonProperty
+    @param:JsonProperty
     val etag: String,
-    @JsonProperty
+    @param:JsonProperty
     val selflink: String?,
-    @JsonProperty
+    @param:JsonProperty
     val volumeInfo: VolumeInfo?,
-    @JsonProperty
+    @param:JsonProperty
     val layerInfo: LayerInfo?,
-    @JsonProperty
+    @param:JsonProperty
     val saleInfo: SaleInfo?,
-    @JsonProperty
+    @param:JsonProperty
     val accessInfo: AccessInfo?
 )
 
 data class AccessInfo(
-    @JsonProperty
+    @param:JsonProperty
     val country: Country,
-    @JsonProperty
+    @param:JsonProperty
     val viewability: String,
-    @JsonProperty
+    @param:JsonProperty
     val embeddable: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val publicDomain: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val textToSpeechPermission: String,
-    @JsonProperty
+    @param:JsonProperty
     val epub: Epub,
-    @JsonProperty
+    @param:JsonProperty
     val pdf: Pdf,
-    @JsonProperty
+    @param:JsonProperty
     val webReaderLink: String,
-    @JsonProperty
+    @param:JsonProperty
     val accessViewStatus: String,
-    @JsonProperty
+    @param:JsonProperty
     val quoteSharingAllowed: Boolean
 )
 
 data class Epub(
-    @JsonProperty
+    @param:JsonProperty
     val isAvailable: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val acsTokenLink: String?
 )
 
 data class LayerInfo(
-    @JsonProperty
+    @param:JsonProperty
     val layers: List<Layer>
 )
 
 data class Pdf(
-    @JsonProperty
+    @param:JsonProperty
     val isAvailable: Boolean
 )
 
 data class SaleInfo(
-    @JsonProperty
+    @param:JsonProperty
     val country: Country,
-    @JsonProperty
+    @param:JsonProperty
     val saleability: String,
-    @JsonProperty
+    @param:JsonProperty
     val isEbook: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val listPrice: ListPrice?,
-    @JsonProperty
+    @param:JsonProperty
     val retailPrice: RetailPrice?,
-    @JsonProperty
+    @param:JsonProperty
     val buyLink: String?,
-    @JsonProperty
+    @param:JsonProperty
     val offers: List<Offer>?
 )
 
 data class Offer(
-    @JsonProperty
+    @param:JsonProperty
     val finskyOfferType: Int,
-    @JsonProperty
+    @param:JsonProperty
     val listPrice: ListPrice,
-    @JsonProperty
+    @param:JsonProperty
     val retailPrice: RetailPrice
 )
 
 data class RetailPrice(
-    @JsonProperty
+    @param:JsonProperty
     val amount: BigDecimal?,
-    @JsonProperty
+    @param:JsonProperty
     val currency: String?
 )
 
 data class ListPrice(
-    @JsonProperty
+    @param:JsonProperty
     val amount: BigDecimal? = null,
-    @JsonProperty
+    @param:JsonProperty
     val amountInMicros: BigDecimal? = null,
-    @JsonProperty
+    @param:JsonProperty
     val currency: String?
 )
 
 data class Layer(
-    @JsonProperty
+    @param:JsonProperty
     val layerId: String,
-    @JsonProperty
+    @param:JsonProperty
     val volumeAnnotationsVersion: String
 )
 
 data class VolumeInfo(
-    @JsonProperty
+    @param:JsonProperty
     val title: String,
-    @JsonProperty
+    @param:JsonProperty
     val subtitle: String? = null,
-    @JsonProperty
+    @param:JsonProperty
     val authors: List<Author>? = null,
-    @JsonProperty
+    @param:JsonProperty
     val publisher: Publisher,
-    @JsonProperty
+    @param:JsonProperty
     val publishedDate: String? = null,
-    @JsonProperty
+    @param:JsonProperty
     val description: String? = null,
-    @JsonProperty
+    @param:JsonProperty
     val industryIdentifiers: List<IndustryIdentifier>? = null,
-    @JsonProperty
+    @param:JsonProperty
     val readingModes: ReadingModes,
-    @JsonProperty
+    @param:JsonProperty
     val pageCount: Long,
-    @JsonProperty
+    @param:JsonProperty
     val printedPageCount: Long,
-    @JsonProperty
+    @param:JsonProperty
     val dimensions: Dimensions? = null,
-    @JsonProperty
+    @param:JsonProperty
     val printType: String,
-    @JsonProperty
+    @param:JsonProperty
     val categories: List<Category>? = null,
-    @JsonProperty
+    @param:JsonProperty
     val averageRating: BigDecimal? = null,
-    @JsonProperty
+    @param:JsonProperty
     val ratingsCount: Int = 0,
-    @JsonProperty
+    @param:JsonProperty
     val maturityRating: String,
-    @JsonProperty
+    @param:JsonProperty
     val allowAnonLogging: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val contentVersion: String,
-    @JsonProperty
+    @param:JsonProperty
     val panelizationSummary: PanelizationSummary? = null,
-    @JsonProperty
+    @param:JsonProperty
     val imageLinks: ImageLinks? = null,
-    @JsonProperty
+    @param:JsonProperty
     val language: Language? = null,
-    @JsonProperty
+    @param:JsonProperty
     val previewLink: String,
-    @JsonProperty
+    @param:JsonProperty
     val infoLink: String,
-    @JsonProperty
+    @param:JsonProperty
     val canonicalVolumeLink: String
 )
 
 data class IndustryIdentifier(
-    @JsonProperty
+    @param:JsonProperty
     val type: String,
-    @JsonProperty
+    @param:JsonProperty
     val identifier: String
 )
 
 data class ReadingModes(
-    @JsonProperty
+    @param:JsonProperty
     val text: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val image: Boolean
 )
 
 data class Dimensions(
-    @JsonProperty
+    @param:JsonProperty
     val height: String?
 )
 
 data class PanelizationSummary(
-    @JsonProperty
+    @param:JsonProperty
     val containsEpubBubbles: Boolean,
-    @JsonProperty
+    @param:JsonProperty
     val containsImageBubbles: Boolean
 )
 
 data class ImageLinks(
-    @JsonProperty
+    @param:JsonProperty
     val smallThumbnail: String?,
-    @JsonProperty
+    @param:JsonProperty
     val thumbnail: String?,
-    @JsonProperty
+    @param:JsonProperty
     val small: String?,
-    @JsonProperty
+    @param:JsonProperty
     val medium: String?,
-    @JsonProperty
+    @param:JsonProperty
     val large: String?
 )
 

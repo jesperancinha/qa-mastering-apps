@@ -6,14 +6,13 @@ import org.jesperancinha.rockstarts.rockstarsmanager.data.ArtistDto
 import org.jesperancinha.rockstarts.rockstarsmanager.services.ArtistsService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -24,12 +23,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @WebMvcTest(controllers = [ArtistsController::class])
 @ActiveProfiles("test")
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
-class ArtistsControllerTest {
-    @MockBean
-   lateinit var artistsService: ArtistsService
-
-    @Autowired
-    lateinit var mockMvc: MockMvc
+class ArtistsControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    @MockitoBean private val artistsService: ArtistsService,
+) {
     private val objectMapper = ObjectMapper()
 
     @Test

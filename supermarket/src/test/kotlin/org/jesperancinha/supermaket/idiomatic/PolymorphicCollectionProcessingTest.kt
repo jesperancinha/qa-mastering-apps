@@ -1,5 +1,6 @@
 package org.jesperancinha.supermaket.idiomatic
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 sealed class Notification {
@@ -18,16 +19,24 @@ val notifications: List<Notification> = listOf(
 class PolymorphicCollectionProcessingTest {
 
     @Test
-    fun `should check the polymorphic notification process`(){
+    fun `should filter each notification type by its subclass`() {
         val emails = notifications.filterIsInstance<Notification.Email>()
         val smsMessages = notifications.filterIsInstance<Notification.SMS>()
+        val pushMessages = notifications.filterIsInstance<Notification.Push>()
 
-        emails.forEach { println("Sending email to ${it.address}: ${it.subject}") }
-        smsMessages.forEach { println("Texting ${it.number}: ${it.message}") }
+        assertEquals(2, emails.size)
+        assertEquals(listOf("user@example.com", "admin@example.com"), emails.map { it.address })
+        assertEquals(1, smsMessages.size)
+        assertEquals("+1234567890", smsMessages.single().number)
+        assertEquals(1, pushMessages.size)
+    }
+
+    @Test
+    fun `should group notifications by their runtime type`() {
         val grouped = notifications.groupBy { it::class.simpleName }
 
-        grouped.forEach { (type, group) ->
-            println("Found ${group.size} $type notification(s)")
-        }
+        assertEquals(2, grouped["Email"]?.size)
+        assertEquals(1, grouped["SMS"]?.size)
+        assertEquals(1, grouped["Push"]?.size)
     }
 }

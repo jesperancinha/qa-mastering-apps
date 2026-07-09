@@ -14,12 +14,10 @@ import org.springframework.test.context.ContextConfiguration
 @SpringBootTest
 @Transactional
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
-internal class KalahPlayerRepositoryItTest(
-    @Autowired
-    private val kalahPlayerRepository: KalahPlayerRepository
+internal class KalahPlayerRepositoryItTest @Autowired constructor(
+    private val kalahPlayerRepository: KalahPlayerRepository,
+    private val gameService: KalahGameService
 ) {
-    @Autowired
-    private val gameService: KalahGameService? = null
 
     @Test
     fun testFindBoardByPlayerOneUsername_whenSearchUserName_thenFindOneBoard() {

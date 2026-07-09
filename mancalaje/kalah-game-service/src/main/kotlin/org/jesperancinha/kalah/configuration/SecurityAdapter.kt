@@ -20,13 +20,14 @@ open class SecurityAdapter(jdbcUserDetailsManager: JdbcUserDetailsManager, passw
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain = http
         .userDetailsService(jdbcUserDetailsManager)
-        .authorizeRequests()
-        .requestMatchers("/**")
-        .authenticated()
-        .and()
-        .formLogin()
-        .defaultSuccessUrl("http://localhost:4200")
-        .and().csrf().disable().build()
+        .authorizeHttpRequests { auth ->
+            auth.requestMatchers("/**").authenticated()
+        }
+        .formLogin { formLogin ->
+            formLogin.defaultSuccessUrl("http://localhost:4200")
+        }
+        .csrf { csrf -> csrf.disable() }
+        .build()
 
     init {
         this.jdbcUserDetailsManager = jdbcUserDetailsManager

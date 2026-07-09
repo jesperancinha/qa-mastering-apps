@@ -17,11 +17,8 @@ import org.springframework.test.annotation.DirtiesContext
 @EnableAutoConfiguration
 @SpringBootTest
 @DirtiesContext
-@Disabled
-class ReportAirportServiceTest(
-    @Autowired
-    val reportAirportService: ReportAirportService
-
+class ReportAirportServiceTest @Autowired constructor(
+    private val reportAirportService: ReportAirportService
 ) {
 
     @Test
@@ -33,11 +30,18 @@ class ReportAirportServiceTest(
 
     @Test
     fun `should get countries with the lowest number of airports`() {
+        val bottomTen: Map<String, Long> = reportAirportService.getCountriesWithLowesNumberOfAirports(10)
 
+        bottomTen.shouldHaveSize(10)
     }
 
+    // TODO: ReportAirportService#getRunwaysMostCommonlyIdentified always returns null (it's an
+    //  unimplemented stub - see ReportAirportService.kt), so no meaningful assertion can be
+    //  written here without implementing that method first. Left disabled rather than asserting
+    //  on a hardcoded null.
+    @Disabled("getRunwaysMostCommonlyIdentified always returns null - underlying method is unimplemented")
     @Test
     fun `should get runways most commmonly identifies`() {
-
+        reportAirportService.getRunwaysMostCommonlyIdentified(10)
     }
 }

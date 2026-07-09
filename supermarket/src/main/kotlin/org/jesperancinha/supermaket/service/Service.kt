@@ -3,6 +3,8 @@ package org.jesperancinha.supermaket.service
 import org.jesperancinha.supermaket.domain.Delivery
 import org.jesperancinha.supermaket.domain.DeliveryStatus
 import org.jesperancinha.supermaket.dto.*
+import org.jesperancinha.supermaket.exception.DeliveryNotFoundException
+import org.jesperancinha.supermaket.exception.InvoiceNotReturnedException
 import org.jesperancinha.supermaket.mapper.DeliveryMapper
 import org.jesperancinha.supermaket.repository.DeliveryRepository
 import org.springframework.beans.factory.annotation.Value
@@ -10,6 +12,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.postForObject
 import java.time.Duration
 import java.time.LocalDate
 import java.time.ZoneId
@@ -19,7 +22,7 @@ import kotlin.math.roundToLong
 class DeliveryService(
     private val deliveryRepository: DeliveryRepository,
     private val restTemplate: RestTemplate,
-    @param:Value("\${invoice-service.url}")
+    @param:Value($$"${invoice-service.url}")
     private val externalApiUrl: String
 ) {
 
@@ -47,17 +50,16 @@ class DeliveryService(
             SendInvoiceRequestDto(
                 deliveryId = deliveryId,
                 address = deliveryRepository
-                    .findByIdOrNull(deliveryId)?.address ?: throw RuntimeException("Delivery $deliveryId not found!")
+                    .findByIdOrNull(deliveryId)?.address ?: throw DeliveryNotFoundException(deliveryId)
             ).let { sendInvoiceRequestDto ->
-                restTemplate.postForObject(
+                restTemplate.postForObject<SendInvoiceResponseDto>(
                     "$externalApiUrl/v1/invoices",
-                    sendInvoiceRequestDto,
-                    SendInvoiceResponseDto::class.java
+                    sendInvoiceRequestDto
                 ).let { sendInvoiceResponseDto ->
                     InvoiceResponseDto(
                         deliveryId = deliveryId,
                         invoiceId = sendInvoiceResponseDto?.id
-                            ?: throw RuntimeException("No Invoice has been returned for $deliveryId")
+                            ?: throw InvoiceNotReturnedException(deliveryId)
                     )
                 }
             }

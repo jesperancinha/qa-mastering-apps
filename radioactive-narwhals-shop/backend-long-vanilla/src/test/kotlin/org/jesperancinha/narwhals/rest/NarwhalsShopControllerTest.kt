@@ -14,11 +14,17 @@ import org.jesperancinha.narwhals.dao.NarwhalsWebShopDao
 import org.jesperancinha.narwhals.dao.Order
 import org.jesperancinha.narwhals.dao.OrderResponse
 import org.jesperancinha.narwhals.shouldAssertNarwhals
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.client.exchange
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod.POST
@@ -29,9 +35,10 @@ import org.springframework.http.ResponseEntity
 import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@TestMethodOrder(OrderAnnotation::class)
 class NarwhalsShopControllerTest @Autowired constructor(
-    val narwhalsWebShopDao: NarwhalsWebShopDao,
-    val testRestTemplate: TestRestTemplate,
+    private val narwhalsWebShopDao: NarwhalsWebShopDao,
+    private val testRestTemplate: TestRestTemplate,
 ) {
     val xmlHeaders = HttpHeaders().apply {
         add("Content-Type", APPLICATION_XML_VALUE)
@@ -55,6 +62,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                     12000L to "f",
                     18500L to "m"
                 )
+                .shouldHaveSize(4)
         }
 
         run {
@@ -62,7 +70,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 javaClass.getResource("/narwhals2.xml")
                     .shouldNotBeNull().readText(), xmlHeaders
             )
-            testRestTemplate.exchange("/rnarwhals-shop/load", POST, entity, String::class.java)
+            testRestTemplate.exchange<String>("/rnarwhals-shop/load", POST, entity)
                 .shouldNotBeNull()
                 .statusCode shouldBe RESET_CONTENT
             narwhalsWebShopDao.mapNarwhals()
@@ -94,6 +102,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(3)
     fun `should make multiple purchase request but only one succeeds when stocks are available`(): Unit = runBlocking {
         withContext(Dispatchers.Default) {
             loadNarwhals1()
@@ -107,6 +117,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(2)
     fun `should make partial purchase when stocks are not available`() {
         loadNarwhals1()
         val entity = HttpEntity(
@@ -118,7 +130,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -143,7 +155,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/1", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/1", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -157,6 +169,8 @@ class NarwhalsShopControllerTest @Autowired constructor(
     }
 
     @Test
+    @Execution(SAME_THREAD)
+    @org.junit.jupiter.api.Order(1)
     fun `should return not found failed when nothing is available`() {
         loadNarwhals1()
         val entity = HttpEntity(
@@ -168,7 +182,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 )
             ), jsonHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/order/1", POST, entity, OrderResponse::class.java)
+        testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/1", POST, entity)
             .shouldNotBeNull()
             .apply {
                 body shouldBe OrderResponse(
@@ -189,7 +203,7 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 tusks = 1
             )
         ), jsonHeaders
-    ).let { testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, it, OrderResponse::class.java) }
+    ).let { testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, it) }
 
     fun makeCustomerPersistentRequest(): ResponseEntity<OrderResponse> = HttpEntity(
         CustomerOrder(
@@ -199,14 +213,14 @@ class NarwhalsShopControllerTest @Autowired constructor(
                 tusks = 0
             )
         ), jsonHeaders
-    ).let { testRestTemplate.exchange("/rnarwhals-shop/order/14", POST, it, OrderResponse::class.java) }
+    ).let { testRestTemplate.exchange<OrderResponse>("/rnarwhals-shop/order/14", POST, it) }
 
     private fun loadNarwhals1() {
         val entity = HttpEntity(
             javaClass.getResource("/narwhals1.xml")
                 .shouldNotBeNull().readText(), xmlHeaders
         )
-        testRestTemplate.exchange("/rnarwhals-shop/load", POST, entity, String::class.java)
+        testRestTemplate.exchange<String>("/rnarwhals-shop/load", POST, entity)
             .shouldNotBeNull()
             .statusCode shouldBe RESET_CONTENT
     }

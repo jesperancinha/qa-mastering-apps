@@ -13,7 +13,7 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 internal class BooksConfiguration(
-    @Value("\${books.url}")
+    @param:Value($$"${books.url}")
     private val booksUrl: String
 ) {
     @Bean

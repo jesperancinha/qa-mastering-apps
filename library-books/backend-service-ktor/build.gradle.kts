@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.21"
+    kotlin("jvm") version "2.3.0"
 }
 
 group = "org.jesperancinha.books"
@@ -13,7 +13,7 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(25)
 }
 
 dependencies {
@@ -29,6 +29,8 @@ dependencies {
     testImplementation("org.junit.platform:junit-platform-launcher")
     testImplementation("org.junit.platform:junit-platform-engine")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("io.mockk:mockk:1.14.6")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
 }
 
 tasks.test {

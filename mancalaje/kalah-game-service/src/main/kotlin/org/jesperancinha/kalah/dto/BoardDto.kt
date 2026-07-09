@@ -1,27 +1,27 @@
 package org.jesperancinha.kalah.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.UUID
+import java.util.*
 
 data class BoardDto(
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: UUID?,
-    @JsonProperty("pitDtos")
+    @param:JsonProperty("pitDtos")
     val pitDtos: List<WasherDto?>,
-    @JsonProperty("pitDtoOne")
+    @param:JsonProperty("pitDtoOne")
     val washerDtoOne: WasherDto?,
-    @JsonProperty("kalahOne")
+    @param:JsonProperty("kalahOne")
     val kalahOne: WasherDto?,
-    @JsonProperty("playerDtoOne")
+    @param:JsonProperty("playerDtoOne")
     val playerDtoOne: PlayerDto?,
-    @JsonProperty("pitDtoTwo")
+    @param:JsonProperty("pitDtoTwo")
     val pitDtoTwo: WasherDto?,
-    @JsonProperty("kalahTwo")
+    @param:JsonProperty("kalahTwo")
     val kalahTwo: WasherDto?,
-    @JsonProperty("playerDtoTwo")
+    @param:JsonProperty("playerDtoTwo")
     val playerDtoTwo: PlayerDto?,
-    @JsonProperty("currentPlayerDto")
+    @param:JsonProperty("currentPlayerDto")
     val currentPlayerDto: PlayerDto?,
-    @JsonProperty("winnerDto")
+    @param:JsonProperty("winnerDto")
     val winnerDto: PlayerDto?,
 )

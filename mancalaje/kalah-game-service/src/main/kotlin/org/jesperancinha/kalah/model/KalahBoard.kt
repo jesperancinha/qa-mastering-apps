@@ -16,7 +16,7 @@ data class KalahBoard(
     internal var id: UUID? = null,
 
     @OneToMany(fetch = LAZY)
-    internal var kalahWashers: List<KalahWasher>? = null,
+    internal var kalahWashers: MutableList<KalahWasher> = mutableListOf(),
 
     @ManyToOne(fetch = LAZY)
     internal var kalahWasherOne: KalahWasher? = null,
@@ -46,10 +46,10 @@ data class KalahBoard(
     internal var version: Int? = null,
 
     @ManyToOne(fetch = LAZY)
-    internal val owner: Player,
+    internal var owner: Player,
 
     @Column
-    internal val createdAt: Long = Instant.now().toEpochMilli()
+    internal var createdAt: Long = Instant.now().toEpochMilli()
 
 ) {
 

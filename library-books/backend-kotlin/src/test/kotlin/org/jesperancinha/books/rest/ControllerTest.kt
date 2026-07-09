@@ -15,11 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
 class ControllerTest @Autowired constructor(
-    val controller: Controller
-) {
-
+    private val controller: Controller,
     @MockkBean(relaxed = true)
-    lateinit var bookRepositorySearchDao: BookRepositorySearchDao
+    private val bookRepositorySearchDao: BookRepositorySearchDao
+) {
 
     @Test
     fun `should be able to make a request to get one volume`() = runBlocking {

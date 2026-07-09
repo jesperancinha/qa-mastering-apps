@@ -3,23 +3,17 @@ package org.jesperancinha.rockstarts.rockstarsmanager.controller
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNot
 import io.kotest.matchers.shouldNotBe
 import org.assertj.core.api.Assertions
 import org.jesperancinha.rockstarts.rockstarsmanager.containers.AbstractTestContainersIT.DockerPostgresDataInitializer
 import org.jesperancinha.rockstarts.rockstarsmanager.data.ArtistDto
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.*
-import org.springframework.test.annotation.DirtiesContext
-import org.springframework.test.annotation.DirtiesContext.ClassMode
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -27,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
 @Transactional
 class ArtistsControllerIT @Autowired constructor(
-    @Autowired
     private val controller: ArtistsController,
 ) {
 

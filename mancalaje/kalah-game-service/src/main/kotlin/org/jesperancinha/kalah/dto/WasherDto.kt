@@ -1,11 +1,11 @@
 package org.jesperancinha.kalah.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.UUID
+import java.util.*
 
 data class WasherDto(
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: UUID?,
-    @JsonProperty("playerDto")
+    @param:JsonProperty("playerDto")
     val playerDto: PlayerDto?,
 )

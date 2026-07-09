@@ -3,16 +3,16 @@ package org.jesperancinha.car.lease.dto
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class LeaseDto(
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: Long? = null,
-    @JsonProperty("carId")
+    @param:JsonProperty("carId")
     val carId: Long? = null,
-    @JsonProperty("customerId")
+    @param:JsonProperty("customerId")
     val customerId: Long? = null,
-    @JsonProperty("duration")
+    @param:JsonProperty("duration")
     val duration: Long,
-    @JsonProperty("interestRate")
+    @param:JsonProperty("interestRate")
     val interestRate: Long,
-    @JsonProperty("leaseRate")
+    @param:JsonProperty("leaseRate")
     val leaseRate: Double? = null
 )
