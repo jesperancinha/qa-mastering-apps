@@ -1,4 +1,4 @@
-package org.jesperancinha.supermarket.invoice.api
+package org.jesperancinha.supermarket.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -7,20 +7,17 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.verify
-import jakarta.transaction.Transactional
-import org.jesperancinha.supermarket.api.ContainerIntegrationTest
 import org.jesperancinha.supermarket.delivery.api.DeliveryCreateRequest
 import org.jesperancinha.supermarket.delivery.api.DeliveryResponse
 import org.jesperancinha.supermarket.delivery.domain.DeliveryStatus
+import org.jesperancinha.supermarket.invoice.api.DeliveryInvoiceRequest
+import org.jesperancinha.supermarket.invoice.api.DeliveryInvoiceResult
 import org.jesperancinha.supermarket.invoice.client.InvoiceClient
 import org.jesperancinha.supermarket.invoice.client.InvoiceClientResponse
-import org.jesperancinha.supermarket.repository.DeliveryRepository
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.http.MediaType.APPLICATION_JSON
-import org.springframework.test.annotation.DirtiesContext
-import org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
