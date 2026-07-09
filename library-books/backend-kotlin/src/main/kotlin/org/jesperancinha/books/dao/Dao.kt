@@ -19,13 +19,13 @@ class BookRepositorySearchDao(
     fun mapVolumes(): MutableMap<String, Book> = hazelcastInstance.getMap("volumes")
     fun mapQueries(): MutableMap<String, Results> = hazelcastInstance.getMap("queries")
 
-    suspend fun findBookByVolume(volume: String): Book = mapVolumes()[volume] ?: webClient
+    suspend fun findBookByVolume(volume: String): Book = webClient
         .method(HttpMethod.GET).uri("/$volume")
         .retrieve()
         .awaitBody<Book>()
         .also { mapVolumes()[volume] = it }
 
-    suspend fun findBooksByQueryAndLanguage(query: String, language: Language): Results = mapQueries()["$query+$language"] ?: webClient
+    suspend fun findBooksByQueryAndLanguage(query: String, language: Language): Results = webClient
         .method(HttpMethod.GET).uri("?q=${query}&maxResults=10&langRestrict=${language.toString().lowercase()}")
         .retrieve()
         .awaitBody<Results>()

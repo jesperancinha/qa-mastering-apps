@@ -1,5 +1,7 @@
 package org.jesperancinha.books
 
+import io.kotest.matchers.shouldBe
+import io.mockk.mockk
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.server.testing.*
@@ -9,34 +11,22 @@ import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.gson.*
-import org.junit.jupiter.api.Assertions.*
+import org.jesperancinha.books.org.jesperancinha.books.module
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode
 
 class ApplicationTest {
 
-    private fun testApp(): Application.() -> Unit = {
-        install(ContentNegotiation) { gson() }
-        routing {
-            get("/hello") { call.respondText("Hello, it's me!") }
-        }
-    }
-
     @Test
-    @Execution(ExecutionMode.SAME_THREAD)
-    fun testHelloEndpoint1() = commonTest()
-
-    @Test
-    @Execution(ExecutionMode.SAME_THREAD)
-    fun testHelloEndpoint2() = commonTest()
-
-    private fun commonTest() {
+    fun testHelloEndpoint() {
         testApplication {
-            application(testApp())
+            application {
+                module()
+            }
             client.get("/hello").apply {
-                assertEquals(HttpStatusCode.OK, status)
-                assertEquals("Hello, it's me!", bodyAsText())
+                status shouldBe HttpStatusCode.OK
+                bodyAsText() shouldBe "Hello, it's me!"
             }
         }
     }
