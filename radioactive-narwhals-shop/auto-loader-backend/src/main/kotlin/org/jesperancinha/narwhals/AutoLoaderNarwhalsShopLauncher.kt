@@ -3,6 +3,7 @@ package org.jesperancinha.narwhals
 import org.jesperancinha.narwhals.dao.NarwhalsWebShopDao
 import org.jesperancinha.narwhals.safe.parseNarwhals
 import org.jesperancinha.narwhals.safe.toCurrentNarwhals
+import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -12,6 +13,8 @@ import java.io.File
 import java.lang.Exception
 import java.util.concurrent.Callable
 import kotlin.system.exitProcess
+
+private val logger = LoggerFactory.getLogger(AutoLoaderNarwhalsShopLauncher::class.java)
 
 @Command(
     name = "auto-loader-backend", mixinStandardHelpOptions = true, version = ["0.0.0"],
@@ -24,11 +27,11 @@ class NarwhalsParserCommand : Callable<Int> {
 
     @Option(names = ["-d", "--days"], description = ["elapsed days"])
     var days: Int = -1
-    override fun call(): Int = try {
-        0
-    } catch (_: Exception) {
-        1
-    }
+
+    // Only used to parse/print CLI options (e.g. -h/--help). The real work - and the
+    // try/catch that guards it - lives in AutoLoaderNarwhalsShopLauncher.run(), which is
+    // where the risky file parsing and DAO loading actually happens.
+    override fun call(): Int = 0
 }
 
 @SpringBootApplication
@@ -38,8 +41,12 @@ class AutoLoaderNarwhalsShopLauncher(
     override fun run(vararg args: String?) {
         val narwhalsParserCommand = NarwhalsParserCommand()
         CommandLine(narwhalsParserCommand).parseArgs(*args)
-        narwhalsParserCommand.apply {
-            filename?.parseNarwhals()?.toCurrentNarwhals(days)?.let { narwhalsWebShopDao.loadWebShop(it) }
+        try {
+            narwhalsParserCommand.apply {
+                filename?.parseNarwhals()?.toCurrentNarwhals(days)?.let { narwhalsWebShopDao.loadWebShop(it) }
+            }
+        } catch (e: Exception) {
+            logger.error("Failed to load narwhals data from file '${narwhalsParserCommand.filename}': ${e.message}", e)
         }
     }
 }

@@ -177,8 +177,8 @@ class KalahGameService(
     }
 
     private fun isWinner(kalahWasher: KalahWasher?): Boolean {
-        var itPit = kalahWasher
-        var winnerone = true
+        val itPit = kalahWasher
+        val winnerone = true
 //        while (itPit?.washerType != WasherType.LARGE) {
 //            if ((itPit?.stones ?: 0) > 0) {
 //                winnerone = false

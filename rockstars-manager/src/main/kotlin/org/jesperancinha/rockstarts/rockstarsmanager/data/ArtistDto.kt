@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.*
 
 data class ArtistDto(
-    @JsonProperty("Id")
+    @param:JsonProperty("Id")
     val id: Long? = null,
-    @JsonProperty("Name")
+    @param:JsonProperty("Name")
     val name: String? = null,
 )

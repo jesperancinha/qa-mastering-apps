@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 
 @DataJpaTest
 internal class CarRepositoryTest @Autowired constructor(
-    val carRepository: CarRepository
+    private val carRepository: CarRepository
 ) {
 
     @Test

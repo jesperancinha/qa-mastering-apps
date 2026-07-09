@@ -101,6 +101,7 @@ class User(
     @Column
     val username: String? = null,
 
+    // TODO(security): hash before persisting, see anti-patterns skill
     @Column
     val password: String? = null,
 

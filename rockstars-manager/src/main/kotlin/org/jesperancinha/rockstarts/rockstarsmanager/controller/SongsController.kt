@@ -2,13 +2,11 @@ package org.jesperancinha.rockstarts.rockstarsmanager.controller
 
 import org.jesperancinha.rockstarts.rockstarsmanager.data.SongDto
 import org.jesperancinha.rockstarts.rockstarsmanager.services.SongsService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/songs")
 class SongsController(
-    @Autowired
     private val songsService: SongsService,
 ) {
 

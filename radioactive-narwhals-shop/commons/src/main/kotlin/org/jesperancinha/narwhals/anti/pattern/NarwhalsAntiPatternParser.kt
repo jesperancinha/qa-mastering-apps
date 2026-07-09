@@ -11,8 +11,6 @@ import org.jesperancinha.narwhals.NarwhalsInterface
 import org.jesperancinha.narwhals.VANILLA_FACTOR
 import java.io.File
 import java.io.InputStream
-import java.math.BigDecimal.*
-import java.math.RoundingMode.*
 import java.nio.charset.Charset
 import kotlin.math.min
 
@@ -34,17 +32,17 @@ data class CurrentStock(
 )
 
 data class CurrentNarwhals(
-    @JsonProperty("narwhals")
+    @param:JsonProperty("narwhals")
     override val narwhal: List<CurrentNarwhal>,
 ) : NarwhalsInterface<NarwhalInterface<Long>>
 
 data class CurrentNarwhal(
-    @JsonProperty
+    @param:JsonProperty
     override val age: Long,
-    @JsonProperty
+    @param:JsonProperty
     override val name: String,
     override val sex: String,
-    @JsonProperty("age-last-tusk-shed")
+    @param:JsonProperty("age-last-tusk-shed")
     val ageLastTuskShed: Long,
 ) : NarwhalInterface<Long>
 
@@ -92,7 +90,7 @@ fun AgeInYears.tusksForecastInElapsedDays(elapsedDays: Long): Pair<Long, AgeInYe
     var tuskShedDay = 0L
     var lastAge = this
     while (tuskShedDay < elapsedDays - 1 && currentAge <= NARWHAL_YEARS_TO_LIVE * VANILLA_FACTOR) {
-        val shedAfter = (currentAge * NARWHAL_YEAR_DURATION / VANILLA_FACTOR).tusksFall().toLong() / VANILLA_FACTOR
+        val shedAfter = (currentAge * NARWHAL_YEAR_DURATION / VANILLA_FACTOR).tusksFall() / VANILLA_FACTOR
         tuskShedDay += shedAfter
         lastAge = currentAge
         currentAge += shedAfter * VANILLA_FACTOR / NARWHAL_YEAR_DURATION
@@ -111,7 +109,6 @@ private fun ElapsedDays.seaCabbageForecastInElapsedDays(elapsedDays: Long) =
             var accumulatedCabbages = 0L
             it.forEach { elapsedDay ->
                 accumulatedCabbages += ((this * NARWHAL_YEAR_DURATION / VANILLA_FACTOR) + elapsedDay).dailyCabbages()
-                    .toLong()
             }
             accumulatedCabbages
         }

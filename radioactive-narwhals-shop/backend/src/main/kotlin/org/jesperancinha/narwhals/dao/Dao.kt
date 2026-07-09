@@ -4,7 +4,6 @@ import com.hazelcast.core.HazelcastInstance
 import org.jesperancinha.narwhals.NarwhalInterface
 import org.jesperancinha.narwhals.NarwhalsInterface
 import org.jesperancinha.narwhals.safe.*
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.status
@@ -17,7 +16,6 @@ private const val SALES_MAP = "salesMap"
 
 @Service
 class NarwhalsWebShopDao(
-    @Autowired
     private val hazelcastNarwhalsInstance: HazelcastInstance,
 ) {
 
@@ -42,7 +40,7 @@ class NarwhalsWebShopDao(
 
     fun areNarwhalsActive(days: Int) =
         Narwhals(narwhal = mapNarwhals().map { it.value }).toOutput(days).narwhals.narwhal.any {
-            it.age  < NARWHAL_YEARS_TO_LIVE
+            it.age < NARWHAL_YEARS_TO_LIVE
         }
 
     @Synchronized
@@ -149,9 +147,7 @@ class NarwhalsWebShopDao(
             .let {
                 if (it.firstOrNull { (d, _) -> d == -1 } != null) emptyList() else it
             }
-            .count()
-}
-
+            .count() }
 
 private fun EffectiveStock.hasCabbages(orderedCabbage: BigDecimal) = orderedCabbage <= this.seaCabbage
 private fun EffectiveStock.hasTusks(orderedTusks: Int) = orderedTusks <= this.tusks

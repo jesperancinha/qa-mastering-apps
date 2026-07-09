@@ -11,8 +11,6 @@ import org.jesperancinha.narwhals.NarwhalsInterface
 import org.jesperancinha.narwhals.VANILLA_FACTOR
 import java.io.File
 import java.io.InputStream
-import java.math.BigDecimal.*
-import java.math.RoundingMode.*
 import java.nio.charset.Charset
 
 const val NARWHAL_YEAR_DURATION = 1000
@@ -33,17 +31,17 @@ data class CurrentStock(
 )
 
 data class CurrentNarwhals(
-    @JsonProperty("narwhals")
+    @param:JsonProperty("narwhals")
     override val narwhal: List<CurrentNarwhal>,
 ) : NarwhalsInterface<NarwhalInterface<Long>>
 
 data class CurrentNarwhal(
-    @JsonProperty
+    @param:JsonProperty
     override val age: Long,
-    @JsonProperty
+    @param:JsonProperty
     override val name: String,
     override val sex: String,
-    @JsonProperty("age-last-tusk-shed")
+    @param:JsonProperty("age-last-tusk-shed")
     val ageLastTuskShed: Long,
 ) : NarwhalInterface<Long>
 

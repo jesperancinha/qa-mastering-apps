@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service
 @Service
 class ElasticsearchService(
     private val esClient: ElasticsearchClient,
-    @Value("\${elasticsearch.index}") private val index: String,
+    @param:Value($$"${elasticsearch.index}") private val index: String,
 ) {
 
     suspend fun indexProduct(product: ProductDto) {

@@ -18,56 +18,50 @@ import org.jesperancinha.kalah.service.KalahGameService
 import org.jesperancinha.kalah.service.KalahPlayerService
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ContextConfiguration(initializers = [DockerPostgresDataInitializer::class])
-class KalaGameControllerTest(
-    @Autowired
-    private val mockMvc: MockMvc
+@Execution(ExecutionMode.SAME_THREAD)
+class KalaGameControllerTest @Autowired constructor(
+    private val mockMvc: MockMvc,
+    @MockkBean(relaxed = true)
+    private val gameService: KalahGameService,
+    @MockkBean(relaxed = true)
+    private val boardService: KalahBoardService,
+    @MockkBean(relaxed = true)
+    private val playerService: KalahPlayerService,
+    @MockkBean(relaxed = true)
+    private val jdbcUserDetailsManager: JdbcUserDetailsManager,
+    @MockkBean(relaxed = true)
+    private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+    @MockkBean(relaxed = true)
+    private val kalahWasherRepository: KalahWasherRepository,
+    @MockkBean(relaxed = true)
+    private val kalahTableRepository: KalahTableRepository,
+    @MockkBean(relaxed = true)
+    private val kalahBoardRepository: KalahBoardRepository,
+    @MockkBean(relaxed = true)
+    private val kalahCupRepository: KalahCupRepository,
+    @MockkBean(relaxed = true)
+    private val kalahPlayerRepository: KalahPlayerRepository
 ) {
-    @MockkBean(relaxed = true)
-    private lateinit var gameService: KalahGameService
-
-    @MockkBean(relaxed = true)
-    private lateinit var boardService: KalahBoardService
-
-    @MockkBean(relaxed = true)
-    private lateinit var playerService: KalahPlayerService
-
-    @MockkBean(relaxed = true)
-    private lateinit var jdbcUserDetailsManager: JdbcUserDetailsManager
-
-    @MockkBean(relaxed = true)
-    private lateinit var bCryptPasswordEncoder: BCryptPasswordEncoder
-
-    @MockkBean(relaxed = true)
-    private lateinit var kalahWasherRepository: KalahWasherRepository
-
-    @MockkBean(relaxed = true)
-    private lateinit var kalahTableRepository: KalahTableRepository
-
-    @MockkBean(relaxed = true)
-    private lateinit var kalahBoardRepository: KalahBoardRepository
-
-    @MockkBean(relaxed = true)
-    private lateinit var kalahCupRepository: KalahCupRepository
-
-    @MockkBean(relaxed = true)
-    private lateinit var kalahPlayerRepository: KalahPlayerRepository
-
     private val objectMapper = ObjectMapper()
 
     private val kalahBoard =
@@ -91,7 +85,7 @@ class KalaGameControllerTest(
     @WithMockUser("player1")
     fun testMove_whenPlayer2NotJoined_thenFail() {
         val kalahWasher = KalahWasher()
-        kalahBoard.kalahWashers = listOf(kalahWasher)
+        kalahBoard.kalahWashers = mutableListOf(kalahWasher)
         every { boardService.findBoardById(requireNotNull(kalahBoard.id)) } returns kalahBoard
         every {
             gameService.rolloutCupsFromPayersWasherOnBoard(
@@ -112,7 +106,7 @@ class KalaGameControllerTest(
     @Disabled
     fun testMove_whenNoStones_thenFail() {
         val kalahWasher = KalahWasher()
-        kalahBoard.kalahWashers = listOf(kalahWasher)
+        kalahBoard.kalahWashers = mutableListOf(kalahWasher)
         every { boardService.findBoardById(kalahBoard.id.shouldNotBeNull()) } returns kalahBoard
         mockMvc.perform(MockMvcRequestBuilders.put("/api/move/1/1"))
             .andExpect(status().isNotFound)

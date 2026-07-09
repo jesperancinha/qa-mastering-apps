@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import jakarta.xml.bind.annotation.*
+import jakarta.xml.bind.annotation.XmlAccessType
+import jakarta.xml.bind.annotation.XmlAccessorType
+import jakarta.xml.bind.annotation.XmlAttribute
+import jakarta.xml.bind.annotation.XmlType
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter
 import org.jesperancinha.narwhals.DecimalToMillisAdapter
 import org.jesperancinha.narwhals.DecimalToMillisDeserializer
@@ -13,18 +16,18 @@ import org.jesperancinha.narwhals.NarwhalsInterface
 
 @JsonRootName("narwhals")
 data class Narwhals(
-    @JsonAlias("narwhal")
+    @param:JsonAlias("narwhal")
     override val narwhal: List<Narwhal>,
 ) : NarwhalsInterface<Narwhal>
 
 @JsonRootName("narwhal")
 data class Narwhal(
-    @JsonProperty
+    @param:JsonProperty
     override val name: String,
-    @JsonProperty
-    @JsonDeserialize(using = DecimalToMillisDeserializer::class)
+    @param:JsonProperty
+    @param:JsonDeserialize(using = DecimalToMillisDeserializer::class)
     override val age: Long,
-    @JsonProperty
+    @param:JsonProperty
     override val sex: String,
 ) : NarwhalInterface<Long>
 

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class CarService(private val carRepository: CarRepository) {
-    fun createCar(carDto: CarDto): CarDto = carRepository.save(carDto.toData()).toDto()
+    // Ignore any client-supplied id on create: JPA save() with a non-null id performs
+    // a merge/update, so a client-chosen id could silently overwrite another row.
+    fun createCar(carDto: CarDto): CarDto = carRepository.save(carDto.copy(id = null).toData()).toDto()
 
     fun getCarById(id: Long): CarDto? = carRepository.findByIdOrNull(id)?.toDto()
 

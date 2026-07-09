@@ -11,33 +11,27 @@ import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.invocation.InvocationOnMock
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.*
 
 @ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [LeaseService::class])
 internal class LeaseServiceTest @Autowired constructor(
-    private val leaseService: LeaseService
+    private val leaseService: LeaseService,
+    @MockitoBean private val customerRepository: CustomerRepository,
+    @MockitoBean private val carRepository: CarRepository,
+    @MockitoBean private val leaseRepository: LeaseRepository
 ) {
-
-    @MockBean
-    private val customerRepository: CustomerRepository? = null
-
-    @MockBean
-    private val carRepository: CarRepository? = null
-
-    @MockBean
-    private val leaseRepository: LeaseRepository? = null
 
     @BeforeEach
     fun setup() {
-        Mockito.`when`(customerRepository!!.findById(1L))
+        Mockito.`when`(customerRepository.findById(1L))
             .thenReturn(Optional.of(Customer()))
-        Mockito.`when`(carRepository!!.findById(1L))
+        Mockito.`when`(carRepository.findById(1L))
             .thenReturn(Optional.of(Car(millage = 10000L, netPrice = 20000L)))
-        Mockito.`when`<Any>(leaseRepository!!.save(ArgumentMatchers.any()))
+        Mockito.`when`<Any>(leaseRepository.save(ArgumentMatchers.any()))
             .thenAnswer { invocationOnMock: InvocationOnMock -> invocationOnMock.arguments[0] }
     }
 

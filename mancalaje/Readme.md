@@ -63,6 +63,13 @@ npm install coveralls --save-dev
 
 ## Docker Compose
 
+Before running Docker Compose, copy `docker-psql/.env.example` to `docker-psql/.env` and set a real
+`POSTGRES_PASSWORD` for your local environment. `docker-psql/.env` is gitignored and must not be committed.
+
+```bash
+cp docker-psql/.env.example docker-psql/.env
+```
+
 I have provided a docker-compose environment that will run this application in your docker-machine addess.
 
 Make sure that the docker-machine is correctly installed and that you set your environment to your machine.

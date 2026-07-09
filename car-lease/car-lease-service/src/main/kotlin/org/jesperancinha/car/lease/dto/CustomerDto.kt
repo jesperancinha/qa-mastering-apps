@@ -2,21 +2,21 @@ package org.jesperancinha.car.lease.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class CustomerDto(
-    @JsonProperty("id")
+data class CustomerDto(
+    @param:JsonProperty("id")
     val id: Long? = null,
-    @JsonProperty("name")
+    @param:JsonProperty("name")
     val name: String? = null,
-    @JsonProperty("street")
+    @param:JsonProperty("street")
     val street: String? = null,
-    @JsonProperty("houseNumber")
+    @param:JsonProperty("houseNumber")
     val houseNumber: Long? = null,
-    @JsonProperty("zipCode")
+    @param:JsonProperty("zipCode")
     val zipCode: String? = null,
-    @JsonProperty("place")
+    @param:JsonProperty("place")
     val place: String? = null,
-    @JsonProperty("email")
+    @param:JsonProperty("email")
     val email: String? = null,
-    @JsonProperty("phoneNumber")
+    @param:JsonProperty("phoneNumber")
     val phoneNumber: String? = null
 )

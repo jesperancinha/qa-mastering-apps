@@ -1,5 +1,6 @@
 package org.jesperancinha.books
 
+import io.kotest.matchers.shouldBe
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -9,12 +10,9 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.testing.*
-import kotlinx.coroutines.delay
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import java.lang.management.ManagementFactory
-import kotlin.time.Duration.Companion.seconds
 
 class Application4Test {
 
@@ -63,10 +61,9 @@ class Application4Test {
         println("Running in JVM with PID: $pid")
         application(testApp())
         client.get("/hello").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello, it's me!", bodyAsText())
+            status shouldBe HttpStatusCode.OK
+            bodyAsText() shouldBe "Hello, it's me!"
         }
-        delay(5.seconds)
     }
 
     companion object {
