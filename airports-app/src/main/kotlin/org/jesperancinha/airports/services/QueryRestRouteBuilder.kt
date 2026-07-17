@@ -20,6 +20,6 @@ class QueryRestRouteBuilder : RouteBuilder() {
             .consumes("application/json")
             .produces("application/json")["/{countrycode}/airports/countrycode"].description("Find airport by country code")
             .outType(QueryProvider::class.java)
-            .to("bean:queryService?method=getQueryProviderByCountryCode(\${header.countrycode})")
+            .to($$"bean:queryService?method=getQueryProviderByCountryCode(${header.countrycode})")
     }
 }

@@ -1,6 +1,8 @@
 package org.jesperancinha.supermaket.exception
 
 import jakarta.servlet.http.HttpServletRequest
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -13,7 +15,6 @@ data class ApiError(
     val status: Int,
     val error: String,
     val message: String?,
-    val path: String?
 )
 
 @ControllerAdvice
@@ -61,8 +62,11 @@ class GlobalExceptionHandler {
         ApiError(
             status = status.value(),
             error = status.reasonPhrase,
-            message = message,
-            path = request.requestURI
-        )
+            message = "An error has been reported!",
+        ).also { logger.error("Message on {} on url {}", message ?: "", request.requestURI) }
     )
+
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
+    }
 }
