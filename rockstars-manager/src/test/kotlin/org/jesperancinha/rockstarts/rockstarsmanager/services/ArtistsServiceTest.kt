@@ -15,11 +15,14 @@ import org.jesperancinha.rockstarts.rockstarsmanager.model.Artist
 import org.jesperancinha.rockstarts.rockstarsmanager.repository.ArtistsRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 import org.mockito.*
 import org.springframework.data.repository.findByIdOrNull
 import java.util.*
 
 @ExtendWith(MockKExtension::class)
+@Execution(ExecutionMode.SAME_THREAD)
 internal class ArtistsServiceTest {
     @InjectMockKs
     lateinit var artistsService: ArtistsService
