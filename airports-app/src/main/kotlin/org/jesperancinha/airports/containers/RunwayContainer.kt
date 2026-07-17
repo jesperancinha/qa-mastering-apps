@@ -6,9 +6,6 @@ import org.jesperancinha.airports.pojos.Runway
 import org.springframework.stereotype.Component
 import java.io.InputStreamReader
 
-/**
- * Created by joaofilipesabinoesperancinha on 01-08-16.
- */
 @Component
 class RunwayContainer {
     private val mapper by lazy { CsvMapper() }

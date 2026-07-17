@@ -1,8 +1,5 @@
 package org.jesperancinha.airports.pojos
 
-/**
- * Created by joaofilipesabinoesperancinha on 01-08-16.
- */
 data class Runway(
     val id: String? = null,
     val airportRef: String? = null,

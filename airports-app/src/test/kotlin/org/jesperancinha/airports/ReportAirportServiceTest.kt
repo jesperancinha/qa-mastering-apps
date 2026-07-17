@@ -10,9 +10,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 
-/**
- * Created by joaofilipesabinoesperancinha on 08-08-16.
- */
 @CamelSpringBootTest
 @EnableAutoConfiguration
 @SpringBootTest

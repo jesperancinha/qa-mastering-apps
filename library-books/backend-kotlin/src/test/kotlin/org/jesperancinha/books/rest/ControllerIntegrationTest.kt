@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.expectBody
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ControllerIntegrationTest @Autowired constructor(
@@ -26,7 +27,7 @@ class ControllerIntegrationTest @Autowired constructor(
         webTestClient.get().uri("/123")
             .exchange()
             .expectStatus().isOk
-            .expectBody(SearchResult::class.java)
+            .expectBody<SearchResult>()
             .value { result ->
                 result.title shouldBe "Integration Test Book"
                 result.author shouldBe "Author A"
@@ -66,7 +67,7 @@ class ControllerIntegrationTest @Autowired constructor(
         webTestClient.get().uri("/456")
             .exchange()
             .expectStatus().isOk
-            .expectBody(SearchResult::class.java)
+            .expectBody<SearchResult>()
             .value { result ->
                 result.author shouldBe "Author 1,Author 2"
                 result.publicationDate shouldBe "01 mei 2022"
@@ -108,7 +109,7 @@ class ControllerIntegrationTest @Autowired constructor(
         webTestClient.get().uri("/789")
             .exchange()
             .expectStatus().isOk
-            .expectBody(SearchResult::class.java)
+            .expectBody<SearchResult>()
             .value { result ->
                 result.author shouldBe ""
                 result.isbn shouldBe ""

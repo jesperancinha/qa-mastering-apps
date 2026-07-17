@@ -8,9 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import javax.sql.DataSource
 
-/**
- * Created by jofisaes on 06/09/2021
- */
 @Configuration
 open class SecurityConfiguration(dataSource: DataSource) {
     private val dataSource: DataSource

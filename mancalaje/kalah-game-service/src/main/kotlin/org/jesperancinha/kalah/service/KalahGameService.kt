@@ -88,7 +88,7 @@ class KalahGameService(
         rolloutCupsFromPayersWasherOnBoard(player, cups.size, cups, kalahWasher, { it.cups }, { it?.cups })
 
         kalahBoard.currentPlayer = player.opponent
-        kalahBoard.kalahWashers?.forEach(Consumer { kw: KalahWasher -> kalahWasherService.update(kw) })
+        kalahBoard.kalahWashers.forEach(Consumer { kw: KalahWasher -> kalahWasherService.update(kw) })
         checkWinner(kalahBoard)
         return kalahBoard
     }
@@ -211,7 +211,7 @@ class KalahGameService(
             }
         }
 
-        kalahBoard.kalahWashers?.forEach { kw: KalahWasher -> kalahWasherService.update(kw) }
+        kalahBoard.kalahWashers.forEach { kw: KalahWasher -> kalahWasherService.update(kw) }
         setPlayer()
         player.currentKalahBoard = kalahBoard
         playerRepository.save(player)

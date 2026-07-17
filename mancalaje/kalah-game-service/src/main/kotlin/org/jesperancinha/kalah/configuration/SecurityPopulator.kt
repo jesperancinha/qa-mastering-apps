@@ -10,9 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import javax.sql.DataSource
 
-/**
- * Created by jofisaes on 06/09/2021
- */
 @Configuration
 class SecurityPopulator(
     applicationContext: ApplicationContext,

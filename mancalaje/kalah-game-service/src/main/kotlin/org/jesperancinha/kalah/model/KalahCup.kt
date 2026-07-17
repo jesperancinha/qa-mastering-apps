@@ -15,17 +15,17 @@ data class KalahCup(
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null,
+    val id: Long? = null,
 
     @Column(name = "full_cup")
-    var full: Boolean,
+    val full: Boolean,
 
     @ManyToOne
-    var washer: KalahWasher? = null,
+    val washer: KalahWasher? = null,
 
     @ManyToOne
-    var table: KalahTable? = null,
+    val table: KalahTable? = null,
 
     @Version
-    internal var version: Int? = null
+    internal val version: Int? = null
 )

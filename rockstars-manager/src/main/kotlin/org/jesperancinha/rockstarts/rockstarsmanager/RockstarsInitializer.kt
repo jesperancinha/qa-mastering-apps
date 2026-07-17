@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Profile
 import org.springframework.http.*
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.exchange
 import java.io.IOException
 import java.nio.charset.Charset
 import java.util.*
@@ -49,10 +50,7 @@ class RockstarsInitializer(
     @get:Throws(IOException::class)
     private val allArtists: ResponseEntity<Array<ArtistDto>>
         get() = try {
-            fetchResponseEntity(
-                HTTPS_WWW_TEAMROCKSTARS_NL_SITES_DEFAULT_FILES_ARTISTS_JSON,
-                Array<ArtistDto>::class.java
-            )
+            fetchResponseEntity<Array<ArtistDto>>(HTTPS_WWW_TEAMROCKSTARS_NL_SITES_DEFAULT_FILES_ARTISTS_JSON)
         } catch (e: Exception) {
             ResponseEntity.of(
                 Optional.of(
@@ -67,7 +65,7 @@ class RockstarsInitializer(
     @get:Throws(IOException::class)
     private val allSongs: ResponseEntity<Array<SongDto>>
         get() = try {
-            fetchResponseEntity(HTTPS_WWW_TEAMROCKSTARS_NL_SITES_DEFAULT_FILES_SONGS_JSON, Array<SongDto>::class.java)
+            fetchResponseEntity<Array<SongDto>>(HTTPS_WWW_TEAMROCKSTARS_NL_SITES_DEFAULT_FILES_SONGS_JSON)
         } catch (e: Exception) {
             ResponseEntity.of(
                 Optional.of(
@@ -79,13 +77,13 @@ class RockstarsInitializer(
             )
         }
 
-    private fun <T> fetchResponseEntity(artistsUri: String, responseType: Class<T>): ResponseEntity<T> {
+    private inline fun <reified T> fetchResponseEntity(artistsUri: String): ResponseEntity<T> {
         val restTemplate = RestTemplate()
         val headers = HttpHeaders()
         headers.accept =
             listOf(MediaType.APPLICATION_JSON)
         val entity = HttpEntity("parameters", headers)
-        return restTemplate.exchange(artistsUri, HttpMethod.GET, entity, responseType)
+        return restTemplate.exchange<T>(artistsUri, HttpMethod.GET, entity)
     }
 
     companion object {

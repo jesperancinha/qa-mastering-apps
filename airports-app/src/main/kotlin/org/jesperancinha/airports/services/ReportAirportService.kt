@@ -5,9 +5,6 @@ import org.jesperancinha.airports.containers.MainContainerService
 import org.jesperancinha.airports.pojos.Runway
 import org.springframework.stereotype.Service
 
-/**
- * Created by joaofilipesabinoesperancinha on 01-08-16.
- */
 @Service
 class ReportAirportService(
     @BeanInject

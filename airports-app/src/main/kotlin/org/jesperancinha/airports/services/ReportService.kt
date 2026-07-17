@@ -5,9 +5,6 @@ import org.springframework.context.annotation.DependsOn
 import org.springframework.stereotype.Component
 import java.io.IOException
 
-/**
- * Created by joaofilipesabinoesperancinha on 31-07-16.
- */
 @Component
 @DependsOn("reportAirportService")
 class ReportService(

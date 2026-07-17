@@ -35,7 +35,7 @@ internal class KalahGameServiceTest @Autowired constructor(
 
         gameBoard.kalahWashers.shouldNotBeNull()
         gameBoard.kalahWashers.shouldNotBeEmpty()
-        gameBoard.kalahWashers?.shouldHaveSize(12)
+        gameBoard.kalahWashers.shouldHaveSize(12)
 
         gameBoard.currentPlayer.shouldBeNull()
         gameBoard.playerOne.shouldBeNull()
@@ -80,7 +80,7 @@ internal class KalahGameServiceTest @Autowired constructor(
         sixthWasher?.cups?.size shouldBe 3
         sixthWasher?.nextKalahWasher.shouldBeNull()
         sixthWasher?.nextKalahTable.shouldNotBeNull()
-        sixthWasher?.nextKalahTable?.cups.shouldBeEmpty()
+        sixthWasher.nextKalahTable?.cups.shouldBeEmpty()
     }
 
 
@@ -110,8 +110,8 @@ internal class KalahGameServiceTest @Autowired constructor(
         sixthWasher?.cups?.shouldBeEmpty()
         sixthWasher?.nextKalahWasher.shouldBeNull()
         sixthWasher?.nextKalahTable.shouldNotBeNull()
-        sixthWasher?.nextKalahTable?.cups?.size shouldBe 1
-        val p2FirstWasher = sixthWasher?.nextKalahTable?.nextKalahWasher
+        sixthWasher.nextKalahTable?.cups?.size shouldBe 1
+        val p2FirstWasher = sixthWasher.nextKalahTable?.nextKalahWasher
         p2FirstWasher?.cups?.size shouldBe 4
         val p2SecondWasher = p2FirstWasher?.nextKalahWasher
         p2SecondWasher?.cups?.size shouldBe 4
@@ -195,8 +195,8 @@ internal class KalahGameServiceTest @Autowired constructor(
         sixthWasher?.cups?.size shouldBe 4
         sixthWasher?.nextKalahWasher.shouldBeNull()
         sixthWasher?.nextKalahTable.shouldNotBeNull()
-        sixthWasher?.nextKalahTable?.cups?.size shouldBe 6
-        val p2FirstWasher = sixthWasher?.nextKalahTable?.nextKalahWasher
+        sixthWasher.nextKalahTable?.cups?.size shouldBe 6
+        val p2FirstWasher = sixthWasher.nextKalahTable?.nextKalahWasher
         p2FirstWasher?.cups?.size shouldBe 3
         val p2SecondWasher = p2FirstWasher?.nextKalahWasher
         p2SecondWasher?.cups?.size shouldBe 3
@@ -219,8 +219,8 @@ infix fun KalahWasher?.shouldHaveWashersConnectionSizeOf(size: Int) {
         this?.nextKalahTable.shouldNotBeNull()
     } else {
         this?.nextKalahWasher.shouldNotBeNull()
-        this?.nextKalahTable.shouldBeNull()
-        this?.nextKalahWasher shouldHaveWashersConnectionSizeOf (size - 1)
+        this.nextKalahTable.shouldBeNull()
+        this.nextKalahWasher shouldHaveWashersConnectionSizeOf (size - 1)
     }
 }
 
@@ -234,7 +234,7 @@ fun KalahWasher?.shouldHaveWashersConnectionSizeOfWithPlayerAndNextTableOfPlayer
         this?.nextKalahTable.shouldNotBeNull().also { it.player shouldBe player2 }
     } else {
         this?.nextKalahWasher.shouldNotBeNull().also { it.player shouldBe player }
-        this?.nextKalahTable.shouldBeNull()
-        this?.nextKalahWasher shouldHaveWashersConnectionSizeOf (size - 1)
+        this.nextKalahTable.shouldBeNull()
+        this.nextKalahWasher shouldHaveWashersConnectionSizeOf (size - 1)
     }
 }

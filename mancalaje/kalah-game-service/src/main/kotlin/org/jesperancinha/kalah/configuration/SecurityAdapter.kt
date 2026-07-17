@@ -7,10 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
 
-/**
- * Created by jofisaes on 06/09/2021
- */
-
 @Configuration
 open class SecurityAdapter(jdbcUserDetailsManager: JdbcUserDetailsManager, passwordEncoder: PasswordEncoder) {
     private val jdbcUserDetailsManager: JdbcUserDetailsManager

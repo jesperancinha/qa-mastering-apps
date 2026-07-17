@@ -16,7 +16,7 @@ data class KalahTable(
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null,
+    val id: Long? = null,
 
     @OneToOne
     var nextKalahWasher: KalahWasher? = null,
@@ -28,5 +28,5 @@ data class KalahTable(
     val cups: MutableList<KalahCup> = mutableListOf(),
 
     @Version
-    internal var version: Int? = null
+    internal val version: Int? = null
 )

@@ -17,7 +17,7 @@ import java.util.UUID
 data class Player(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    internal var id: UUID? = null,
+    internal val id: UUID? = null,
 
     @Column(unique = true)
     internal val username: String,
@@ -32,7 +32,7 @@ data class Player(
     internal var currentKalahBoard: KalahBoard? = null,
 
     @Version
-    internal var version: Int? = null
+    internal val version: Int? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

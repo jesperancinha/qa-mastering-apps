@@ -5,9 +5,6 @@ import org.springframework.context.annotation.DependsOn
 import org.springframework.stereotype.Service
 import java.io.IOException
 
-/**
- * Created by joaofilipesabinoesperancinha on 31-07-16.
- */
 @Service
 @DependsOn(value = ["queryAirportService"])
 class QueryService(

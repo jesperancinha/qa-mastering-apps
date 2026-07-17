@@ -12,7 +12,7 @@ import java.util.UUID
 data class KalahBoard(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    internal var id: UUID? = null,
+    internal val id: UUID? = null,
 
     @OneToMany(fetch = LAZY)
     internal var kalahWashers: MutableList<KalahWasher> = mutableListOf(),
@@ -42,13 +42,13 @@ data class KalahBoard(
     internal var winner: Player? = null,
 
     @Version
-    internal var version: Int? = null,
+    internal val version: Int? = null,
 
     @ManyToOne(fetch = LAZY)
-    internal var owner: Player,
+    internal val owner: Player,
 
     @Column
-    internal var createdAt: Long = Instant.now().toEpochMilli()
+    internal val createdAt: Long = Instant.now().toEpochMilli()
 
 ) {
 
@@ -60,7 +60,7 @@ data class KalahBoard(
 }
 
 internal val KalahBoard.toDto: BoardDto?
-    get() = this.kalahWashers?.map { obj: KalahWasher -> obj.toDto }?.let { it1 ->
+    get() = this.kalahWashers.map { obj: KalahWasher -> obj.toDto }.let { it1 ->
         BoardDto(
             id = this.id,
             currentPlayerDto = this.currentPlayer?.toDto,

@@ -2,9 +2,6 @@ package org.jesperancinha.airports.pojos
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-/**
- * Created by joaofilipesabinoesperancinha on 01-08-16.
- */
 data class Airport(
     @param:JsonProperty("id")
     val id: String? = null,

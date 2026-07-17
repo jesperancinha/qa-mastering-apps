@@ -28,7 +28,7 @@ data class KalahWasher(
     var nextKalahTable: KalahTable? = null,
 
     @OneToOne
-    var oppositeKalahWasher: KalahWasher? = null,
+    val oppositeKalahWasher: KalahWasher? = null,
 
     @OneToOne
     var player: Player? = null,
@@ -37,7 +37,7 @@ data class KalahWasher(
     var cups: MutableList<KalahCup> = mutableListOf(),
 
     @Version
-    internal var version: Int? = null
+    internal val version: Int? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
