@@ -11,7 +11,6 @@ import org.jesperancinha.rockstarts.rockstarsmanager.data.ArtistDto
 import org.jesperancinha.rockstarts.rockstarsmanager.repository.ArtistsRepository
 import org.jesperancinha.rockstarts.rockstarsmanager.services.ArtistsService
 import org.mockito.Mockito
-import java.util.function.Consumer
 import java.util.stream.Collectors
 
 class ArtistServiceStepdefs {

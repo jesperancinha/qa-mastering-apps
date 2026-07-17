@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.jesperancinha.rockstarts.rockstarsmanager.containers.AbstractTestContainersIT.DockerPostgresDataInitializer
 import org.jesperancinha.rockstarts.rockstarsmanager.data.ArtistDto
 import org.jesperancinha.rockstarts.rockstarsmanager.services.ArtistsService
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.parallel.Execution

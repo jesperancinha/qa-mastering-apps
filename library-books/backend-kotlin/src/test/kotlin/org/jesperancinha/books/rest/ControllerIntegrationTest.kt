@@ -3,7 +3,6 @@ package org.jesperancinha.books.rest
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
-import io.mockk.coVerify
 import org.jesperancinha.books.dao.BookRepositorySearchDao
 import org.jesperancinha.books.domain.*
 import org.junit.jupiter.api.Test

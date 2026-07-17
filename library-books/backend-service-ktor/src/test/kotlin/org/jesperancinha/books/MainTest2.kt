@@ -11,8 +11,6 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.gson.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode
 
 class ApplicationTest2 {
 

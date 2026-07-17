@@ -4,7 +4,6 @@ import org.jesperancinha.kalah.model.KalahWasher
 import org.jesperancinha.kalah.repository.KalahWasherRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service

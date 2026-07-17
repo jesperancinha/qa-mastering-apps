@@ -1,7 +1,6 @@
 package org.jesperancinha.books
 
 import io.kotest.matchers.shouldBe
-import io.mockk.mockk
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.server.testing.*
@@ -13,8 +12,6 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.gson.*
 import org.jesperancinha.books.org.jesperancinha.books.module
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.parallel.Execution
-import org.junit.jupiter.api.parallel.ExecutionMode
 
 class ApplicationTest {
 

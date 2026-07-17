@@ -14,7 +14,6 @@ import org.jesperancinha.narwhals.dao.NarwhalsWebShopDao
 import org.jesperancinha.narwhals.dao.Order
 import org.jesperancinha.narwhals.dao.OrderResponse
 import org.jesperancinha.narwhals.shouldAssertNarwhals
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestMethodOrder

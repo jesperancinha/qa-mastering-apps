@@ -1,6 +1,5 @@
 package org.jesperancinha.supermaket.dto
 
-import io.mockk.every
 import io.mockk.mockk
 import jakarta.validation.ConstraintValidatorContext
 import org.jesperancinha.supermaket.domain.DeliveryStatus

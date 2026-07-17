@@ -1,6 +1,5 @@
 package org.jesperancinha.kalah
 
-import org.jesperancinha.kalah.containers.AbstractTestContainersIT
 import org.jesperancinha.kalah.containers.AbstractTestContainersIT.DockerPostgresDataInitializer
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

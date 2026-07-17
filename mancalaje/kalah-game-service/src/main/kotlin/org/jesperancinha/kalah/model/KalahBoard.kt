@@ -2,7 +2,6 @@ package org.jesperancinha.kalah.model
 
 import jakarta.persistence.*
 import jakarta.persistence.FetchType.LAZY
-import org.hibernate.Hibernate
 import org.jesperancinha.kalah.dto.BoardDto
 import org.springframework.data.annotation.Version
 import java.time.Instant
