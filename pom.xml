@@ -47,6 +47,7 @@
         <spring-security-oauth2-autoconfigure.version>2.6.8</spring-security-oauth2-autoconfigure.version>
         <reactor-test.version>3.7.11</reactor-test.version>
         <liquibase-core.version>5.0.1</liquibase-core.version>
+        <junit-bom.version>6.1.1</junit-bom.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -66,6 +67,13 @@
                 <groupId>io.kotest</groupId>
                 <artifactId>kotest-assertions-api-jvm</artifactId>
                 <version>${kotest-bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.kotest</groupId>

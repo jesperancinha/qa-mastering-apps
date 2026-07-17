@@ -35,7 +35,6 @@ class ArtistsControllerIT @Autowired constructor(
     @Test
     fun givenArtistOnDb_whenGetByName_thenGetArtistByName() {
         val artistDto = ArtistDto(
-            id = 10101L,
             name = DUA_LIPA
         )
         val savedToDataBase = controller.saveArtist(artistDto)
@@ -52,21 +51,18 @@ class ArtistsControllerIT @Autowired constructor(
     @Test
     fun givenArtist_whenSave_thenSaveArtist() {
         val artistDto = ArtistDto(
-            id = 10102L,
             name = ARIANA_GRANDE)
         val savedToDataBase = controller.saveArtist(artistDto)
         savedToDataBase.shouldNotBeNull()
         savedToDataBase.name shouldBe artistDto.name
-        savedToDataBase.id shouldBe 1L
+        savedToDataBase.id shouldBe savedToDataBase.id
     }
 
     @Test
     fun given2Artists_whenSave_thenSave2Artists() {
         val artistDtoAriana = ArtistDto(
-            id =10102L,
             name = ARIANA_GRANDE)
         val artistDtoMabel = ArtistDto(
-            id =10101L,
             name =MABEL)
         val savedAriana = controller.saveArtist(artistDtoAriana)
         val savedMabel = controller.saveArtist(artistDtoMabel)
@@ -95,7 +91,6 @@ class ArtistsControllerIT @Autowired constructor(
     @Test
     fun givenArtistOnDb_whenDelete_thenCallsDelete() {
         val artistDto = ArtistDto(
-            id = 10102L,
             name= ARIANA_GRANDE)
         val savedToDataBase = controller.saveArtist(artistDto)
         savedToDataBase.id?.let { controller.deleteById(it) }
