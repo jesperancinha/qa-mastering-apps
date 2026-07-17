@@ -79,6 +79,7 @@
                 <groupId>io.kotest</groupId>
                 <artifactId>kotest-assertions-core-jvm</artifactId>
                 <version>${kotest-bom.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.kotest</groupId>
