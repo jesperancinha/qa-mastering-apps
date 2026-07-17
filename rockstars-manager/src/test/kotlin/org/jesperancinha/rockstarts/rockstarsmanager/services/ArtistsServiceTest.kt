@@ -15,11 +15,14 @@ import org.jesperancinha.rockstarts.rockstarsmanager.model.Artist
 import org.jesperancinha.rockstarts.rockstarsmanager.repository.ArtistsRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 import org.mockito.*
 import org.springframework.data.repository.findByIdOrNull
 import java.util.*
 
 @ExtendWith(MockKExtension::class)
+@Execution(ExecutionMode.SAME_THREAD)
 internal class ArtistsServiceTest {
     @InjectMockKs
     lateinit var artistsService: ArtistsService
@@ -61,12 +64,8 @@ internal class ArtistsServiceTest {
 
     @Test
     fun givenArtist_whenSave_thenCallSave() {
-        val mock = mockk<Artist>()
-        every { mock.id } returns 10101L
-        every { mock.name } returns MABEL
-        val dto = mockk<ArtistDto>()
-        every { dto.id } returns (10101L)
-        every { dto.name } returns (MABEL)
+        val mock = Artist(10101L,MABEL)
+        val dto = ArtistDto(10101L, MABEL)
         every { artistsRepository.save(any()) } returns mock
         val artistDto = artistsService.saveArtist(dto)
         artistDto.id shouldBe dto.id
@@ -84,12 +83,8 @@ internal class ArtistsServiceTest {
 
     @Test
     fun givenArtistOnDb_whenUpdate_thenCallsUpdate() {
-        val mock = mockk<Artist>()
-        every { mock.id } returns 10101L
-        every { mock.name } returns MABEL
-        val dto = mockk<ArtistDto>()
-        every { dto.id } returns (10101L)
-        every { dto.name } returns (MABEL)
+        val mock = Artist(10101L,MABEL)
+        val dto = ArtistDto(10101L, MABEL)
         every { artistsRepository.save(any()) } returns mock
         val artistDto = artistsService.updateArtist(dto)
         artistDto.id shouldBe dto.id

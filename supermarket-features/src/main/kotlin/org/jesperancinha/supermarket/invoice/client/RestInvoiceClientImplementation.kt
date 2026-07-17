@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.client.JdkClientHttpRequestFactory
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestClient
+import org.springframework.web.client.body
 import java.net.http.HttpClient
 import java.util.UUID
 
@@ -46,7 +47,7 @@ class RestInvoiceClient(
             .uri("/invoices")
             .body(InvoiceSendRequest(deliveryId = deliveryId, address = address))
             .retrieve()
-            .body(WiremockInvoiceResponse::class.java)
+            .body<WiremockInvoiceResponse>()
             ?: throw IllegalStateException("Empty response from invoice service")
 
         return InvoiceClientResponse(id = response.id, sent = response.sent)

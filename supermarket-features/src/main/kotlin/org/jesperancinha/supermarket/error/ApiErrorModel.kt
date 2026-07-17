@@ -1,4 +1,4 @@
-package org.jesperancinha.supermarket.common.error
+package org.jesperancinha.supermarket.error
 
 import java.time.Instant
 
@@ -7,5 +7,4 @@ data class ApiError(
     val status: Int,
     val error: String,
     val message: String?,
-    val path: String?
 )

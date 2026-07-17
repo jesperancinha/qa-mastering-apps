@@ -22,7 +22,7 @@ class Controller(
      */
     @GetMapping("{volume}")
     suspend fun getSpecificVolume(
-        @PathVariable("volume") volume: String
+        @PathVariable volume: String
     ): SearchResult? = bookRepositorySearchDao.findBookByVolume(volume).toSearchResult()
 
     /**
