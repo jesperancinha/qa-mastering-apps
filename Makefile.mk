@@ -1,8 +1,11 @@
 SHELL := /bin/sh
 GRADLE_VERSION ?= 9.6.1
 
-first:
+first: prepare
 	make buildw build-maven
+
+prepare?:
+	echo "Not implemented!"
 
 b?: buildw build-maven
 

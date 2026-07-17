@@ -4,3 +4,4 @@ build
 .kotlin
 .output.txt
 dependabot.yml.bak
+.env

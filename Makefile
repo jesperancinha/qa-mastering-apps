@@ -1,6 +1,10 @@
 include Makefile.mk
 
-b: build-maven
+b: prepare build-maven
+prepare:
+	cp supermarket/docker-psql/.env.example supermarket/docker-psql/.env
+	cp supermarket-features/docker-psql/.env.example supermarket-features/docker-psql/.env
+	cp mancalaje/docker-psql/.env.example mancalaje/docker-psql/.env
 build-maven:
 	mvn clean install
 build-gradle: clean
