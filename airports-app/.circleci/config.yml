@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-maven:
     docker:
-      - image: eclipse-temurin:21-alpine
+      - image: eclipse-temurin:25-alpine
 
     working_directory: ~/repo
 
@@ -15,7 +15,7 @@ jobs:
 
   report-all:
     docker:
-      - image: eclipse-temurin:21-alpine
+      - image: eclipse-temurin:25-alpine
 
     working_directory: ~/repo
 

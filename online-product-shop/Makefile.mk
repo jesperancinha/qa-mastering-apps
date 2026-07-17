@@ -11,11 +11,11 @@ stop-all-containers:
 remove-all-containers:
 	docker ps -aq | xargs -I {} docker rm -f {}
 dcup-full: b
-	docker-compose up -d
+	docker compose up -d
 dcup:
-	docker-compose up -d
+	docker compose up -d
 dcup-rebuild: stop-all-containers dcd
-	docker-compose up -d --build --force-recreate
+	docker compose up -d --build --force-recreate
 dcd: stop-all-containers remove-all-containers
 	docker volume prune -f
-	docker-compose down
+	docker compose down

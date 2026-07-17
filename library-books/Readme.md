@@ -45,7 +45,7 @@ curl http://localhost:8080/?query=Kaas&language=nl
 
 ## Running Docker
 
-You can also run docker to get the application running by running `docker-compose up -d` or:
+You can also run docker to get the application running by running `docker compose up -d` or:
 
 ```shell
 make dcup

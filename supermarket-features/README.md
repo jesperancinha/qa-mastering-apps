@@ -103,7 +103,7 @@ Follow the requirements below and be ready to support decisions made in implemen
 </table>
 
 ## Mock API
-A mock API is exposed on port `8000` which is defined in the [docker-compose file](./docker-compose.yml#L4), this mock API must not be modified. The endpoint exposed in this API is used for the `/deliveries/invoice` task. The mock API exposes the following endpoint.
+A mock API is exposed on port `8000` which is defined in the [docker compose file](./docker-compose.yml#L4), this mock API must not be modified. The endpoint exposed in this API is used for the `/deliveries/invoice` task. The mock API exposes the following endpoint.
 <!-- POST /v1/invoices -->
 <table>
 <tr>
@@ -147,13 +147,13 @@ A mock API is exposed on port `8000` which is defined in the [docker-compose fil
 
 ## Where to start
 - An empty application is already set up. You are expected to add the endpoint implementations yourself.
-- [A docker-compose file](./docker-compose.yml) already exists that builds and runs the application. Run this to make the [mock API](#mock-api) and database (that you add yourself) available. You can use the following command `docker-compose up --build`
+- [A docker compose file](./docker-compose.yml) already exists that builds and runs the application. Run this to make the [mock API](#mock-api) and database (that you add yourself) available. You can use the following command `docker compose up --build`
 
 ## To-do and considerations
 - ...
 
 ## Sending in the assignment
-- We expect a docker compose file that we can run with `docker-compose up` which should start up a functional application at port 8080 (including dependencies like a database).
+- We expect a docker compose file that we can run with `docker compose up` which should start up a functional application at port 8080 (including dependencies like a database).
 - Create a pull request with your changes. Notify us via e-mail when the assignment is ready for review.
 
 Thank you for your interest and time invested into making this assignment.

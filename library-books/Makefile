@@ -11,11 +11,11 @@ run:
 	java -jar backend-kotlin/target/backend-kotlin.jar
 build-run: b run
 dcd:
-	docker-compose down
+	docker compose down
 dcup: dcd
-	docker-compose up -d
+	docker compose up -d
 dbuild:
-	docker-compose build
+	docker compose build
 dcup-build-run: b dbuild dcup
 deps-plugins-update:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/pluginUpdatesOne.sh | bash -s -- $(PARAMS)
