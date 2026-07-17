@@ -15,9 +15,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/rockstars-manager/badge.svg?branch=main)](https://coveralls.io/github/jesperancinha/rockstars-manager?branch=main)
 [![codecov](https://codecov.io/gh/jesperancinha/rockstars-manager/branch/main/graph/badge.svg?token=5JTaC7z68Y)](https://codecov.io/gh/jesperancinha/rockstars-manager)
 
-[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/rockstars-manager.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/rockstars-manager.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/rockstars-manager.svg)](#)
+![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/rockstars-manager.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/rockstars-manager.svg)
+![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/rockstars-manager.svg)
 
 ---
 

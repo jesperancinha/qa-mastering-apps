@@ -14,9 +14,9 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/af73a199a556499288d9c91ce94956de)](https://www.codacy.com/gh/jesperancinha/car-lease/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/car-lease&utm_campaign=Badge_Coverage)
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/car-lease/badge.svg?branch=main)](https://coveralls.io/github/jesperancinha/car-lease?branch=main)
 
-[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/car-lease.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/car-lease.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/car-lease.svg)](#)
+![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/car-lease.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/car-lease.svg)
+![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/car-lease.svg)
 
 ---
 ## Introduction

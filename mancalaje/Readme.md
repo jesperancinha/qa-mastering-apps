@@ -3,7 +3,7 @@
 ---
 
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=Coffee%20Cups%20Kalah%20☕️%20&color=informational)](https://github.com/jesperancinha/mancalaje)
-[![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/mancalaje.svg)](#)
+![GitHub release](https://img.shields.io/github/release-pre/jesperancinha/mancalaje.svg)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/mancalaje.svg?style=svg)](https://circleci.com/gh/jesperancinha/mancalaje)
@@ -11,16 +11,15 @@
 [![mancalaje](https://github.com/jesperancinha/mancalaje/actions/workflows/mancalaje.yml/badge.svg)](https://github.com/jesperancinha/mancalaje/actions/workflows/mancalaje.yml)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f30b682f67e44391a922f62ada6b2f85)](https://www.codacy.com/app/jofisaes/mancalaje?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/mancalaje&amp;utm_campaign=Badge_Grade)
-[![codebeat badge](https://codebeat.co/badges/eaf7a2e0-ed2c-47fb-9323-2051db72c171)](https://codebeat.co/projects/github-com-jesperancinha-mancalaje-master)
 [![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/mancalaje/badge.svg)](https://snyk.io/test/github/jesperancinha/mancalaje)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/f30b682f67e44391a922f62ada6b2f85)](https://www.codacy.com/gh/jesperancinha/mancalaje/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/mancalaje&utm_campaign=Badge_Coverage)
 [![codecov](https://codecov.io/gh/jesperancinha/mancalaje/branch/master/graph/badge.svg?token=FytnZVKZcG)](https://codecov.io/gh/jesperancinha/mancalaje)
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/mancalaje/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/mancalaje?branch=master)
 
-[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/mancalaje.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/mancalaje.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/mancalaje.svg)](#)
+![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/mancalaje.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/mancalaje.svg)
+![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/mancalaje.svg)
 
 ---
 

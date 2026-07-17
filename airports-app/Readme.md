@@ -15,9 +15,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/jesperancinha/airports-app/badge.svg?branch=main)](https://coveralls.io/github/jesperancinha/airports-app?branch=main)
 [![codecov](https://codecov.io/gh/jesperancinha/airports-app/branch/main/graph/badge.svg?token=O6LV4EwTPv)](https://codecov.io/gh/jesperancinha/airports-app)
 
-[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/airports-app.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/airports-app.svg)](#)
-[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/airports-app.svg)](#)
+![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/airports-app.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/airports-app.svg)
+![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/airports-app.svg)
 
 ---
 
