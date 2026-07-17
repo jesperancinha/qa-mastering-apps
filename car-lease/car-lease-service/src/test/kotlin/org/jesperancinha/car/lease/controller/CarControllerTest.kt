@@ -4,7 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.jesperancinha.car.lease.dto.CarDto
 import org.jesperancinha.car.lease.services.CarService
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -16,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @WebMvcTest(CarController::class)
+@TestMethodOrder(OrderAnnotation::class)
 internal class CarControllerTest @Autowired constructor(
     private val mockMvc: MockMvc,
     @MockitoBean private val carService: CarService
@@ -46,6 +51,7 @@ internal class CarControllerTest @Autowired constructor(
 
     @Test
     @WithMockUser(username = "Joao", roles = ["USER"])
+    @Execution(SAME_THREAD)
     @Throws(Exception::class)
     fun testCreateCar_whenCalled_thenCreateCar() {
         mockMvc.perform(
