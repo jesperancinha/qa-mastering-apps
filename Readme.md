@@ -27,7 +27,12 @@ Prompt claude with the following:
 
 ### Run all skills
 ```text
-please run skills annotations, kotlin, angular, parallel, docker, and spring-integration-test-wiring on this project
+please run skills angular, annotations, docker, java, jee, jvm, kotlin, ktor, maven, parallel, readme, spring, and spring-test on this project
+```
+
+### Run specific skills
+```text
+please run skills anti-patterns, and practices on this project
 ```
 
 ---
